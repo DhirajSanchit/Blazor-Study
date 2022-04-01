@@ -7,4 +7,8 @@
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\LogicLayer\LogicLayer.csproj" />
+    </ItemGroup>
+
 </Project>
