@@ -9,18 +9,19 @@ namespace LogicLayer.Containers
     public class TestDapperContainer : ITestDapperContainer
     {
         public IList<Test> Dt { get; set; }
+        
+        private  ITestDapperDal _context;
 
-        private  ITestDal _itd;
-
-        public TestDapperContainer(ITestDal itd)
+        public TestDapperContainer(ITestDapperDal context)
         {
-            _itd = itd;
+            _context = context;
         }
+
 
         public IList<Test> GetAll()
         {
             Dt = new List<Test>();
-            IList<TestDto> dataset = _itd.GetAllTestData();
+            IList<TestDto> dataset = _context.GetAllTestData();
             foreach (TestDto dto in dataset)
             {
                 Dt.Add(new Test(dto));

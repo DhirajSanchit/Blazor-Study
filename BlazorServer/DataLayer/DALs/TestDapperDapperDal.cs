@@ -5,17 +5,17 @@ using DataLayer.Interfaces;
 
 namespace DataLayer.DALs
 {
-    public class TestDal : ITestDal
+    public class TestDapperDapperDal : ITestDapperDal
     {
         
         private IDbConnection _dbConnection;
         
-        public TestDal(IDbConnection dbConnection)
+        public TestDapperDapperDal(IDbConnection dbConnection)
         {
             _dbConnection = dbConnection;
         }
         
-        public IList<TestDto> GetAllTestData()
+        public List<TestDto> GetAllTestData()
         {
             var sql = @"SELECT [id], [value] FROM [Test]";
 
@@ -25,15 +25,20 @@ namespace DataLayer.DALs
                 using (_dbConnection)
                 {
                     // var tests = (IList<TestDto>) await _dbConnection.QueryAsync("sql");
-                    var tests = /*(IList<TestDto>)*/ _dbConnection.Query<TestDto>(sql).ToList();
+                    var tests = _dbConnection.Query<TestDto>(sql).ToList();
                     return tests;
                 }
             }
             catch (Exception ex)
             {
-                
-                Console.WriteLine(ex.Message); 
+
+                Console.WriteLine(ex.Message);
                 throw new Exception(ex.Message);
+            }
+
+            finally
+            {
+                _dbConnection.Close();
             }
         }
         

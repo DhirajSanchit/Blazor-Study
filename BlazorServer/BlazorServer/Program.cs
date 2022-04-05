@@ -1,15 +1,33 @@
+using System.Data;
+using System.Data.SqlClient; 
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using BlazorServer.Data;
-
+using DataLayer.DALs;
+using DataLayer.Interfaces;
+using LogicLayer.Containers;
+using LogicLayer.Interfaces; 
 var builder = WebApplication.CreateBuilder(args);
 
+//Todo: Clean up implementation below
+var ConnectionString = builder.Configuration.GetConnectionString("LocalDockerServer");
+builder.Services.AddTransient<IDbConnection>(sp => new SqlConnection(ConnectionString));
+// builder.Services.AddTransient<IDbConnection>(sp => new SqlConnection("LocalDockerServer"));
+
+// DALS
+ builder.Services.AddScoped<ITestDapperDal, TestDapperDapperDal>();
+
+//Containers
+builder.Services.AddScoped<ITestDapperContainer, TestDapperContainer>();
+
+
 // Add services to the container.
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 
 
+// //
 
 var app = builder.Build();
 

@@ -5,11 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="216dd0e6-f505-4522-afd9-a54f7db9cb4c" name="Changes" comment=".NET 6 migration phase 2 Runner update">
+      <change afterPath="$PROJECT_DIR$/BlazorServer/Pages/Products/Products.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BlazorServer/ViewModels/TestViewModel.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DataLayer/DALs/ProductDal.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DataLayer/Dtos/ProductDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DataLayer/Interfaces/IProductDal.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BlazorServer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BlazorServer/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BlazorServer/BlazorServer.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorServer/BlazorServer.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorServer/Pages/Index.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorServer/Pages/Index.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BlazorServer/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorServer/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataLayer/DataLayer.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DataLayer/DataLayer.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicLayer/LogicLayer.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogicLayer/LogicLayer.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataLayer/DALs/TestDapperDAL.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataLayer/DALs/TestDapperDapperDal.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataLayer/Dtos/TestDTO.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataLayer/Dtos/TestDtocs.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataLayer/Interfaces/ITestDAL.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataLayer/Interfaces/ITestDapperDal.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogicLayer/Containers/TestDapperContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogicLayer/Containers/TestDapperContainer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogicLayer/Interfaces/ITestDapperContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogicLayer/Interfaces/ITestDapperContainer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Runner/Runner.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Runner/Runner.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +33,21 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9d4f4ac7db6d2c5d183ab2d92602280ed4349fd6e6a1b6313546b3d01fdab5/ServiceProvider.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6518e12429e640b855e84dbcb556279a6dcdecc0f25132fcbc5510f956f771e7/CallSiteFactory.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6dbdce1e140bc4e69d7e636b3b1eda3539265b8dc5da948369d43de0c28bb1/WebApplicationBuilder.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/be3138a8d7681ed31643c9922fc5e41422b03829af7dddee7e2aba9fc6f10/WebApplicationServiceCollection.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/62d7a5fcde064b8a531e72b54ce9c67eb7212efe3352835525ba29b572e4e/Renderer.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -38,7 +63,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="HotReloadSettingsPage" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected=".NET Launch Settings Profile.BlazorServer">
@@ -100,6 +125,9 @@
       <option name="presentableId" value="Default" />
       <updated>1648811931324</updated>
       <workItem from="1648811949738" duration="2126000" />
+      <workItem from="1649168908974" duration="388000" />
+      <workItem from="1649169484256" duration="7552000" />
+      <workItem from="1649192206550" duration="6821000" />
     </task>
     <task id="LOCAL-00001" summary="Project and SDK setup">
       <created>1648813273712</created>
@@ -136,7 +164,7 @@
     <option name="version" value="3" />
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
-  <component name="UnityProjectConfiguration" hasMinimizedUI="null" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

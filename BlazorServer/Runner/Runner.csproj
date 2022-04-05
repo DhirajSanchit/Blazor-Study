@@ -12,4 +12,10 @@
       <PackageReference Include="YamlDotNet" Version="11.2.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\BlazorServer\BlazorServer.csproj" />
+      <ProjectReference Include="..\DataLayer\DataLayer.csproj" />
+      <ProjectReference Include="..\LogicLayer\LogicLayer.csproj" />
+    </ItemGroup>
+
 </Project>
