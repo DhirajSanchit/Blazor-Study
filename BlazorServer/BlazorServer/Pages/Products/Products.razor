@@ -5,7 +5,7 @@
 @using BlazorServer.ViewModels 
 @using LogicLayer.Interfaces 
 @using Microsoft.CodeAnalysis.CSharp.Syntax
-@inject ITestDapperContainer _container
+@inject IProductContainer _container
 
 <h1>Weather forecast</h1>
 
@@ -13,12 +13,12 @@
 
 @{
 
-    TestViewModel tvm = new();
-    tvm.DataSet = _container.GetAll();
+    ProductViewModel model = new();
+    model.Products = _container.GetAll();
 }
 
 
-@if (tvm == null)
+@if (model == null)
 {
     <p>
         <em>Empty</em>
@@ -31,18 +31,18 @@ else
     <table class="table">
         <thead>
         <tr>
-            <th>Date</th>
-            <th>Temp. (C)</th>
-            <th>Temp. (F)</th>
-            <th>Summary</th>
+            @* <th>Date</th> *@
+            @* <th>Temp. (C)</th> *@
+            @* <th>Temp. (F)</th> *@
+            @* <th>Summary</th> *@
         </tr>
         </thead>
         <tbody>
-        @foreach (var record in tvm.DataSet)
+        @foreach (var record in model.Products)
         {
             <tr>
                 <td>@record.Id</td>
-                <td>@record.Value</td> 
+                <td>@record.Name</td> 
             </tr>
         }
         </tbody>

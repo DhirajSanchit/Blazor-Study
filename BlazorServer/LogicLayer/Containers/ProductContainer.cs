@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using DataLayer.Dtos;
 using DataLayer.Interfaces;
 using LogicLayer.Interfaces;
