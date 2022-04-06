@@ -1,5 +1,6 @@
 using System.Data;
-using System.Data.SqlClient; 
+using System.Data.SqlClient;
+using System.Net.NetworkInformation;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using BlazorServer.Data;
@@ -16,10 +17,11 @@ builder.Services.AddTransient<IDbConnection>(sp => new SqlConnection(ConnectionS
 
 // DALS
  builder.Services.AddScoped<ITestDapperDal, TestDapperDapperDal>();
+ builder.Services.AddScoped<IProductDal, ProductDal>();
 
 //Containers
 builder.Services.AddScoped<ITestDapperContainer, TestDapperContainer>();
-
+builder.Services.AddScoped<IProductContainer, ProductContainer>();
 
 // Add services to the container.
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();

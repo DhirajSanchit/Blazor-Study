@@ -4,7 +4,13 @@
     <projectFile>Runner/Runner.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="216dd0e6-f505-4522-afd9-a54f7db9cb4c" name="Changes" comment=".NET 6 migration phase 3 Proof of Concept update and Product Migration" />
+    <list default="true" id="216dd0e6-f505-4522-afd9-a54f7db9cb4c" name="Changes" comment=".NET 6 migration phase 3 Re-Adding Unit Test project, Buildable and runnable now">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.BlazorServer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BlazorServer/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataLayer/Dtos/ProductDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataLayer/Dtos/ProductDto.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogicLayer/Interfaces/IProductContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogicLayer/Interfaces/IProductContainer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogicLayer/Models/Product.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogicLayer/Models/Product.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogicLayer/Models/Test.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogicLayer/Models/Test.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -111,7 +117,7 @@
       <workItem from="1648811949738" duration="2126000" />
       <workItem from="1649168908974" duration="388000" />
       <workItem from="1649169484256" duration="7552000" />
-      <workItem from="1649192206550" duration="7226000" />
+      <workItem from="1649192206550" duration="8766000" />
     </task>
     <task id="LOCAL-00001" summary="Project and SDK setup">
       <created>1648813273712</created>
@@ -148,7 +154,21 @@
       <option name="project" value="LOCAL" />
       <updated>1649203072052</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary=".NET 6 migration phase 3 Proof of Concept update and Product Migration">
+      <created>1649229248785</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1649229248785</updated>
+    </task>
+    <task id="LOCAL-00007" summary=".NET 6 migration phase 3 Re-Adding Unit Test project, Buildable and runnable now">
+      <created>1649229368270</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1649229368270</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -174,6 +194,7 @@
     <MESSAGE value=".NET 6 migration phase 2 addition" />
     <MESSAGE value=".NET 6 migration phase 2 Runner update" />
     <MESSAGE value=".NET 6 migration phase 3 Proof of Concept update and Product Migration" />
-    <option name="LAST_COMMIT_MESSAGE" value=".NET 6 migration phase 3 Proof of Concept update and Product Migration" />
+    <MESSAGE value=".NET 6 migration phase 3 Re-Adding Unit Test project, Buildable and runnable now" />
+    <option name="LAST_COMMIT_MESSAGE" value=".NET 6 migration phase 3 Re-Adding Unit Test project, Buildable and runnable now" />
   </component>
 </project>
