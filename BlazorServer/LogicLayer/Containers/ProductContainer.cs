@@ -13,6 +13,7 @@ public class ProductContainer : IProductContainer
     
     private  IProductDal _context;
     public IList<Product> Products { get; set; }
+    public Product product;
 
     public ProductContainer(IProductDal context)
     {
@@ -29,5 +30,11 @@ public class ProductContainer : IProductContainer
         }
 
         return Products;
+    }
+
+    public Product GetByID(int id)
+    {
+        //return product = _context.GetById(id);
+        return null;
     }
 }

@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace BlazorTests;
 
 [TestClass]
-public class UnitTest1
+public class OrderTests
 {
     [TestMethod]
     public void TestMethod1()

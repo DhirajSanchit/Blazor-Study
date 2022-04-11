@@ -14,7 +14,9 @@ public class ProductDal : IProductDal
         {
             _dbConnection = dbConnection;
         }
-
+        
+        
+        //TODO: WRAP SQL METHOD INTO OWN CLASS
         public IList<ProductDto> GetAll()
         {
             var sql = @"select Name, Price, [Product].Description as Description, C.Description as Category
@@ -43,4 +45,9 @@ public class ProductDal : IProductDal
                 _dbConnection.Close();
             }
         }
-    }
+
+        public ProductDto GetById(int id)
+        {
+            throw new NotImplementedException();
+        } 
+}

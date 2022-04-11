@@ -11,4 +11,5 @@ public interface IProductContainer
     
     IList<Product> Products { get; set; }
     public IList<Product> GetAll();
+    public Product GetByID(int id);
 }
