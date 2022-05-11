@@ -5,23 +5,40 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using BlazorServer.Data;
 using DataLayer.DALs;
+using DataLayer.Factories;
 using DataLayer.Interfaces;
 using LogicLayer.Containers;
+using LogicLayer.Factories;
 using LogicLayer.Interfaces; 
 var builder = WebApplication.CreateBuilder(args);
 
 //Todo: Clean up implementation below
 var ConnectionString = builder.Configuration.GetConnectionString("LocalDockerServer");
 builder.Services.AddTransient<IDbConnection>(sp => new SqlConnection(ConnectionString));
-// builder.Services.AddTransient<IDbConnection>(sp => new SqlConnection("LocalDockerServer"));
+// builder.Services.AddTransient<IDbConnection>(sp => new SqlConnection("LocalDockerServer")); 
+
+//'Global' Factories
+builder.Services.AddScoped<DalFactory>();
+builder.Services.AddScoped<ContainerFactory>();
+
+
 
 // DALS
- builder.Services.AddScoped<ITestDapperDal, TestDapperDapperDal>();
- builder.Services.AddScoped<IProductDal, ProductDal>();
+builder.Services.AddScoped<ITestDapperDal, TestDapperDapperDal>();
+builder.Services.AddScoped<IProductDal, ProductDal>();
+
+builder.Services.AddTransient<ProductDal>()
+    .AddTransient<IProductDal, ProductDal>(s => s.GetService<ProductDal>());
+
+ 
 
 //Containers
 builder.Services.AddScoped<ITestDapperContainer, TestDapperContainer>();
 builder.Services.AddScoped<IProductContainer, ProductContainer>();
+
+builder.Services.AddTransient<ProductContainer>()
+    .AddTransient<IProductContainer, ProductContainer>(s => s.GetService<ProductContainer>());
+
 
 // Add services to the container.
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();

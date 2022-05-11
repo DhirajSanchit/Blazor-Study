@@ -4,20 +4,28 @@
     <projectFile>Runner/Runner.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="216dd0e6-f505-4522-afd9-a54f7db9cb4c" name="Changes" comment=".NET 6 migration phase 3 Re-Adding Depency Injection for Products after project implode ;_;">
-      <change afterPath="$PROJECT_DIR$/BlazorServer/GlobalUsings.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer/Pages/Products/Details.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorTests/ProdcutTests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorTests/ShoppingCartTests.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Runner/.gitignore" afterDir="false" />
+    <list default="true" id="216dd0e6-f505-4522-afd9-a54f7db9cb4c" name="Changes" comment="IDE adjustments, Basic Unittests runnable again.&#10;-Updated GitIgnore&#10;-Some gorundwork&#10;-SOLID Rework">
+      <change afterPath="$PROJECT_DIR$/DataLayer/DALs/ShoppingCartDal.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DataLayer/Dtos/ShoppingCartDto.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DataLayer/Factories/DalFactory.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DataLayer/Interfaces/IShoppingCartDal.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogicLayer/Factories/ContainerFactory.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogicLayer/Helpers/ShoppingCartHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.BlazorServer/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BlazorServer/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BlazorServer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BlazorServer/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorServer/BlazorServer.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorServer/BlazorServer.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorServer/Pages/Index.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorServer/Pages/Index.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorServer/Pages/Products/Details.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorServer/Pages/Products/Details.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorServer/Pages/Products/Products.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorServer/Pages/Products/Products.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorServer/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorServer/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BlazorTests/BlazorTests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorTests/BlazorTests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorTests/UnitTest1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorTests/OrderTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DataLayer/DALs/ProductDal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataLayer/DALs/ProductDal.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DataLayer/DataLayer.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DataLayer/DataLayer.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataLayer/Interfaces/IProductDal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataLayer/Interfaces/IProductDal.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataLayer/Dtos/ProductDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataLayer/Dtos/ProductDto.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogicLayer/Containers/ProductContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogicLayer/Containers/ProductContainer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicLayer/Interfaces/IProductContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogicLayer/Interfaces/IProductContainer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogicLayer/LogicLayer.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogicLayer/LogicLayer.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogicLayer/Models/Product.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogicLayer/Models/Product.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Runner/Runner.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Runner/Runner.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,11 +49,11 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9d4f4ac7db6d2c5d183ab2d92602280ed4349fd6e6a1b6313546b3d01fdab5/ServiceProvider.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/62d7a5fcde064b8a531e72b54ce9c67eb7212efe3352835525ba29b572e4e/Renderer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6518e12429e640b855e84dbcb556279a6dcdecc0f25132fcbc5510f956f771e7/CallSiteFactory.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6dbdce1e140bc4e69d7e636b3b1eda3539265b8dc5da948369d43de0c28bb1/WebApplicationBuilder.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9d4f4ac7db6d2c5d183ab2d92602280ed4349fd6e6a1b6313546b3d01fdab5/ServiceProvider.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/be3138a8d7681ed31643c9922fc5e41422b03829af7dddee7e2aba9fc6f10/WebApplicationServiceCollection.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/62d7a5fcde064b8a531e72b54ce9c67eb7212efe3352835525ba29b572e4e/Renderer.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -56,14 +64,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="DatabaseDriversLRU" value="sqlserver" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
   <component name="RunManager" selected=".NET Launch Settings Profile.BlazorServer">
     <configuration name="Runner" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
@@ -127,7 +133,12 @@
       <workItem from="1649169484256" duration="7552000" />
       <workItem from="1649192206550" duration="13829000" />
       <workItem from="1649407315334" duration="2523000" />
-      <workItem from="1649667455387" duration="2404000" />
+      <workItem from="1649667455387" duration="6786000" />
+      <workItem from="1649840338318" duration="3561000" />
+      <workItem from="1650057651525" duration="6963000" />
+      <workItem from="1651226179188" duration="3248000" />
+      <workItem from="1651397808511" duration="1736000" />
+      <workItem from="1652280936791" duration="996000" />
     </task>
     <task id="LOCAL-00001" summary="Project and SDK setup">
       <created>1648813273712</created>
@@ -192,7 +203,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649237232898</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="IDE adjustments, Basic Unittests runnable again.&#10;-Updated GitIgnore&#10;-Some gorundwork&#10;-SOLID Rework">
+      <created>1649676192732</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1649676192732</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -220,6 +238,7 @@
     <MESSAGE value=".NET 6 migration phase 3 Proof of Concept update and Product Migration" />
     <MESSAGE value=".NET 6 migration phase 3 Re-Adding Unit Test project, Buildable and runnable now" />
     <MESSAGE value=".NET 6 migration phase 3 Re-Adding Depency Injection for Products after project implode ;_;" />
-    <option name="LAST_COMMIT_MESSAGE" value=".NET 6 migration phase 3 Re-Adding Depency Injection for Products after project implode ;_;" />
+    <MESSAGE value="IDE adjustments, Basic Unittests runnable again.&#10;-Updated GitIgnore&#10;-Some gorundwork&#10;-SOLID Rework" />
+    <option name="LAST_COMMIT_MESSAGE" value="IDE adjustments, Basic Unittests runnable again.&#10;-Updated GitIgnore&#10;-Some gorundwork&#10;-SOLID Rework" />
   </component>
 </project>

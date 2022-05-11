@@ -10,12 +10,14 @@ public class Product
     public float Price { get; set; }
     public int CategoryId { get; set; }
     public string Category { get; set; }
+    public string Description { get; set; }
  
     public Product(ProductDto dto)
     {
-        Id = dto.Id;
+        Id = dto.ProductId;
         Name = dto.Name;
         Price = dto.Price;
+        Description = dto.Description;
         CategoryId = dto.CategoryId;
         Category = dto.Category;
     }

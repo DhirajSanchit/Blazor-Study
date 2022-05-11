@@ -19,7 +19,7 @@ public class ProductDal : IProductDal
         //TODO: WRAP SQL METHOD INTO OWN CLASS
         public IList<ProductDto> GetAll()
         {
-            var sql = @"select Name, Price, [Product].Description as Description, C.Description as Category
+            var sql = @"select ProductId, Name, Price, [Product].Description as Description, C.Description as Category
                         from  Product
                         LEFT JOIN dbo.Category C on C.CategoryId = Product.CategoryId";
 
