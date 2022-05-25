@@ -5,27 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="216dd0e6-f505-4522-afd9-a54f7db9cb4c" name="Changes" comment="IDE adjustments, Basic Unittests runnable again.&#10;-Updated GitIgnore&#10;-Some gorundwork&#10;-SOLID Rework">
-      <change afterPath="$PROJECT_DIR$/DataLayer/DALs/ShoppingCartDal.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataLayer/Dtos/ShoppingCartDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataLayer/Factories/DalFactory.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataLayer/Interfaces/IShoppingCartDal.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Factories/ContainerFactory.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Helpers/ShoppingCartHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.BlazorServer/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BlazorServer/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BlazorServer/Controls/ProductItem.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BlazorServer/Controls/SearchBarComponent.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BlazorServer/Pages/Counter.razor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BlazorServer/Pages/DynamicComponent.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BlazorServer/Pages/Products/SearchProduct.razor" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BlazorServer/Pages/Products/SearchProduct.razor.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogicLayer/Functionalities/SearchProduct/SearchProduct.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogicLayer/Functionalities/SearchProduct/ViewProduct.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogicLayer/Interfaces/ISearchProduct.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LogicLayer/Interfaces/IViewProduct.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BlazorServer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BlazorServer/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorServer.sln" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorServer.sln" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BlazorServer/BlazorServer.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorServer/BlazorServer.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorServer/Pages/Index.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorServer/Pages/Index.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorServer/Pages/Products/Details.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorServer/Pages/Products/Details.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorServer/Pages/Counter.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorServer/Pages/Counter.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorServer/Pages/Products/Details.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorServer/Pages/Products/ProductDetails.razor" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BlazorServer/Pages/Products/Products.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorServer/Pages/Products/Products.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorServer/Pages/_Host.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorServer/Pages/_Host.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorServer/Pages/_Layout.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorServer/Pages/_Layout.cshtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BlazorServer/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorServer/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorTests/BlazorTests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorTests/BlazorTests.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorServer/Shared/NavMenu.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorServer/Shared/NavMenu.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorServer/_Imports.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorServer/_Imports.razor" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BlazorServer/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorServer/appsettings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DataLayer/DALs/ProductDal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataLayer/DALs/ProductDal.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DataLayer/DataLayer.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DataLayer/DataLayer.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DataLayer/Dtos/ProductDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataLayer/Dtos/ProductDto.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogicLayer/Containers/ProductContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogicLayer/Containers/ProductContainer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LogicLayer/Interfaces/IProductContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogicLayer/Interfaces/IProductContainer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogicLayer/LogicLayer.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogicLayer/LogicLayer.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LogicLayer/Models/Product.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogicLayer/Models/Product.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Runner/Runner.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Runner/Runner.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Runner/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Runner/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,11 +58,16 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/47925512bce6cc76dd9992e37fe57641638163e5631f12f25445296b926aed9/ComponentBase.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/62d7a5fcde064b8a531e72b54ce9c67eb7212efe3352835525ba29b572e4e/Renderer.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6518e12429e640b855e84dbcb556279a6dcdecc0f25132fcbc5510f956f771e7/CallSiteFactory.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/6dbdce1e140bc4e69d7e636b3b1eda3539265b8dc5da948369d43de0c28bb1/WebApplicationBuilder.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7aa2b1425abbde669ae92e26b2ff24f7395f6799cd7598155c5e1fac322228/EventCallbackWorkItem.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/9d4f4ac7db6d2c5d183ab2d92602280ed4349fd6e6a1b6313546b3d01fdab5/ServiceProvider.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bcae882191178c8bf44c9add4cdeffa874a7afe629e3e56e9280f5896e953425/Monitor.CoreCLR.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/be3138a8d7681ed31643c9922fc5e41422b03829af7dddee7e2aba9fc6f10/WebApplicationServiceCollection.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c4760842fced4403b60fd5c8ed78484c0321cfe681268bdeec913d1bc11a57/RazorPage.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LogicLayer/Interfaces/IProductContainer.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -138,7 +152,13 @@
       <workItem from="1650057651525" duration="6963000" />
       <workItem from="1651226179188" duration="3248000" />
       <workItem from="1651397808511" duration="1736000" />
-      <workItem from="1652280936791" duration="996000" />
+      <workItem from="1652280936791" duration="5851000" />
+      <workItem from="1652366488902" duration="6495000" />
+      <workItem from="1652444683628" duration="2871000" />
+      <workItem from="1652702708422" duration="7202000" />
+      <workItem from="1653043885332" duration="3835000" />
+      <workItem from="1653224863416" duration="17900000" />
+      <workItem from="1653477392319" duration="357000" />
     </task>
     <task id="LOCAL-00001" summary="Project and SDK setup">
       <created>1648813273712</created>
@@ -210,7 +230,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649676192732</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="IDE adjustments, Basic Unittests runnable again.&#10;-Updated GitIgnore&#10;-Some gorundwork&#10;-SOLID Rework">
+      <created>1652282840703</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1652282840703</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

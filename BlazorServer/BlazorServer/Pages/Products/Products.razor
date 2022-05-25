@@ -1,13 +1,11 @@
-@page "/products"
+@page "/allproducts"
 
-<PageTitle>Weather forecast</PageTitle>
+<PageTitle>products</PageTitle>
 
-@using BlazorServer.ViewModels 
-@using LogicLayer.Interfaces 
-@using Microsoft.CodeAnalysis.CSharp.Syntax
+@using BlazorServer.ViewModels  
 @inject IProductContainer _container
 
-<h1>Weather forecast</h1>
+<h1>products</h1>
 
 <p>This component demonstrates fetching data from a service.</p>
 
@@ -26,8 +24,6 @@
 }
 else
 {
-
-    
     <table class="table">
         <thead>
         <tr>

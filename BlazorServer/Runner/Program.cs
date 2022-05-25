@@ -7,7 +7,7 @@ namespace Runner
     class Program
     {
         
-        public static IConfigurationRoot _configuration;
+        // public static IConfigurationRoot _configuration;
         
         
         

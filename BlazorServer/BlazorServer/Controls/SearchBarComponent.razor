@@ -1,0 +1,22 @@
+<h3>SearchBarComponent</h3>
+
+<div class="container-fluid float-sm-start">
+<form class="form-inline">
+      <div class="form-group mx-sm-3mb-2">
+            <label for="filter">Search:&nbsp;</label>
+           <input type="text"class="form-control"id="filter"@bind-value="filter"/>
+      </div>
+      <button type="button"class="btn btn-primary mb-2"@onclick="HandleSearch">Search</button>
+ </form>
+ </div> 
+
+@code {
+    private string filter;
+    
+    [Parameter]
+    public EventCallback<string>OnSearch{get;set;}
+    private void HandleSearch()
+    {
+        OnSearch.InvokeAsync(filter);
+    }
+}

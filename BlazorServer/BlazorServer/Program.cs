@@ -9,6 +9,7 @@ using DataLayer.Factories;
 using DataLayer.Interfaces;
 using LogicLayer.Containers;
 using LogicLayer.Factories;
+using LogicLayer.Functionalities.SearchProduct;
 using LogicLayer.Interfaces; 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,23 +22,23 @@ builder.Services.AddTransient<IDbConnection>(sp => new SqlConnection(ConnectionS
 builder.Services.AddScoped<DalFactory>();
 builder.Services.AddScoped<ContainerFactory>();
 
-
-
 // DALS
 builder.Services.AddScoped<ITestDapperDal, TestDapperDapperDal>();
-builder.Services.AddScoped<IProductDal, ProductDal>();
+builder.Services.AddTransient<IProductDal, ProductDal>();
 
-builder.Services.AddTransient<ProductDal>()
-    .AddTransient<IProductDal, ProductDal>(s => s.GetService<ProductDal>());
+// builder.Services.AddTransient<ProductDal>()
+//     .AddTransient<IProductDal, ProductDal>(s => s.GetService<ProductDal>());
 
- 
 
 //Containers
 builder.Services.AddScoped<ITestDapperContainer, TestDapperContainer>();
-builder.Services.AddScoped<IProductContainer, ProductContainer>();
+builder.Services.AddTransient<IProductContainer, ProductContainer>();
 
-builder.Services.AddTransient<ProductContainer>()
-    .AddTransient<IProductContainer, ProductContainer>(s => s.GetService<ProductContainer>());
+//Functionalities
+builder.Services.AddTransient<ISearchProduct, SearchProduct>();
+builder.Services.AddTransient<IViewProduct, ViewProduct>(); 
+// builder.Services.AddTransient<ProductContainer>()
+//     .AddTransient<IProductContainer, ProductContainer>(s => s.GetService<ProductContainer>());
 
 
 // Add services to the container.
