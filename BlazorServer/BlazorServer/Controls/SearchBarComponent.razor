@@ -18,5 +18,7 @@
     private void HandleSearch()
     {
         OnSearch.InvokeAsync(filter);
+        var dbg = OnSearch;
+        StateHasChanged();
     }
 }

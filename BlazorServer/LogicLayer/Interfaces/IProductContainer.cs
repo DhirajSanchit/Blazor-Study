@@ -14,4 +14,7 @@ public interface IProductContainer
     public Product GetById(int id);
     public Product GetProduct(int id);
     public IEnumerable<Product> GetSearchedProducts(string filter);
+    public string UpdateProduct(Product product); 
+    public string Delete(int id); 
+
 }

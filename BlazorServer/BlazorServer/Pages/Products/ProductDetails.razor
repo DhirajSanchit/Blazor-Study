@@ -1,10 +1,14 @@
-@page "/product/{id:int}"
+@page "/product/{ProductId:int}"
+@using LogicLayer.Functionalities.ShoppingCart
 <h3>Details</h3> 
 
 <PageTitle>Details</PageTitle>
  
+@inject NavigationManager NavigationManager
+
 @inject IViewProduct _viewProduct
 @inject IProductContainer _container; 
+@inject IAddToCart _Cart;
 @* *@
 @* <p> </p> *@
 @* *@
@@ -30,7 +34,14 @@
         </p>
         <p class="card-text">@_product.Description</p>
     </div>
-    <NavLink class ="btn" href="products">Back To Products</NavLink>
+    <div>
+        <button class ="btn btn-primary container-fluid" @onclick="AddToCart">Add To Cart</button>
+    </div>
+    <NavLink class ="" href="products">
+    <button class ="btn btn-danger container-fluid">
+        Back To Products
+    </button>
+    </NavLink>
 </div>
 
 @code{
@@ -38,18 +49,31 @@
 
     //Raw parameter below; Value of id is passed in from Url above
     [Parameter]
-    public int Id { get; set; }
+    public int ProductId { get; set; }
 
     //Method below is called when the parameter value above is set;
 
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
-        if (Id > 0)
-        {
-            _product = _viewProduct.GetProduct(Id);
-        }
+        if (ProductId > 0)
+            try
+            {
+                {
+                    _product = _viewProduct.GetProduct(ProductId);
+                }
+            }
+            catch (Exception ex)
+            {
+                NavigationManager.NavigateTo("/ErrorPage");
+            }
 
+    }
+
+    private void AddToCart()
+    {
+        //_Cart.GetProduct(_product.ProductId);
+        NavigationManager.NavigateTo("/");
     }
 }
     

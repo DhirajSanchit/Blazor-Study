@@ -1,0 +1,39 @@
+<!--
+///
+
+Purpose of this Component is to save and recycle some snippets for later (re)use
+Or backup after the proof of concept didn't pan out :<
+-->
+
+@* <table class = "table"> *@
+@*     <thead> *@
+@*     <tr> *@
+@*         <th> *@
+@*         </th> *@
+@*         Name *@
+@*         <th> *@
+@*             Brand *@
+@*         </th> *@
+@*         <th> *@
+@*             Price *@
+@*         </th> *@
+@*     </tr> *@
+@*     </thead> *@
+@*     <tbody> *@
+@*     @if (products != null && products.Any()) *@
+@*     { *@
+@*         @foreach (var product in products) *@
+@*         { *@
+@*             <ProductItem Product="product"></ProductItem> *@
+@*         } *@
+@*     } *@
+@*     else *@
+@*     { *@
+@*         <tr> *@
+@*             <td> *@
+@*                 Cannot find products *@
+@*             </td> *@
+@*         </tr> *@
+@*     } *@
+@*     </tbody> *@
+@* </table> *@

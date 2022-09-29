@@ -5,7 +5,7 @@ namespace LogicLayer.Models;
 public class Product
 {
     
-    public int Id { get; set; }
+    public int ProductId { get; set; }
     public string Name { get; set; }
     public float Price { get; set; }
     public int CategoryId { get; set; }
@@ -21,9 +21,9 @@ public class Product
  
     public Product(ProductDto dto)
     {
-        Id = dto.ProductId;
+        ProductId = dto.ProductId;
         Name = dto.Name;
-        Price = dto.Price;
+        Price = (float)dto.Price;
         Description = dto.Description;
         CategoryId = dto.CategoryId;
         Category = dto.Category;

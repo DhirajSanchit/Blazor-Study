@@ -1,0 +1,36 @@
+@using LogicLayer.Interfaces.ShoppingCart
+@implements IDisposable
+@inject ICartState ShoppingCartState
+
+<div>
+    Cart: &nbsp; @lineItemsCount
+</div>
+
+
+
+@code {
+    private int lineItemsCount = 0;
+
+    protected override async Task OnAfterRenderAsync (bool firstRender)
+    {
+        if (firstRender)
+        {
+            ShoppingCartState.AddStateChangeListeners(HandleCartChange);
+            lineItemsCount = await ShoppingCartState.GetItemsCount();
+            StateHasChanged();
+        }
+    }
+
+    private async void HandleCartChange()
+    {
+        lineItemsCount = await ShoppingCartState.GetItemsCount();
+        StateHasChanged();
+    }
+
+    
+    public void Dispose()
+    {
+        ShoppingCartState.RemoveStateChangeListeners(HandleCartChange);
+    }
+
+}

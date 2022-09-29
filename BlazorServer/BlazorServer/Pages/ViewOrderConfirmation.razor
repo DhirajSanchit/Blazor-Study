@@ -1,0 +1,64 @@
+@using LogicLayer.Functionalities.Orders
+@inject IViewOrderConfirmation _viewOrderConfirmation
+@page "/orderconfirm/{uid}"
+<h3>ViewOrderConfirmation</h3>
+
+<h3>Your Order is Placed</h3>
+<br />
+@if (order != null)
+{
+    <p>
+        <b>Shipping Info:</b>
+    </p>
+    <p>@order.CustomerName</p>
+    <p>@order.CustomerAddress</p>
+    <p>@order.CustomerCity</p>
+    <p>@order.CustomerProvince</p>
+    <p>@order.CustomerCountry</p>
+    <br />
+    <OrderSummaryComponent Order="order" HidePlaceOrder="true"></OrderSummaryComponent>
+
+    <br />
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in order.LineItems)
+        {
+            <tr>
+                <td>@item.Product.Name</td>
+                <td>@item.Quantity</td>
+                <td>@item.Product.Price</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+
+}
+
+
+@code {
+
+    private Order order;
+
+    [Parameter]
+    public string Id { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        if (!string.IsNullOrWhiteSpace(Id))
+        {
+            order = _viewOrderConfirmation.Execute(Id);
+        }
+    }
+
+
+
+}

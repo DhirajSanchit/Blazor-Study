@@ -1,0 +1,65 @@
+@using Microsoft.AspNetCore.Mvc
+@page "/cart"
+<h3>ShoppingCart</h3>
+@inject IShoppingCart _shoppingCart;
+@inject IViewShoppingCart _viewShoppingCart;
+
+<h3>Shopping Cart</h3>
+<br/>
+@if (order != null && order.LineItems != null && order.LineItems.Count > 0)
+{
+    <div class="row">
+        <div class="col-6">
+            <ul>
+                @for (int i = 0; i < order.LineItems.Count; i++)
+                {
+                    //Shopping items
+                    <LineItemComponent @key="order.LineItems[i].ProductId"
+                                        LineItem="order.LineItems[i]"
+                                        OnDeleteProduct="HandleDeleteProduct" 
+                                       OnUpdateQuantity ="HandleUpdateQuantity"></LineItemComponent>
+                    @if (i < order.LineItems.Count - 1)
+                    {
+
+                        <li style="list-style: none">
+                            <hr/>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+        <div class="col">
+            @* order summary *@
+            <OrderSummaryComponent Order="order"></OrderSummaryComponent>
+        </div>
+    </div>
+}
+else
+{
+    <h3>Cart is Empty</h3>
+}
+
+
+@code {
+    private Order order;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            order = await _viewShoppingCart.Execute();
+            StateHasChanged();
+        }
+    }
+
+    private void HandleDeleteProduct(Order order)
+    {
+        this.order = order;
+    }
+
+    private void HandleUpdateQuantity(Order order)
+    {
+        this.order = order;
+    }
+
+}

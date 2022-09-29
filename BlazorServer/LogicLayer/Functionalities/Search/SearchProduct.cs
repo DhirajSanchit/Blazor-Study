@@ -1,7 +1,7 @@
 using LogicLayer.Interfaces;
 using LogicLayer.Models;
 
-namespace LogicLayer.Functionalities.SearchProduct;
+namespace LogicLayer.Functionalities.Search;
 
 public class SearchProduct : ISearchProduct
 {
