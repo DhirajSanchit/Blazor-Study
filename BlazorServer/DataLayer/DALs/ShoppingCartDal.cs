@@ -5,14 +5,14 @@ using DataLayer.Interfaces;
 
 namespace DataLayer.DALs;
 
-public class ShoppingCartDal : IShoppingCartDal
+public class  vShoppingCartDal : IShoppingCartDal
 {
     private readonly IDbConnection _dbConnection;
 
-    public ShoppingCartDal(IDbConnection dbConnection)
-    {
-        _dbConnection = dbConnection;
-    }
+    // public ShoppingCartDal(IDbConnection dbConnection)
+    // {
+    //     _dbConnection = dbConnection;
+    // }
     public IList<ShoppingCartDto> GetAll()
     {
         
@@ -30,7 +30,7 @@ public class ShoppingCartDal : IShoppingCartDal
             }
         }
         catch (Exception ex)
-        {
+        {   
 
             Console.WriteLine(ex.Message);
             throw new Exception(ex.Message);

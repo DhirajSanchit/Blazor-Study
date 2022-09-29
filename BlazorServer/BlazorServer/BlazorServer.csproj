@@ -12,12 +12,31 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="11.0.1" />
       <PackageReference Include="FluentValidation" Version="10.4.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="6.0.6" />
       <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.3" />
       <PackageReference Include="Microsoft.Data.SqlClient" Version="4.1.0" />
       <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.0" />
       <PackageReference Include="Microsoft.JSInterop" Version="6.0.5" />
       <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="Pages\Counter.razor" />
+      <Content Remove="Pages\DynamicComponent.razor" />
+      <Content Remove="Pages\FetchData.razor" />
+      <Content Remove="Pages\Index.razor" />
+      <Content Remove="Pages\Products\Products.razor" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Pages\Counter.razor.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Controls\Customer" />
+      <Folder Include="Pages\Customer" />
     </ItemGroup>
 
 </Project>

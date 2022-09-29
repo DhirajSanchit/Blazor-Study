@@ -1,0 +1,28 @@
+@page "/ErrorPage"
+@inherits LayoutComponentBase
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>Error</title>
+    <link href="~/css/bootstrap/bootstrap.min.css" rel="stylesheet"/>
+    <link href="~/css/site.css" rel="stylesheet" asp-append-version="true"/>
+</head>
+
+<body>
+<div class="main">
+<div class="content px-4">
+    <h1 class="text-danger">Whoops!</h1>
+    <h2 class="text-danger">Something Went wrong. Try again at a later moment.</h2>
+    <NavLink href="products">
+        <button class="btn-primary">Back To Shopping</button>
+    </NavLink>
+    
+</div>
+</div>
+</body>
+
+</html>

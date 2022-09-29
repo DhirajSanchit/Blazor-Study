@@ -7,18 +7,17 @@ namespace LogicLayer.Containers;
 
 public class ProductContainer : IProductContainer
 {
-    /// <summary>
-    /// Container | 
-    /// </summary>
+    private bool _result;
+    private string  _message;
     
-    private  IProductDal _context;
+    private  IProductDal _dal;
 
     public IList<Product> products { get; set; }
     public Product product;
 
-    public ProductContainer(IProductDal context)
+    public ProductContainer(IProductDal dal)
     {
-        _context = context;
+        _dal = dal;
     }
     
     public IList<Product> GetAll()
@@ -26,7 +25,7 @@ public class ProductContainer : IProductContainer
         try
         {
             products = new List<Product>();
-            IList<ProductDto> dataset = _context.GetAll();
+            IList<ProductDto> dataset = _dal.GetAll();
             foreach (ProductDto dto in dataset)
             {
                 products.Add(new Product(dto));
@@ -60,7 +59,7 @@ public class ProductContainer : IProductContainer
     {
         try
         {
-            ProductDto dto = _context.GetById(id);
+            ProductDto dto = _dal.GetById(id);
             if (dto != null)
             {
 
@@ -93,5 +92,66 @@ public class ProductContainer : IProductContainer
             return products;
         }
         return products.Where(x=>x.Name.ToLower().Contains(filter.ToLower()));
+    }
+
+    public string UpdateProduct(Product product)
+    {
+        try
+        {
+            _result = _dal.UpdateProduct(product.ToDto());
+            if (_result)
+            {
+                _message = "Succes!";
+            }
+            else
+            {
+                _message = "Something went wrong";
+            }
+        }
+        catch (InvalidOperationException invalidOperationException)
+        {
+            throw new InvalidOperationException("Something went wrong", invalidOperationException);
+        }
+        catch (ArgumentException argumentException)
+        {
+            throw new ArgumentException("Something went wrong", argumentException);
+
+        }
+        catch (Exception e)
+        {
+            throw;
+        }
+        return _message;
+    }
+
+    public string Delete(int id)
+    {
+        try
+        {
+            _result = _dal.DeleteProduct(product.ProductId);
+            if (_result)
+            {
+                _message = "Succes!";
+            }
+            else
+            {
+                _message = "Something went wrong";
+            }
+        }
+        catch (InvalidOperationException invalidOperationException)
+        {
+            throw new InvalidOperationException("Something went wrong", invalidOperationException);
+        }
+        catch (ArgumentException argumentException)
+        {
+            throw new ArgumentException("Something went wrong", argumentException);
+
+        }
+        catch (Exception e)
+        {
+            throw;
+        }
+
+        return _message;
     }
 }

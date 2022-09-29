@@ -1,68 +1,54 @@
+@page "/"
 @page "/products" 
 @inject IProductContainer _container;
 @inject ISearchProduct _searchProduct;
+@inject NavigationManager NavigationManager;
 
 <h3>Products</h3>
 
 <h5>Overview of searched products</h5>
 <SearchBarComponent OnSearch="HandleSearch"></SearchBarComponent>
-
 <br/>
-    <table class = "table">
-        <thead>
-            <tr>
-                <th>
-                </th>
-                Name
-                <th>
-                    Brand
-                </th>
-                <th>
-                    Price
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-        @if (products != null && products.Any())
-        {
-            @foreach (var product in products)
-            {
-                <ProductItem Product="product"></ProductItem>
-            }
-        }
-        else
-        {
-            <tr>
-                <td>
-                    Cannot find products
-                </td>
-            </tr>
-        }
-        </tbody>
-    </table>
-                
-                
-                
 
+@if (products != null && products.Any())
+{
+    <div class="row">
+        @foreach (var product in products)
+        {
+        <ProductCard Product="product"></ProductCard>
+        }
+    </div>
+}
+else
+{
+    <p>No Products Found</p>
+}
+                
 
 @code{
 
     private IEnumerable<Product> products;
      protected override void OnInitialized()
     {
-        base.OnInitialized();
-         
-         //Fills the state / list by getting the products from the DB
+         base.OnInitialized();
+        //Fills the state / list by getting the products from the DB
          products = _container.GetAll();
-         
-         
     }
-    
+
     //Sends a search prompt to with a filter.
     private void HandleSearch(string filter)
     {
-        
-        //checks within this list and sorts it by name with the given filter.
-        products = _searchProduct.Execute(filter);
+        try
+        {
+    //checks within this list and sorts it by name with the given filter.
+            products = _searchProduct.Execute(filter);
+
+
+        }
+        catch
+        {
+            NavigationManager.NavigateTo("/Error");
+        } 
+
     }
 }
