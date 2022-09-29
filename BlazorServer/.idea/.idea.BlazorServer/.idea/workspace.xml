@@ -4,140 +4,7 @@
     <projectFile>Runner/Runner.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="216dd0e6-f505-4522-afd9-a54f7db9cb4c" name="Changes" comment="IDE adjustments, Basic Unittests runnable again.&#10;-Updated GitIgnore&#10;-Some gorundwork&#10;-SOLID Rework">
-      <change afterPath="$PROJECT_DIR$/BlazorServer.Web.AdminPortal/Controls/OrderComponent.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer.Web.AdminPortal/Controls/OrderListComponent.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer.Web.AdminPortal/Pages/OutstandingOrdersComponent.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer.Web.AdminPortal/Pages/ProcessOrderComponent.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer.Web.AdminPortal/Pages/ProcessedOrdersComponent.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer.Web.AdminPortal/_Imports.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer.Web.AdminPortal/wwwroot/background.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer.Web.AdminPortal/wwwroot/exampleJsInterop.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer.Web.AdminPortal/wwwroot/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer.Web.Common/Controls/LoginComponent.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer.Web.Common/Controls/MessageComponent.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer.Web.Common/Controls/SearchBarComponent.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer.Web.Common/JsInterOp/JsNavigator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer.Web.Common/ViewModels/LoginViewModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer.Web.Common/_Imports.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer.Web.Common/wwwroot/background.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer.Web.Common/wwwroot/jsNavigator.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer.Web.Common/wwwroot/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer.Web.CustomerPortal/Controls/CartComponent.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer.Web.CustomerPortal/Controls/CustomerFormComponent.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer.Web.CustomerPortal/Controls/LineItemComponent.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer.Web.CustomerPortal/Controls/OrderSummaryComponent.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer.Web.CustomerPortal/Controls/ProductCardComponent.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer.Web.CustomerPortal/Controls/ProductItemComponent.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer.Web.CustomerPortal/Pages/OrderConfirmationComponent.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer.Web.CustomerPortal/Pages/PlaceOrderComponent.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer.Web.CustomerPortal/Pages/SearchProductComponent.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer.Web.CustomerPortal/Pages/ShoppingCartComponent.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer.Web.CustomerPortal/Pages/ViewProductComponent.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer.Web.CustomerPortal/ViewModels/CustomerViewModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer.Web.CustomerPortal/_Imports.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer.Web.CustomerPortal/wwwroot/background.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer.Web.CustomerPortal/wwwroot/exampleJsInterop.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer.Web.CustomerPortal/wwwroot/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer/Controllers/AuthenticationController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer/Controls/Admin/OrderComponent.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer/Controls/Admin/OrderListComponent.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer/Controls/JsInterOp/JsNavigator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer/Controls/LineItemComponent.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer/Controls/LoginComponent.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer/Controls/MessageComponent.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer/Controls/OrderSummaryComponent.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer/Pages/AdminPortal/OrderDetails.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer/Pages/AdminPortal/OutstandingOrdersComponent.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer/Pages/AdminPortal/ProcessOrderComponent.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer/Pages/AdminPortal/ProcessedOrdersComponent.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer/Pages/Error.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer/Pages/ViewOrderConfirmation.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer/Shared/TopNavBar.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer/Snippets/OrderSnippet.class.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer/Snippets/Snippet.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer/Snippets/snippet2.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer/UI/CustomerFormComponent.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer/UI/Elements/TopNavBar.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer/UI/Orders/PlaceOrderComponent.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer/UI/Products/ProductCard.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer/UI/ShoppingCart/CartIconComponent.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer/UI/ShoppingCart/ShoppingCart.razor" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer/ViewModels/CustomerViewModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BlazorServer/ViewModels/LoginViewModel.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataLayer/DALs/OrderDal.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataLayer/Dtos/LineItemDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataLayer/Dtos/OrderDto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataLayer/Helpers/DataAccess.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataLayer/Interfaces/IDataAcess.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DataLayer/Interfaces/IOrderDal.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Containers/OrderContainer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Functionalities/Orders/OrderDetails.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Functionalities/Orders/OrderValidator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Functionalities/Orders/PlaceOrder.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Functionalities/Orders/ProcessOrder.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Functionalities/Orders/ViewOrderConfirmation.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Functionalities/Orders/ViewOrderDetails.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Functionalities/Orders/ViewOutstandingOrders.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Functionalities/Orders/ViewProcessedOrders.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Functionalities/Search/ViewProduct.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Functionalities/ShoppingCart/AddToCart.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Functionalities/ShoppingCart/DeleteFromCart.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Functionalities/ShoppingCart/IAddToCart.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Functionalities/ShoppingCart/ShoppingCart.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Functionalities/ShoppingCart/UpdateCartQuantity.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Functionalities/ShoppingCart/ViewShoppingCart.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Helpers/StateBase.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Interfaces/IAddToCart.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Interfaces/IOrderContainer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Interfaces/IOrderDetails.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Interfaces/IOrderValidator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Interfaces/IPlaceOrder.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Interfaces/IProcessOrder.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Interfaces/IShoppingCart.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Interfaces/IViewOrderConfirmation.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Interfaces/IViewOrderDetails.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Interfaces/IViewOutstandingOrders.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Interfaces/IViewProcessedOrders.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Interfaces/IViewShoppingCart.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Interfaces/ShoppingCart/ICartState.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Interfaces/ShoppingCart/ICartStateHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Interfaces/ShoppingCart/IDeleteFromCart.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Interfaces/ShoppingCart/IUpdateCartQuantity.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Models/LineItem.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LogicLayer/Models/Order.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/xUnitTests/Mocks/ProductMock.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ShopStudy/ShopStudy/.dockerignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ShopStudy/ShopStudy/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.BlazorServer/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BlazorServer/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.BlazorServer/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BlazorServer/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorServer.sln" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorServer.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorServer/App.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorServer/App.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorServer/BlazorServer.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorServer/BlazorServer.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorServer/Controls/ProductItem.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorServer/Controls/ProductItem.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorServer/Controls/SearchBarComponent.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorServer/Controls/SearchBarComponent.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorServer/Pages/Error.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorServer/Pages/Error.cshtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorServer/Pages/Products/ProductDetails.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorServer/Pages/Products/ProductDetails.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorServer/Pages/Products/Products.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorServer/Pages/Products/Products.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorServer/Pages/Products/SearchProduct.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorServer/Pages/Products/SearchProduct.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorServer/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorServer/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorServer/Shared/MainLayout.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorServer/Shared/MainLayout.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorServer/Shared/NavMenu.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorServer/Shared/NavMenu.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorServer/Shared/SurveyPrompt.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorServer/Shared/SurveyPrompt.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlazorServer/_Imports.razor" beforeDir="false" afterPath="$PROJECT_DIR$/BlazorServer/_Imports.razor" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataLayer/DALs/ProductDal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataLayer/DALs/ProductDal.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataLayer/DALs/ShoppingCartDal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataLayer/DALs/ShoppingCartDal.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataLayer/DataLayer.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DataLayer/DataLayer.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataLayer/Dtos/ProductDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataLayer/Dtos/ProductDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataLayer/Interfaces/IProductDal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataLayer/Interfaces/IProductDal.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicLayer/Containers/ProductContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogicLayer/Containers/ProductContainer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicLayer/Functionalities/SearchProduct/SearchProduct.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogicLayer/Functionalities/Search/SearchProduct.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicLayer/Functionalities/SearchProduct/ViewProduct.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicLayer/Helpers/ShoppingCartHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogicLayer/Helpers/ShoppingCartHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicLayer/Interfaces/IProductContainer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogicLayer/Interfaces/IProductContainer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicLayer/LogicLayer.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/LogicLayer/LogicLayer.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LogicLayer/Models/Product.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LogicLayer/Models/Product.cs" afterDir="false" />
-    </list>
+    <list default="true" id="216dd0e6-f505-4522-afd9-a54f7db9cb4c" name="Changes" comment="oihgv" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -181,16 +48,17 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bebd253e21dcf766929bfdfd74615bfe46e6e1693b289273dbdb82152893/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c4760842fced4403b60fd5c8ed78484c0321cfe681268bdeec913d1bc11a57/RazorPage.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/cff4d35895d3db30db86a0ec21297ac77589b961f6e219dede5a24aff0bb3b8d/ComponentBase.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/graciousmacbook/RiderProjects/Blazor-Study/BlazorServer/BlazorServer/App.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BlazorServer/Pages/DynamicComponent.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BlazorServer/Pages/Error.cshtml" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BlazorServer/Pages/Index.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BlazorServer/Pages/Products/Products.razor" root0="SKIP_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/InterfaceLayer/Class1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogicLayer/Functionalities/ShoppingCart/AddToCart.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogicLayer/Functionalities/ShoppingCart/IAddToCart.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogicLayer/Interfaces/IOrderContainer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogicLayer/Interfaces/IPlaceOrder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LogicLayer/Interfaces/IProductContainer.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/PoC/Class1.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -379,7 +247,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652282840703</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="oihgv">
+      <created>1664447220462</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1664447220462</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -399,7 +274,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="main" />
+                        <option value="origin/PoC" />
                       </list>
                     </value>
                   </entry>
@@ -420,7 +295,8 @@
     <MESSAGE value=".NET 6 migration phase 3 Re-Adding Unit Test project, Buildable and runnable now" />
     <MESSAGE value=".NET 6 migration phase 3 Re-Adding Depency Injection for Products after project implode ;_;" />
     <MESSAGE value="IDE adjustments, Basic Unittests runnable again.&#10;-Updated GitIgnore&#10;-Some gorundwork&#10;-SOLID Rework" />
-    <option name="LAST_COMMIT_MESSAGE" value="IDE adjustments, Basic Unittests runnable again.&#10;-Updated GitIgnore&#10;-Some gorundwork&#10;-SOLID Rework" />
+    <MESSAGE value="oihgv" />
+    <option name="LAST_COMMIT_MESSAGE" value="oihgv" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
