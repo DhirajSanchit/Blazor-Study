@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using InterfaceLayer.Containers;
 using Microsoft.AspNetCore.Mvc;
 using Webshop.Models;
 
@@ -7,10 +8,12 @@ namespace Webshop.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
+    private readonly IProductContainer _container;
+    
+    public HomeController(ILogger<HomeController> logger, IProductContainer productContainer)
     {
         _logger = logger;
+        _container = productContainer;
     }
 
     public IActionResult Index()
@@ -21,6 +24,13 @@ public class HomeController : Controller
     public IActionResult Privacy()
     {
         return View();
+    }
+    
+    public IActionResult Products()
+    {
+        ProductViewModel pvm = new();
+        pvm._products = _container.GetAllProducts();
+        return View(pvm);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

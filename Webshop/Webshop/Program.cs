@@ -1,7 +1,26 @@
+using BusinessLogicLayer.Containers;
+using DataAcessLayer.DALs;
+using DataAcessLayer.DataAccess;
+using InterfaceLayer.Containers;
+using InterfaceLayer.DALs;
+
 var builder = WebApplication.CreateBuilder(args);
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
+//Code below used mainly for Proof Of Concept and debugging purposes
+var connectionstring = builder.Configuration.GetConnectionString("Default");
+
+
+//DI Services
+builder.Services.AddTransient<IDataAccess>(sp => new DataAccess(builder.Configuration.GetConnectionString("Default")));
+builder.Services.AddScoped<IProductDAL, ProductDAL>();
+builder.Services.AddScoped<IProductContainer, ProductContainer>();
+
+
 
 var app = builder.Build();
 

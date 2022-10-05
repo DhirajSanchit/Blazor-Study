@@ -1,0 +1,34 @@
+@model ProductViewModel
+
+@{
+    Layout = "_Layout";
+}
+
+
+
+<!DOCTYPE html>
+
+<html>
+<title>Products</title>
+
+@foreach (var product in Model._products)
+{
+    <div class="card" style="width: 28rem;">
+        <div class="card-body"> 
+            <h5 class="card-title">@product.Name</h5>
+            <h6 class="card-subtitle mb-2 text-muted">@product.Brand</h6>
+            <hr/>
+            <p>
+                Price: <label style="color:darkred">@product.Price.ToString()</label>
+            </p>
+            <p class="card-text">@product.Description</p>
+        </div>  
+    </div>
+}    
+
+    <body>
+<div>
+      
+</div>
+</body>
+</html>
