@@ -1,5 +1,5 @@
 ﻿using BusinessLogicLayer.Classes;
-using InterfaceLayer.Containers;
+using BusinessLogicLayer.Interfaces; 
 using InterfaceLayer.DALs;
 using InterfaceLayer.Dtos;
 
@@ -10,7 +10,7 @@ namespace BusinessLogicLayer.Containers
     {
         private IProductDAL _productDal;
 
-        private IEnumerable<ProductDto> _productsdtos;
+        private IList<Product> _products;
         //private IEnumerable<Product> _products;
 
         public ProductContainer(IProductDAL productDal)
@@ -18,44 +18,42 @@ namespace BusinessLogicLayer.Containers
             _productDal = productDal;
         }
 
-        public ProductDto GetProductById(int id)
+        public Product GetProductById(int id)
         {
-            ProductDto productDto = new();
+            Product Product;
             try
             {
-                productDto = _productDal.GetProductById(id);
+                Product = new Product(_productDal.GetProductById(id));
             }
             catch (Exception exception)
             {
                 Console.WriteLine(exception.Message);
+                throw;
             }
 
-            return productDto;
+            return Product;
         }
 
-        public IEnumerable<ProductDto> GetAllProducts(string filter = null)
+        public IEnumerable<Product> GetAllProducts(string filter = null)
         {
-            _productsdtos = _productDal.GetAllProducts();
-            return _productsdtos;
+            _products = new List<Product>();
+            try
+            {
+                 var  dataset =  _productDal.GetAllProducts();
+                 foreach (var row in dataset)
+                 {
+                     _products.Add(new Product(row));
+                 }
+
+                 return _products.AsEnumerable();
+
+            }
+            catch(Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+                throw;
+            }
         }
 
-        // private IEnumerable<ProductDto> toProducts(IEnumerable<InterfaceLayer.Dtos.ProductDto> dataset)
-        // {
-        //     List<ProductDto> fetched = new();
-        //     
-        //     foreach (var dto in dataset)
-        //     {
-        //         new ProductDto(
-        //             dto.ProductId,
-        //             dto.Brand,
-        //             dto.Name,
-        //             dto.Price,
-        //             dto.ImageLink,
-        //             dto.Description);
-        //     }
-        //     return fetched.AsEnumerable();
-        // }
-        
-        
     }
 }

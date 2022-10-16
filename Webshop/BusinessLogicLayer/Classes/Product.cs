@@ -1,33 +1,44 @@
-﻿namespace BusinessLogicLayer.Classes
+﻿using InterfaceLayer.Dtos;
+
+namespace BusinessLogicLayer.Classes;
+
+public class Product
 {
-    public class Product
-    {   
-        public int ProductId { get; set; }
-        public string Brand { get; set; }
-        public string Name { get; set; }
-        public double Price { get; set; }
-        public string ImageLink { get; set; }
-        public string Description { get; set; }
+    public int ProductId { get; set; }
+    public string Brand { get; set; }
+    public string Name { get; set; }
+    public double Price { get; set; }
+    public string ImageLink { get; set; }
+    public string Description { get; set; }
 
-        public Product()
-        {
-            
-        }
-
+    public Product()
+    {
         
-        // Code Below is used for further implementation when layer structure has been optimized
-        // public ProductDto ToDto()
-        // {
-        //     return null;
-        // }
-        public Product(int productId, string brand, string name, double price, string imageLink, string description)
-        {
-            ProductId = productId;
-            Brand = brand;
-            Name = name;
-            Price = price;
-            ImageLink = imageLink;
-            Description = description;
-        }
     }
+    
+    public Product(InterfaceLayer.Dtos.ProductDto dto)
+    {
+        ProductId = dto.ProductId;
+        Brand = dto.Brand;
+        Name = dto.Name;
+        Price = dto.Price;
+        ImageLink = dto.ImageLink;
+        Description = dto.Description;
+    }
+    
+    //Converts a Product to a ProductDto
+     ProductDto ToDto()
+    {
+        return new ProductDto
+        {
+            ProductId = ProductId,
+            Brand = Brand,
+            Name = Name,
+            Price = Price,
+            ImageLink = ImageLink,
+            Description = Description
+        };
+    }
+    
+    
 }

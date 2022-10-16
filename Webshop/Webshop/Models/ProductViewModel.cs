@@ -1,9 +1,9 @@
-using InterfaceLayer.Dtos;
+using BusinessLogicLayer.Classes; 
 
 namespace Webshop.Models;
 
 public class ProductViewModel
 {
-    public ProductDto Dto;
-    public IEnumerable<ProductDto> _products { get; set; }
+    public Product? Product;
+    public IEnumerable<Product>? _Products { get; set; }
 }

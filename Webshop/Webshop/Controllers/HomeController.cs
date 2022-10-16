@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics;
-using InterfaceLayer.Containers;
+using BusinessLogicLayer.Interfaces; 
 using Microsoft.AspNetCore.Mvc;
 using Webshop.Models;
 
@@ -29,15 +29,17 @@ public class HomeController : Controller
     public IActionResult Products()
     {
         ProductViewModel pvm = new();
-        pvm._products = _container.GetAllProducts();
+        pvm._Products = _container.GetAllProducts();
         return View(pvm);
     }
     
+    
+    //TODO: Implement the rest of the methods
     public IActionResult ProductDetails(int id)
     {
         ProductViewModel pvm = new();
-        pvm.Dto = _container.GetProductById(id);
-        return View(pvm.Dto);
+        pvm.Product = _container.GetProductById(id);
+        return View(pvm.Product);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

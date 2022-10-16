@@ -1,12 +1,20 @@
 namespace InterfaceLayer.Dtos
 {
-    public class ProductDto
+    public record ProductDto
     {
-        public int ProductId { get; set; }
-        public string Brand { get; set; }
-        public string Name { get; set; }
-        public double Price { get; set; }
-        public string ImageLink { get; set; }
-        public string Description { get; set; }
+        public int ProductId { get; init; }
+        public string Brand { get; init; }
+        public string Name { get; init; }
+        public double Price { get; init; }
+        public string ImageLink { get; init; }
+        public string Description { get; init; }
+
+ 
+        
+        
     }
+    
+    
+    
+   
 }

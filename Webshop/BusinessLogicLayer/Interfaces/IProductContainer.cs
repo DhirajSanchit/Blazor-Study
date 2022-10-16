@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using InterfaceLayer.Dtos; 
+﻿using BusinessLogicLayer.Classes;
+using InterfaceLayer.Dtos;
 
-namespace InterfaceLayer.Containers
+namespace BusinessLogicLayer.Interfaces
 {
     public interface IProductContainer
     {
-        ProductDto GetProductById(int id);
-        IEnumerable<ProductDto> GetAllProducts(string filter = null);        
+        Product GetProductById(int id);
+        IEnumerable<Product> GetAllProducts(string filter = null);        
     }
 }
