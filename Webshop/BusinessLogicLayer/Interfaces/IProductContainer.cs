@@ -6,6 +6,6 @@ namespace BusinessLogicLayer.Interfaces
     public interface IProductContainer
     {
         Product GetProductById(int id);
-        IEnumerable<Product> GetAllProducts(string filter = null);        
+        IEnumerable<Product> GetAllProducts(string? filter = null);        
     }
 }

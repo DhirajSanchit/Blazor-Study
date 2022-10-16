@@ -7,7 +7,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\DataAcessLayer\DataAcessLayer.csproj" />
       <ProjectReference Include="..\InterfaceLayer\InterfaceLayer.csproj" />
     </ItemGroup>
 

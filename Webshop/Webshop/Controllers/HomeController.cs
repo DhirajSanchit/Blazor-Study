@@ -31,6 +31,7 @@ public class HomeController : Controller
         ProductViewModel pvm = new();
         pvm._Products = _container.GetAllProducts();
         return View(pvm);
+         
     }
     
     

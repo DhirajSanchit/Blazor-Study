@@ -21,7 +21,7 @@ namespace DataAcessLayer.DALs
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw;
             }
             
             
@@ -45,7 +45,8 @@ namespace DataAcessLayer.DALs
             }
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine(ex.Message);
+                throw;
             }
         }
     }

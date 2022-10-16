@@ -34,7 +34,7 @@ namespace BusinessLogicLayer.Containers
             return Product;
         }
 
-        public IEnumerable<Product> GetAllProducts(string filter = null)
+        public IEnumerable<Product> GetAllProducts(string? filter = null)
         {
             _products = new List<Product>();
             try
