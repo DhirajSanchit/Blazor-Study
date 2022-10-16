@@ -7,16 +7,16 @@ namespace DataAcessLayer.DataAccess
 {
     public class DataAccess : IDataAccess
     {
-        private readonly string connectionString;
+        private readonly string _connection;
 
-        public DataAccess(string connectionString)
+        public DataAccess(string connection)
         {
-            this.connectionString = connectionString;
+            this._connection = connection;
         }
 
         public List<T> Query<T, U>(string sql, U parameters)
         {
-            using (IDbConnection conn = new SqlConnection(connectionString))
+            using (IDbConnection conn = new SqlConnection(_connection))
             {
                 try
                 {
@@ -37,7 +37,7 @@ namespace DataAcessLayer.DataAccess
 
         public T QuerySingle<T, U>(string sql, U parameters)
         {
-            using (IDbConnection conn = new SqlConnection(connectionString))
+            using (IDbConnection conn = new SqlConnection(_connection))
             {
                 try
                 {
@@ -58,7 +58,7 @@ namespace DataAcessLayer.DataAccess
 
         public void ExecuteCommand<T>(string sql, T parameters)
         {
-            using (IDbConnection conn = new SqlConnection(connectionString))
+            using (IDbConnection conn = new SqlConnection(_connection))
             {
                 try
                 {

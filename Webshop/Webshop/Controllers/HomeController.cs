@@ -32,6 +32,13 @@ public class HomeController : Controller
         pvm._products = _container.GetAllProducts();
         return View(pvm);
     }
+    
+    public IActionResult ProductDetails(int id)
+    {
+        ProductViewModel pvm = new();
+        pvm.Dto = _container.GetProductById(id);
+        return View(pvm.Dto);
+    }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
