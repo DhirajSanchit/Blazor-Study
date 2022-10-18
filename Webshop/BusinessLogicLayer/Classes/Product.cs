@@ -10,8 +10,13 @@ public class Product
     public double Price { get; set; }
     public string ImageLink { get; set; }
     public string Description { get; set; }
+
+    public Product()
+    {
+        
+    }
     
-    public Product(InterfaceLayer.Dtos.ProductDto dto)
+    public Product(ProductDto dto)
     {
         ProductId = dto.ProductId;
         Brand = dto.Brand;

@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
-using BusinessLogicLayer.Interfaces; 
+using BusinessLogicLayer.Classes;
+using BusinessLogicLayer.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Webshop.Models;
 
@@ -9,7 +10,7 @@ public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
     private readonly IProductContainer _container;
-    
+
     public HomeController(ILogger<HomeController> logger, IProductContainer productContainer)
     {
         _logger = logger;
@@ -25,23 +26,36 @@ public class HomeController : Controller
     {
         return View();
     }
-    
+
     public IActionResult Products()
     {
         ProductViewModel pvm = new();
         pvm._Products = _container.GetAllProducts();
         return View(pvm);
-         
     }
-    
-    
-    //TODO: Implement the rest of the methods
+
+
+    [HttpGet]
     public IActionResult ProductDetails(int id)
     {
-        ProductViewModel pvm = new();
-        pvm.Product = _container.GetProductById(id);
-        return View(pvm.Product);
+        Product product = new Product();
+        try
+        {
+            product = _container.GetProductById(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+        }
+        catch (Exception e)
+        {
+            
+            _logger.LogError(e.Message);
+            RedirectToAction("Error", "Home");
+        }
+        return View(product);
     }
+
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
