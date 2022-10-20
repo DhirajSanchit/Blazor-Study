@@ -27,7 +27,8 @@ public class Product
     }
     
     //Converts a Product to a ProductDto
-     ProductDto ToDto()
+
+    protected internal ProductDto toDto()
     {
         return new ProductDto
         {

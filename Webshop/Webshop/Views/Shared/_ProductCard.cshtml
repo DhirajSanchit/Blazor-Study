@@ -1,0 +1,37 @@
+@model Product
+
+
+@** TODO: Adjust Bootstrap classes to optimize views with: 
+-Buttons
+-Card footers
+-Add shopping cart / + icon in button
+**@
+
+<div class="col-md-3 mb-4">
+    <a asp-action="ProductDetails" asp-controller="Products" asp-route-id="@Model.ProductId">
+        <div class="card  mb-md-3 mb-sm-3 card-product">
+            <img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png"/>
+            <div class="card-body ">
+                @* <p class="text-primary card-text mb-0">Article</p> *@
+                <h4 class="card-title">@Model.Name</h4>
+                <p class="card-text">@Model.Description</p>
+                <div class="d-flex">
+                    <div class="">
+                        <p class="text-muted mb-0">@Model.Description</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-footer h-100 pt-1 float-start">
+                <div>
+                    <p class="fw-bold mb-0 price-text">@Model.Price.ToString("C")</p>
+                </div>
+                <div class="float-end">
+                    <a class="btn btn-secondary mt-5" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-productId="@Model.ProductId">Add To Cart</a>
+                </div>
+
+
+            </div>
+        </div>
+    </a>
+</div>

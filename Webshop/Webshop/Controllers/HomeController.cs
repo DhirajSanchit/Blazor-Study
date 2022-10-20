@@ -27,34 +27,6 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Products()
-    {
-        ProductViewModel pvm = new();
-        pvm._Products = _container.GetAllProducts();
-        return View(pvm);
-    }
-
-
-    [HttpGet]
-    public IActionResult ProductDetails(int id)
-    {
-        Product product = new Product();
-        try
-        {
-            product = _container.GetProductById(id);
-            if (product == null)
-            {
-                return NotFound();
-            }
-        }
-        catch (Exception e)
-        {
-            
-            _logger.LogError(e.Message);
-            RedirectToAction("Error", "Home");
-        }
-        return View(product);
-    }
 
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

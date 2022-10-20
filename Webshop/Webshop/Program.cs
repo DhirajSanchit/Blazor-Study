@@ -20,9 +20,14 @@ builder.Services.AddTransient<IDataAccess>(sp => new DataAccess(builder.Configur
 builder.Services.AddScoped<IProductDAL, ProductDAL>();
 builder.Services.AddScoped<IProductContainer, ProductContainer>();
 
+//ShoppingCart 
+builder.Services.AddScoped<IShoppingCart, ShoppingCart>(sp=>ShoppingCart.GetCart(sp));
+builder.Services.AddScoped<IShoppingCartDAL, ShoppingCartDAL>();
+builder.Services.AddSession();
+builder.Services.AddHttpContextAccessor();
 
 
-var app = builder.Build();
+var app = builder.Build(); 
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -34,6 +39,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseSession();
 
 app.UseRouting();
 
