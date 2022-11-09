@@ -1,7 +1,7 @@
 using InterfaceLayer.DALs;
 using InterfaceLayer.Dtos;
 
-namespace DataAcessLayer.DALs;
+namespace DataAccessLayer.DALs;
 
 public class ShoppingCartDAL : IShoppingCartDAL
 {

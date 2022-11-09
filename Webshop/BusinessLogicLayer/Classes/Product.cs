@@ -1,25 +1,41 @@
-﻿using InterfaceLayer.Dtos;
+﻿using System.ComponentModel.DataAnnotations;
+using InterfaceLayer.Dtos;
 
 namespace BusinessLogicLayer.Classes;
 
 public class Product
 {
     public int ProductId { get; set; }
-    public string Brand { get; set; }
+    
+    [StringLength(50, MinimumLength = 5)]
+    [Required]
     public string Name { get; set; }
+    
+    // public string Brand { get; set; }
+    
+    [Range(1, 100)]
+    [DataType(DataType.Currency)]
+    [Required]
     public double Price { get; set; }
-    public string ImageLink { get; set; }
+    
+    
+    [StringLength(100, MinimumLength = 10)]
+    [Required]
     public string Description { get; set; }
+    
+    [StringLength(255)]
+    [Required]
+    public string ImageLink { get; set; }
 
     public Product()
     {
         
     }
     
-    public Product(ProductDto dto)
+    protected internal Product(ProductDto dto)
     {
         ProductId = dto.ProductId;
-        Brand = dto.Brand;
+        // Brand = dto.Brand;
         Name = dto.Name;
         Price = dto.Price;
         ImageLink = dto.ImageLink;
@@ -32,12 +48,12 @@ public class Product
     {
         return new ProductDto
         {
-            ProductId = ProductId,
-            Brand = Brand,
-            Name = Name,
-            Price = Price,
-            ImageLink = ImageLink,
-            Description = Description
+            ProductId = this.ProductId,
+            // Brand = Brand,
+            Name = this.Name,
+            Price = this.Price,
+            ImageLink = this.ImageLink,
+            Description = this.Description
         };
     }
     

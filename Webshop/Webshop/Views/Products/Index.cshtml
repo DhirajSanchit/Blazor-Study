@@ -1,11 +1,8 @@
-﻿
-@model ProductViewModel
+﻿@model ProductViewModel
 
 @{
     Layout = "_Layout";
 }
-
-
 
 <!DOCTYPE html>
  
@@ -20,10 +17,22 @@
         </div>
     </div>
     <div class="row">
-        @foreach (var product in Model._Products)
-        {
-            <partial name="_ProductCard" model="product"/>
         
+        @if (Model._Products.Any())
+        {
+            foreach (var product in Model._Products)
+            {
+                <partial name="_ProductCard" model="product"/>
+
+            }
+        }
+        else
+        {
+            <div class="col-md-12">
+                <div class="justify-content-center text-center">
+                    <h3>No products available</h3>
+                </div>
+            </div>
         }
     </div> 
 </div>

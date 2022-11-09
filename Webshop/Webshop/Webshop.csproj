@@ -9,12 +9,14 @@
 
     <ItemGroup>
       <ProjectReference Include="..\BusinessLogicLayer\BusinessLogicLayer.csproj" />
-      <ProjectReference Include="..\DataAcessLayer\DataAcessLayer.csproj" />
+      <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj" />
       <ProjectReference Include="..\InterfaceLayer\InterfaceLayer.csproj" />
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="AspNetCoreHero.ToastNotification" Version="1.1.0" />
       <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.9" />
+      <PackageReference Include="NToastNotify" Version="8.0.0" />
     </ItemGroup>
 
 </Project>

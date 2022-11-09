@@ -8,13 +8,6 @@ namespace InterfaceLayer.Dtos
         public double Price { get; init; }
         public string ImageLink { get; init; }
         public string Description { get; init; }
-
- 
-        
-        
+        public DateTime ArchiveDate { get; init; }
     }
-    
-    
-    
-   
 }

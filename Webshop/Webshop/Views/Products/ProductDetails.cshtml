@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Details: @Model.Name</title> 
+    <title>Details: @Model.Name</title>
     <link rel="stylesheet" href="~/css/Montserrat.css">
     <link rel="stylesheet" href="~/fonts/simple-line-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.css">
@@ -14,7 +14,6 @@
 </head>
 
 <body>
-
 <main class="page product-page">
     <section class="clean-block clean-product dark">
         <div class="container">
@@ -44,6 +43,14 @@
                                 <div class="price">
                                     <h3>@Model.Price.ToString("C")</h3>
                                 </div><button class="btn btn-primary" type="button"><i class="icon-basket"></i>Add to Cart</button>
+                                <a asp-action="EditProduct" asp-controller="Products" asp-route-id="@Model.ProductId">
+                                    <button class="btn btn-outline-primary" data_bs_toggle="EditProduct" data_bs_target="EditProduct">Edit Product</button>
+                                </a>
+
+                                <form asp-action="ArchiveProduct" asp-route-id="@Model.ProductId">
+                                    <button type="submit" class="btn btn-outline-primary">Archive Product</button>
+                                </form>
+
                                 <div class="summary">
                                     <p>@Model.Description</p>
                                 </div>
@@ -51,8 +58,8 @@
                         </div>
                     </div>
                 </div>
-                
-                
+
+
                 <div class="product-info">
                     <div>
                         <ul class="nav nav-tabs" role="tablist" id="myTab">
@@ -137,7 +144,7 @@
 </main><!-- Start: Footer Dark -->
 <footer class="page-footer dark">
 </footer><!-- End: Footer Dark -->
-<script src="~/bootstrap/js/bootstrap.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
 <script src="~/js/vanilla-zoom.js"></script>
 <script src="~/js/theme.js"></script>

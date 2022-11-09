@@ -6,6 +6,10 @@ namespace InterfaceLayer.DALs
     public interface IProductDAL
     {
         ProductDto GetProductById(int id);
-        IEnumerable<ProductDto> GetAllProducts(string filter = null);        
+        IEnumerable<ProductDto> GetAllProducts(string filter = null);
+        
+        bool AddProduct(ProductDto dto);
+        bool UpdateProduct(ProductDto product);
+        bool ArchiveProduct(int id, DateTime archiveDate);
     }
 }

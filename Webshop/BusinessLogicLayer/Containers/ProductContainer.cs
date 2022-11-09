@@ -8,6 +8,7 @@ namespace BusinessLogicLayer.Containers
 {
     public class ProductContainer : IProductContainer
     {
+        private bool result;
         private IProductDAL _productDal;
 
         private IList<Product> _products;
@@ -55,5 +56,45 @@ namespace BusinessLogicLayer.Containers
             }
         }
 
+        public bool AddProduct(Product product)
+        {
+            try
+            {
+                return result = _productDal.AddProduct(product.toDto());
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+                throw;
+            }
+        }
+
+        public bool UpdateProduct(Product product)
+        {
+            try
+            {
+                return result = _productDal.UpdateProduct(product.toDto());
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+                throw;
+            }
+        }
+
+       
+
+        public bool ArchiveProduct(int id)
+        {
+            try
+            {
+                return result = _productDal.ArchiveProduct(id, DateTime.Now);
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+                throw;
+            }
+        }
     }
 }

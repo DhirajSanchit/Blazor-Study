@@ -9,7 +9,7 @@ public class ShoppingCartItem
     public int Amount { get; set; }
     public string? ShoppingCartId { get; set; }
 
-    public ShoppingCartItemDto toDto()
+    protected internal ShoppingCartItemDto toDto()
     {
         return new ShoppingCartItemDto
         {
@@ -20,7 +20,7 @@ public class ShoppingCartItem
         };
     }
 
-    public ShoppingCartItem(ShoppingCartItemDto dto)
+    protected internal ShoppingCartItem(ShoppingCartItemDto dto)
     {
         ShoppingCartItemId = dto.ShoppingCartItemId;
         Product = new Product(dto.ProductDto);
