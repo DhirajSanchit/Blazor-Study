@@ -77,9 +77,22 @@ public class ShoppingCartDAL : IShoppingCartDAL
         }
     }
 
-    public int RemoveFromCart(ProductDto product)
-    {
-        throw new NotImplementedException();
+    public bool RemoveFromCart(ShoppingCartItemDto dto)
+    { 
+        try
+        {
+            var affectedRows = _dataAccess.ExecuteCommand(
+                "UPDATE [ShoppingCartItems] SET Amount = null, ProductId = null WHERE ShoppingCartId = @ShoppingCartId AND ProductId = @ProductId",
+                new { ShoppingCartId = dto.ShoppingCartId, ProductId = dto.ProductId });
+            Console.WriteLine($"{affectedRows} rows affected");
+            return true;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+        
     }
 
     public List<ShoppingCartItemDto> GetShoppingCartItems()
@@ -100,11 +113,7 @@ public class ShoppingCartDAL : IShoppingCartDAL
     {
         throw new NotImplementedException();
     }
-
-    public decimal GetShoppingCartTotal()
-    {
-        throw new NotImplementedException();
-    }
+ 
 
     public void UpdateShoppingCartItemByCartId(ShoppingCartItemDto dto, int Amount)
     {

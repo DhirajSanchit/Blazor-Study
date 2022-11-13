@@ -4,16 +4,14 @@ namespace InterfaceLayer.DALs;
 
 public interface IShoppingCartDAL
 {
-    void AddToCart(ShoppingCartItemDto product);
+    void AddToCart(ShoppingCartItemDto dto);
 
-    int RemoveFromCart(ProductDto product);
+    bool RemoveFromCart(ShoppingCartItemDto dto);
 
     List<ShoppingCartItemDto> GetShoppingCartItems();
     List<ShoppingCartItemDto> GetShoppingCartItems(string id);
 
     void ClearCart();
-
-    decimal GetShoppingCartTotal();
 
     List<ShoppingCartItemDto> ShoppingCartItems { get; set; }
     

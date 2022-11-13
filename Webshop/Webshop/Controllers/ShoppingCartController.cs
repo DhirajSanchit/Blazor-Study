@@ -1,4 +1,5 @@
 using AspNetCoreHero.ToastNotification.Abstractions;
+using BusinessLogicLayer.Classes;
 using BusinessLogicLayer.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Webshop.Models;
@@ -37,10 +38,11 @@ public class ShoppingCartController : Controller
             if (selectedProduct != null)
             {
                 _shoppingCart.AddToCart(selectedProduct);
-                _notyfService.Success($"Product {selectedProduct.Name} added to cart");
+                _notyfService.Success($"Product {selectedProduct.Name} added to cart", 3);
                 return RedirectToAction("Index");
             }
-        } catch (Exception e)
+        }
+        catch (Exception e)
         {
             _notyfService.Error(e.Message);
             Console.WriteLine(e);
@@ -50,14 +52,36 @@ public class ShoppingCartController : Controller
         return RedirectToAction("Index");
     }
 
-    public RedirectToActionResult RemoveFromShoppingCart(int productId)
-    {
-        var selectedProduct = _productContainer.GetAllProducts().FirstOrDefault(p => p.ProductId == productId);
-        if (selectedProduct != null)
-        {
-            _shoppingCart.RemoveFromCart(selectedProduct);
-        }
 
+    public RedirectToActionResult RemoveFromShoppingCart(int id)
+    {
+        if (id != 0) 
+        {
+            var selectedProduct = _productContainer.GetProductById(id);
+            try
+            {
+                if (_shoppingCart.RemoveFromCart(selectedProduct))
+                {
+                    _notyfService.Success($"Product {selectedProduct.Name} removed from cart");
+                    return RedirectToAction("Index", "ShoppingCart");
+                }
+            }
+            catch(NullReferenceException e)
+            {
+                _notyfService.Error(e.Message);
+                return RedirectToAction("Index", "Home");
+            } 
+            catch (Exception e)
+            {
+                _notyfService.Error(e.Message);
+                Console.WriteLine(e);
+                return RedirectToAction("Index", "Home");
+            }
+
+            return RedirectToAction("Index");
+        }
+        _notyfService.Error("Product not found", 5);
         return RedirectToAction("Index");
     }
+    
 }

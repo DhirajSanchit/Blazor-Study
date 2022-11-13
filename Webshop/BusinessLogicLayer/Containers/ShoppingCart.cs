@@ -61,12 +61,24 @@ public class ShoppingCart : IShoppingCart
 
         return new ShoppingCart(context, _productDal) { ShoppingCartId = cartId };
     }
-
-
-    public int RemoveFromCart(Product product)
+     
+    public bool RemoveFromCart(Product product)
     {
-        throw new NotImplementedException();
-    }
+        ShoppingCartItem item;
+        try
+        {
+            item = new ShoppingCartItem();
+            item.Product = product;
+            item.ShoppingCartId = ShoppingCartId;
+            return _shoppingCartDAL.RemoveFromCart(item.toDto());
+            
+        }
+        catch (Exception exception)
+        {
+            Console.WriteLine(exception.Message);
+            throw;
+        }
+    } 
 
 
     //Method to retrieve all shoppingcart items tied to user
@@ -85,7 +97,12 @@ public class ShoppingCart : IShoppingCart
             }
 
             return shoppingCartItems;
-        } 
+        }
+        catch (NullReferenceException exception)
+        {
+            Console.WriteLine(exception.Message);
+            return shoppingCartItems;
+        }
         catch (Exception ex)
         {
             Console.WriteLine();
@@ -121,9 +138,12 @@ public class ShoppingCart : IShoppingCart
     {
          //calculate total price of shopping cart
         decimal total = 0;
-        foreach (var product in ShoppingCartItems)
+        if (ShoppingCartItems != null)
         {
-            total += product.Product.Price * product.Amount;
+            foreach (var item in ShoppingCartItems)
+            {
+                total += item.Product.Price * item.Amount;
+            }
         }
         return total;
     }

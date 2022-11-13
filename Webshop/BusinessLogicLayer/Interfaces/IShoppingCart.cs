@@ -5,7 +5,7 @@ public interface IShoppingCart
 {
     void AddToCart(Product product);
 
-    int RemoveFromCart(Product product);
+    bool RemoveFromCart(Product product);
 
     List<ShoppingCartItem> GetShoppingCartItems();
 
