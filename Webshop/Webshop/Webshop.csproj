@@ -19,4 +19,8 @@
       <PackageReference Include="NToastNotify" Version="8.0.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Pages" />
+    </ItemGroup>
+
 </Project>

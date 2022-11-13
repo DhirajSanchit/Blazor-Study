@@ -21,9 +21,10 @@ namespace DataAccessLayer.DataAccess
             {
                 return conn.Query<T>(sql, parameters).ToList();
             }
-            catch (Exception e)
+            catch (Exception exception)
             {
-                throw e;
+                Console.WriteLine(exception);
+                throw;
             }
             finally
             {
@@ -33,16 +34,17 @@ namespace DataAccessLayer.DataAccess
             }
         }
 
-        public T QuerySingle<T, U>(string sql, U parameters)
+        public T QueryFirstOrDefault<T, U>(string sql, U parameters)
         {
             using IDbConnection conn = new SqlConnection(_connection);
             try
             {
-                return conn.QuerySingle<T>(sql, parameters);
+                return conn.QueryFirstOrDefault<T>(sql, parameters);
             }
-            catch (Exception e)
+            catch (Exception exception)
             {
-                throw e;
+                Console.WriteLine(exception);
+                throw;
             }
             finally
             {
@@ -61,9 +63,10 @@ namespace DataAccessLayer.DataAccess
                 Console.WriteLine($"Affected Rows: {affectedRows}");
                 return affectedRows;
             }
-            catch (Exception e)
+            catch (Exception exception)
             {
-                throw e;
+                Console.WriteLine(exception);
+                throw;
             }
             finally
             {

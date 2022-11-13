@@ -16,15 +16,15 @@ public class Product
     [Range(1, 100)]
     [DataType(DataType.Currency)]
     [Required]
-    public double Price { get; set; }
+    public decimal Price { get; set; }
     
     
     [StringLength(100, MinimumLength = 10)]
     [Required]
     public string Description { get; set; }
     
-    [StringLength(255)]
-    [Required]
+    // [StringLength(255)]
+    // [Required]
     public string ImageLink { get; set; }
 
     public Product()

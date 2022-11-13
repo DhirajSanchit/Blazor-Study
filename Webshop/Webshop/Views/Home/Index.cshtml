@@ -1,8 +1,18 @@
-﻿@{
+﻿@model SampleModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    @* <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p> *@
 </div>
+
+
+<h1>@Model.Id</h1>
+<h2>@Model.Value</h2>
+@* *@
+@* @foreach (var value in Model) *@
+@* { *@
+@*     <h1>@value.Id</h1> *@
+@* } *@

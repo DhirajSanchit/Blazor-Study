@@ -17,7 +17,7 @@ namespace DataAccessLayer.DALs
         {
             try
             {
-                return dataAccess.QuerySingle<ProductDto, dynamic>("SELECT * FROM Product WHERE ProductId = @ProductId",
+                return dataAccess.QueryFirstOrDefault<ProductDto, dynamic>("SELECT * FROM Product WHERE ProductId = @ProductId",
                     new { ProductId = id });
             }
             catch (Exception ex)
@@ -39,7 +39,7 @@ namespace DataAccessLayer.DALs
                 else
                     //TODO: Add filter, Revise Query
                     list = dataAccess.Query<ProductDto, dynamic>(
-                        @"SELECT * FROM Product WHERE Name like '%' + @Filter + '%' AND WHERE ArchiveDate is null",
+                        @"SELECT * FROM Product WHERE Name like '%' + @Filter + '%'" + "AND ArchiveDate is null",
                         new { Filter = filter });
 
                 return list.AsEnumerable();
@@ -111,6 +111,32 @@ namespace DataAccessLayer.DALs
             }
 
             return result;
+        }
+
+        public List<SampleDto> getSampleData()
+        {
+            try
+            {
+                return dataAccess.Query<SampleDto, dynamic>("SELECT * FROM Test", new { });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
+        }
+
+        public SampleDto? getSampleDataById(int id)
+        {
+            try
+            {
+                return dataAccess.QueryFirstOrDefault<SampleDto, dynamic>("SELECT * FROM Test WHERE Id = @Id", new { Id = id });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
         }
     }
 }

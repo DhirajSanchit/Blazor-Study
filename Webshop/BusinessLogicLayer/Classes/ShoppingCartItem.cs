@@ -5,7 +5,7 @@ namespace BusinessLogicLayer.Classes;
 public class ShoppingCartItem
 {
     public int ShoppingCartItemId { get; set; }
-    public Product Product { get; set; } = default!;
+    public Product Product { get; set; }
     public int Amount { get; set; }
     public string? ShoppingCartId { get; set; }
 
@@ -14,20 +14,27 @@ public class ShoppingCartItem
         return new ShoppingCartItemDto
         {
             ShoppingCartItemId = ShoppingCartItemId,
-            ProductDto = Product.toDto(),
+            ProductId = Product.ProductId,
             Amount = Amount,
             ShoppingCartId = ShoppingCartId
         };
     }
-
+    
     protected internal ShoppingCartItem(ShoppingCartItemDto dto)
     {
         ShoppingCartItemId = dto.ShoppingCartItemId;
-        Product = new Product(dto.ProductDto);
         Amount = dto.Amount;
         ShoppingCartId = dto.ShoppingCartId;
     }
-
+    
+    protected internal ShoppingCartItem(ShoppingCartItemDto dto, Product product)
+    {
+        ShoppingCartItemId = dto.ShoppingCartItemId;
+        Product = product;
+        Amount = dto.Amount;
+        ShoppingCartId = dto.ShoppingCartId;
+    }
+    
     public ShoppingCartItem()
     {
         

@@ -12,4 +12,5 @@ public class ShoppingCartViewModel
 
     public IShoppingCart ShoppingCart { get; }
     public decimal ShoppingCartTotal { get; }
+     
 }

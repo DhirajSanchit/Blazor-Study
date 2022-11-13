@@ -11,5 +11,8 @@ namespace BusinessLogicLayer.Interfaces
         bool AddProduct(Product product);
         bool UpdateProduct(Product product);
         bool ArchiveProduct(int id);
+        
+        List<SampleModel>? GetAllSampleDto();
+        SampleModel? GetSampleDtoById(int id);
     }
 }

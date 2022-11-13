@@ -1,4 +1,4 @@
-namespace WebShopTests.Classes;
+namespace WebshopTests.Classes;
 
 //TODO: Update Class with the relevant tests
 public class UnitTest1

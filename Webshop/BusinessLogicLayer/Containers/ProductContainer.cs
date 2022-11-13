@@ -40,16 +40,16 @@ namespace BusinessLogicLayer.Containers
             _products = new List<Product>();
             try
             {
-                 var  dataset =  _productDal.GetAllProducts();
-                 foreach (var row in dataset)
-                 {
-                     _products.Add(new Product(row));
-                 }
+                var dataset = _productDal.GetAllProducts();
+                foreach (var row in dataset)
+                {
+                    _products.Add(new Product(row));
+                }
 
-                 return _products.AsEnumerable();
+                return _products.AsEnumerable();
 
             }
-            catch(Exception exception)
+            catch (Exception exception)
             {
                 Console.WriteLine(exception.Message);
                 throw;
@@ -82,7 +82,7 @@ namespace BusinessLogicLayer.Containers
             }
         }
 
-       
+
 
         public bool ArchiveProduct(int id)
         {
@@ -95,6 +95,47 @@ namespace BusinessLogicLayer.Containers
                 Console.WriteLine(exception.Message);
                 throw;
             }
+        }
+
+        public List<SampleModel> GetAllSampleDto()
+        {
+            List<SampleModel> sampleData = new List<SampleModel>();
+            try
+            {
+                var dataset = _productDal.getSampleData();
+                foreach (var row in dataset)
+                {
+                    sampleData.Add(new SampleModel(row));
+                }
+
+                return sampleData;
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+                throw;
+            }
+        }
+
+        public SampleModel? GetSampleDtoById(int id)
+        {
+            SampleModel sampleData;
+            try
+            {
+                sampleData = new SampleModel(_productDal.getSampleDataById(id));
+            }
+            catch (NullReferenceException exception)
+            {
+                Console.WriteLine(exception.Message);
+                return sampleData = null;
+            }   
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+                throw;
+            }
+
+            return sampleData;
         }
     }
 }

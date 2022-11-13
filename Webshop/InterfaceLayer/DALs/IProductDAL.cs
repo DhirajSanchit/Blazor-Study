@@ -11,5 +11,9 @@ namespace InterfaceLayer.DALs
         bool AddProduct(ProductDto dto);
         bool UpdateProduct(ProductDto product);
         bool ArchiveProduct(int id, DateTime archiveDate);
+        
+        List<SampleDto>? getSampleData();
+        
+        SampleDto? getSampleDataById(int id);
     }
 }

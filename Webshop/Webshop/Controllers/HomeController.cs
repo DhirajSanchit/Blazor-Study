@@ -20,9 +20,22 @@ public class HomeController : Controller
         _notyf = notyf;
     }
 
+    //TODO: Adjust shopping cart to nullable returns
     public IActionResult Index()
     {
-        return View();
+        SampleModel model = new SampleModel();
+        SampleModel getter = null;
+        if (_container.GetSampleDtoById(1)  == null)
+        {
+            // _notyf.Error("Error");
+            model.Id = 0;
+            model.Value= "No Record Found";
+        }
+        else
+        {
+            model = getter;
+        }
+        return View(model);
     }
 
     public IActionResult Privacy()
