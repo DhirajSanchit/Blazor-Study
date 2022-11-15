@@ -10,10 +10,10 @@ public class ShoppingCart : IShoppingCart
 {
     private readonly IShoppingCartDAL _shoppingCartDAL;
     private IProductDAL _productDAL;
-    
+
     //Create unit of work
     //For 2 repos
-    
+
     public string? ShoppingCartId { get; set; }
     public List<ShoppingCartItem> ShoppingCartItems { get; set; }
 
@@ -26,14 +26,14 @@ public class ShoppingCart : IShoppingCart
     public void AddToCart(Product product)
     {
         try
-        { 
-                var shoppingCartItem = new ShoppingCartItem
-                {
-                    ShoppingCartId = ShoppingCartId,
-                    Product = product,
-                    Amount = 1,
-                };
-                _shoppingCartDAL.AddToCart(shoppingCartItem.toDto());
+        {
+            var shoppingCartItem = new ShoppingCartItem
+            {
+                ShoppingCartId = ShoppingCartId,
+                Product = product,
+                Amount = 1,
+            };
+            _shoppingCartDAL.AddToCart(shoppingCartItem.toDto());
         }
         catch (Exception exception)
         {
@@ -61,7 +61,7 @@ public class ShoppingCart : IShoppingCart
 
         return new ShoppingCart(context, _productDal) { ShoppingCartId = cartId };
     }
-     
+
     public bool RemoveFromCart(Product product)
     {
         ShoppingCartItem item;
@@ -71,14 +71,13 @@ public class ShoppingCart : IShoppingCart
             item.Product = product;
             item.ShoppingCartId = ShoppingCartId;
             return _shoppingCartDAL.RemoveFromCart(item.toDto());
-            
         }
         catch (Exception exception)
         {
             Console.WriteLine(exception.Message);
             throw;
         }
-    } 
+    }
 
 
     //Method to retrieve all shoppingcart items tied to user
@@ -88,7 +87,6 @@ public class ShoppingCart : IShoppingCart
         List<ShoppingCartItem> shoppingCartItems = new();
         try
         {
-            
             var dataset = _shoppingCartDAL.GetShoppingCartItems(ShoppingCartId);
             foreach (var record in dataset)
             {
@@ -144,7 +142,7 @@ public class ShoppingCart : IShoppingCart
 
     public decimal GetShoppingCartTotal()
     {
-         //calculate total price of shopping cart
+        //calculate total price of shopping cart
         decimal total = 0;
         if (ShoppingCartItems != null)
         {
@@ -153,6 +151,7 @@ public class ShoppingCart : IShoppingCart
                 total += item.Product.Price * item.Amount;
             }
         }
+
         return total;
     }
 }

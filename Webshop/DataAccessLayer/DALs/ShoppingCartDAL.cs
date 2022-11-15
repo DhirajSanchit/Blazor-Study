@@ -92,12 +92,7 @@ public class ShoppingCartDAL : IShoppingCartDAL
             Console.WriteLine(e);
             return false;
         }
-    }
-
-    public List<ShoppingCartItemDto> GetShoppingCartItems()
-    {
-        throw new NotImplementedException();
-    }
+    } 
 
     public List<ShoppingCartItemDto> GetShoppingCartItems(string id)
     {
@@ -124,13 +119,6 @@ public class ShoppingCartDAL : IShoppingCartDAL
             Console.WriteLine(e);
             return false;
         }
-    }
- 
-
-    public void UpdateShoppingCartItemByCartId(ShoppingCartItemDto dto, int Amount)
-    {
-        throw new NotImplementedException();
-        //Implement function to update shopping cart items amount
     }
 
     public ShoppingCartItemDto? CheckCart(int productId, string cartId)

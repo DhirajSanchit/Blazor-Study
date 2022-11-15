@@ -8,15 +8,12 @@ public interface IShoppingCartDAL
 
     bool RemoveFromCart(ShoppingCartItemDto dto);
 
-    List<ShoppingCartItemDto> GetShoppingCartItems();
     List<ShoppingCartItemDto> GetShoppingCartItems(string id);
 
     bool ClearCart(string id);
 
     List<ShoppingCartItemDto> ShoppingCartItems { get; set; }
-    
-    void UpdateShoppingCartItemByCartId(ShoppingCartItemDto dto, int quantity);
-    
+
     ShoppingCartItemDto? CheckCart(int productId, string cartId);
 
     public bool InCart(ShoppingCartItemDto dto);
