@@ -11,7 +11,7 @@ public interface IShoppingCartDAL
     List<ShoppingCartItemDto> GetShoppingCartItems();
     List<ShoppingCartItemDto> GetShoppingCartItems(string id);
 
-    void ClearCart();
+    bool ClearCart(string id);
 
     List<ShoppingCartItemDto> ShoppingCartItems { get; set; }
     

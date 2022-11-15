@@ -110,9 +110,17 @@ public class ShoppingCart : IShoppingCart
         }
     }
 
-    public void ClearCart()
+    public bool ClearCart()
     {
-        throw new NotImplementedException();
+        try
+        {
+            return _shoppingCartDAL.ClearCart(ShoppingCartId);
+        }
+        catch (Exception exception)
+        {
+            Console.WriteLine(exception.Message);
+            throw;
+        }
     }
 
     public ShoppingCartItem GetShoppingCartItem(int productId, string? cartId)

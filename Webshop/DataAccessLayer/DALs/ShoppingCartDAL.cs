@@ -54,7 +54,7 @@ public class ShoppingCartDAL : IShoppingCartDAL
                         @ShoppingCartId = dto.@ShoppingCartId, @ProductId = dto.ProductId,
                         @Quantity = dto.Amount
                     });
-                Console.WriteLine(affectedRows);
+                Console.WriteLine($"{affectedRows} Product ADDED to Cart"); 
             }
             else
             {
@@ -67,7 +67,7 @@ public class ShoppingCartDAL : IShoppingCartDAL
                         Quantity = dto.Amount
                     });
                  
-                Console.WriteLine($"{affectedRows} rows affected"); 
+                Console.WriteLine($"{affectedRows} Product UPDATED in Cart");
             }
         }
         catch (Exception e)
@@ -79,20 +79,19 @@ public class ShoppingCartDAL : IShoppingCartDAL
 
     public bool RemoveFromCart(ShoppingCartItemDto dto)
     { 
+        //Delete from cart
         try
         {
             var affectedRows = _dataAccess.ExecuteCommand(
-                "UPDATE [ShoppingCartItems] SET Amount = null, ProductId = null WHERE ShoppingCartId = @ShoppingCartId AND ProductId = @ProductId",
+                "DELETE FROM [ShoppingCartItems] WHERE ShoppingCartId = @ShoppingCartId AND ProductId = @ProductId",
                 new { ShoppingCartId = dto.ShoppingCartId, ProductId = dto.ProductId });
-            Console.WriteLine($"{affectedRows} rows affected");
             return true;
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            return false;
         }
-        
     }
 
     public List<ShoppingCartItemDto> GetShoppingCartItems()
@@ -109,9 +108,22 @@ public class ShoppingCartDAL : IShoppingCartDAL
         return dataset; 
     }
 
-    public void ClearCart()
+    public bool ClearCart(string id)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var affectedRows = _dataAccess.ExecuteCommand(
+                @"DELETE FROM [ShoppingCartItems] WHERE ShoppingCartId = @ShoppingCartId",
+                new { ShoppingCartId = id});
+            
+            Console.WriteLine($"{affectedRows} Product(s) DELETED from Cart");
+            return true;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return false;
+        }
     }
  
 
@@ -123,10 +135,11 @@ public class ShoppingCartDAL : IShoppingCartDAL
 
     public ShoppingCartItemDto? CheckCart(int productId, string cartId)
     {
+     
         try
         {
             return _dataAccess.QueryFirstOrDefault<ShoppingCartItemDto, dynamic>(
-                "SELECT * FROM [ShoppingCartItems] WHERE ShoppingCartId = @ShoppingCartId AND ProductId = @ProductId",
+                @"SELECT * FROM [ShoppingCartItems] WHERE ShoppingCartId = @ShoppingCartId AND ProductId = @ProductId",
                 new { @ProductId = productId, @ShoppingCartId = cartId });
         }
         catch (Exception exception)

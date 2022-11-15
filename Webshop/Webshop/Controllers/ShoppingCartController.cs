@@ -32,9 +32,10 @@ public class ShoppingCartController : Controller
     //TODO: revise for a cleanup, this is messy
     public RedirectToActionResult AddToShoppingCart(int productId)
     {
+        Product selectedProduct = new();
         try
         {
-            var selectedProduct = _productContainer.GetProductById(productId);
+            selectedProduct = _productContainer.GetProductById(productId);
             if (selectedProduct != null)
             {
                 _shoppingCart.AddToCart(selectedProduct);
@@ -83,5 +84,20 @@ public class ShoppingCartController : Controller
         _notyfService.Error("Product not found", 5);
         return RedirectToAction("Index");
     }
-    
+
+    public RedirectToActionResult ClearCart()
+    {
+        try
+        {
+            _shoppingCart.ClearCart();
+            return RedirectToAction("Index");
+        }
+        catch (Exception e)
+        {
+            _notyfService.Error(e.Message);
+            Console.WriteLine(e);
+            return RedirectToAction("Index", "Home");
+        }
+    }
+
 }

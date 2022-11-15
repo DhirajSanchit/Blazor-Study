@@ -4,16 +4,31 @@
     Layout = "_Layout";
 }
 
-<h3 class="my-5">
-    Shopping cart
-</h3>
+<div class="container">
+    <div class="row-cols-6">
+        <h3 class="my-5">
+            Shopping cart
+        </h3>
+    </div>
+</div>
+<div class="container float-end">
+@if (@Model.ShoppingCart.GetShoppingCartItems().Any())
+{
+    <div class="row-cols-6">
+        <a class="btn btn-danger" asp-controller="ShoppingCart" asp-action="ClearCart">
+            Empty Cart
+        </a>
+    </div>
+}
+</div>
 
 
 @**Cart summary **@
-<div class="row gx-3">
+<div class="row gx-3 ">
+    <div></div>
     <div class="col-8">
 
-        @if (Model != null && Model.ShoppingCart.ShoppingCartItems != null)
+        @if (Model != null)
         {
             foreach (var line in Model.ShoppingCart.ShoppingCartItems)
             {
@@ -35,14 +50,14 @@
                         </div>
                     </div>
                     <a asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCart" asp-route-id="@line.Product.ProductId" class="row-cols-2 btn btn-warning">
-                    <div class="row-cols-2 btn btn-warning">Remove from cart <i class="bi-cart-x-fill"></i></div>
+                        <div class="row-cols-2 btn btn-warning">Remove from cart <i class="bi-cart-x-fill"></i></div>
                     </a>
                 </div>
             }
 
 
             @**Cart empty message **@
-            if (!Model.ShoppingCart.ShoppingCartItems.Any() || Model.ShoppingCart.ShoppingCartItems == null)
+            if (!Model.ShoppingCart.ShoppingCartItems.Any())
             {
                 <div class="card shopping-cart-card mb-2">
                     <div class="row">
