@@ -10,17 +10,19 @@ public class ShoppingCart : IShoppingCart
 {
     private readonly IShoppingCartDAL _shoppingCartDAL;
     private IProductDAL _productDAL;
-
+    private IOrderDAL _orderDAL;
+    
     //Create unit of work
-    //For 2 repos
+    //For 3 repos
 
     public string? ShoppingCartId { get; set; }
     public List<ShoppingCartItem> ShoppingCartItems { get; set; }
 
-    public ShoppingCart(IShoppingCartDAL shoppingCartDAL, IProductDAL productDal)
+    public ShoppingCart(IShoppingCartDAL shoppingCartDAL, IProductDAL productDal, IOrderDAL orderDal)
     {
         _shoppingCartDAL = shoppingCartDAL;
         _productDAL = productDal;
+        _orderDAL = orderDal;
     }
 
     public void AddToCart(Product product)
@@ -52,6 +54,7 @@ public class ShoppingCart : IShoppingCart
 
         IShoppingCartDAL context = services.GetService<IShoppingCartDAL>() ?? throw new Exception("Error initializing");
         IProductDAL _productDal = services.GetService<IProductDAL>() ?? throw new Exception("Error initializing");
+        IOrderDAL _orderDal = services.GetService<IOrderDAL>() ?? throw new Exception("Error initializing");
 
         string? cartId = session?.GetString("CartId") ?? Guid.NewGuid().ToString();
 
@@ -59,7 +62,7 @@ public class ShoppingCart : IShoppingCart
         // string? cartId = session.Keys.Contains("CartId") ? session.GetString("CartId") : Guid.NewGuid().ToString();
         session.SetString("CartId", cartId);
 
-        return new ShoppingCart(context, _productDal) { ShoppingCartId = cartId };
+        return new ShoppingCart(context, _productDal, _orderDal) { ShoppingCartId = cartId };
     }
 
     public bool RemoveFromCart(Product product)

@@ -12,14 +12,14 @@
     </div>
 </div>
 <div class="container float-end">
-@if (@Model.ShoppingCart.GetShoppingCartItems().Any())
-{
-    <div class="row-cols-6">
-        <a class="btn btn-danger" asp-controller="ShoppingCart" asp-action="ClearCart">
-            Empty Cart
-        </a>
-    </div>
-}
+    @if (@Model.ShoppingCart.GetShoppingCartItems().Any())
+    {
+        <div class="row-cols-6">
+            <a class="btn btn-danger" asp-controller="ShoppingCart" asp-action="ClearCart">
+                Empty Cart
+            </a>
+        </div>
+    }
 </div>
 
 
@@ -55,7 +55,6 @@
                 </div>
             }
 
-
             @**Cart empty message **@
             if (!Model.ShoppingCart.ShoppingCartItems.Any())
             {
@@ -72,7 +71,6 @@
         }
     </div>
 
-
     @**Shopping cart Total box **@
     <div class="col-4">
         <div class="card shopping-cart-card p-3">
@@ -82,7 +80,13 @@
             </div>
             <hr/>
             <div class="text-center d-grid">
-
+                @if (Model != null)
+                {
+                    if (Model.ShoppingCart.ShoppingCartItems.Any())
+                    {
+                        <a asp-controller="Order" asp-action="Checkout" class="btn btn-success">Checkout</a>
+                    }
+                }
             </div>
         </div>
     </div>

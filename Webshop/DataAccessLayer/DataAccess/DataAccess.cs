@@ -21,6 +21,11 @@ namespace DataAccessLayer.DataAccess
             {
                 return conn.Query<T>(sql, parameters).ToList();
             }
+            catch (SqlException exception)
+            {
+                Console.WriteLine(exception);
+                throw;
+            }
             catch (Exception exception)
             {
                 Console.WriteLine(exception);
@@ -40,6 +45,11 @@ namespace DataAccessLayer.DataAccess
             try
             {
                 return conn.QueryFirstOrDefault<T>(sql, parameters);
+            }
+            catch (SqlException exception)
+            {
+                Console.WriteLine(exception);
+                throw;
             }
             catch (Exception exception)
             {
@@ -62,6 +72,11 @@ namespace DataAccessLayer.DataAccess
                 var affectedRows = conn.Execute(sql, parameters);
                 Console.WriteLine($"Affected Rows: {affectedRows}");
                 return affectedRows;
+            }
+            catch (SqlException exception)
+            {
+                Console.WriteLine(exception);
+                throw;
             }
             catch (Exception exception)
             {

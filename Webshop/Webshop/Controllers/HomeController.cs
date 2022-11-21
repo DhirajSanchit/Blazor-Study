@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Data.SqlClient;
+using System.Diagnostics;
 using AspNetCoreHero.ToastNotification.Abstractions;
 using BusinessLogicLayer.Classes;
 using BusinessLogicLayer.Interfaces;
@@ -23,26 +24,36 @@ public class HomeController : Controller
     //TODO: Adjust shopping cart to nullable returns
     public IActionResult Index()
     {
-        SampleModel model = new SampleModel();
-        SampleModel getter = null;
-        if (_container.GetSampleDtoById(1)  == null)
+        try
         {
-            // _notyf.Error("Error");
-            model.Id = 0;
-            model.Value= "No Record Found";
+            SampleModel model = new SampleModel();
+            SampleModel getter = null;
+            if (_container.GetSampleDtoById(1) == null)
+            {
+                // _notyf.Error("Error");
+                model.Id = 0;
+                model.Value = "No Record Found";
+            }
+            else
+            {
+                model = getter;
+            }
+
+            return View(model);
         }
-        else
+        catch (SqlException ex)
         {
-            model = getter;
+            _notyf.Error("Error");
+            _logger.LogError(ex, "Error in Index");
+            return RedirectToAction("Privacy");
         }
-        return View(model);
     }
 
     public IActionResult Privacy()
     {
-        _notyf.Custom("Custom Notification - closes in 5 seconds.", 5, "whitesmoke", "fa fa-gear");
-        _notyf.Custom("Custom Notification - closes in 10 seconds.", 10, "#B600FF", "fa fa-home");
-       
+        //Route used for notyf library and toast notifications types
+        // _notyf.Custom("Custom Notification - closes in 5 seconds.", 5, "whitesmoke", "fa fa-gear");
+        // _notyf.Custom("Custom Notification - closes in 10 seconds.", 10, "#B600FF", "fa fa-home");
         return View();
     }
 

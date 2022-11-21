@@ -15,6 +15,4 @@ public interface IShoppingCartDAL
     List<ShoppingCartItemDto> ShoppingCartItems { get; set; }
 
     ShoppingCartItemDto? CheckCart(int productId, string cartId);
-
-    public bool InCart(ShoppingCartItemDto dto);
 }

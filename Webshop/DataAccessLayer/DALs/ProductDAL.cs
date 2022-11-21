@@ -1,4 +1,5 @@
-﻿using InterfaceLayer.DALs;
+﻿using System.Data.SqlClient;
+using InterfaceLayer.DALs;
 using InterfaceLayer.Dtos;
 
 namespace DataAccessLayer.DALs
@@ -132,7 +133,7 @@ namespace DataAccessLayer.DALs
             {
                 return dataAccess.QueryFirstOrDefault<SampleDto, dynamic>("SELECT * FROM Test WHERE Id = @Id", new { Id = id });
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
                 Console.WriteLine(ex.Message);
                 throw;

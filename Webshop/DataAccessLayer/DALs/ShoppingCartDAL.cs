@@ -13,7 +13,7 @@ public class ShoppingCartDAL : IShoppingCartDAL
         _dataAccess = dataAccess;
     }
 
-    public bool InCart(ShoppingCartItemDto dto)
+    private bool InCart(ShoppingCartItemDto dto)
     {
         try
         {
@@ -85,6 +85,7 @@ public class ShoppingCartDAL : IShoppingCartDAL
             var affectedRows = _dataAccess.ExecuteCommand(
                 "DELETE FROM [ShoppingCartItems] WHERE ShoppingCartId = @ShoppingCartId AND ProductId = @ProductId",
                 new { ShoppingCartId = dto.ShoppingCartId, ProductId = dto.ProductId });
+            Console.WriteLine($"{affectedRows} Product REMOVED from Cart");
             return true;
         }
         catch (Exception e)
@@ -111,7 +112,7 @@ public class ShoppingCartDAL : IShoppingCartDAL
                 @"DELETE FROM [ShoppingCartItems] WHERE ShoppingCartId = @ShoppingCartId",
                 new { ShoppingCartId = id});
             
-            Console.WriteLine($"{affectedRows} Product(s) DELETED from Cart");
+            Console.WriteLine("All Products DELETED from Cart");
             return true;
         }
         catch (Exception e)

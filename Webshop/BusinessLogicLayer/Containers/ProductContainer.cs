@@ -1,4 +1,5 @@
-﻿using BusinessLogicLayer.Classes;
+﻿using System.Data.SqlClient;
+using BusinessLogicLayer.Classes;
 using BusinessLogicLayer.Interfaces; 
 using InterfaceLayer.DALs;
 using InterfaceLayer.Dtos;
@@ -11,8 +12,7 @@ namespace BusinessLogicLayer.Containers
         private bool result;
         private IProductDAL _productDal;
 
-        private IList<Product> _products;
-        //private IEnumerable<Product> _products;
+        private IList<Product> _products; 
 
         public ProductContainer(IProductDAL productDal)
         {
@@ -60,7 +60,7 @@ namespace BusinessLogicLayer.Containers
         {
             try
             {
-                return result = _productDal.AddProduct(product.toDto());
+                return _productDal.AddProduct(product.toDto());
             }
             catch (Exception exception)
             {
@@ -73,7 +73,7 @@ namespace BusinessLogicLayer.Containers
         {
             try
             {
-                return result = _productDal.UpdateProduct(product.toDto());
+                return _productDal.UpdateProduct(product.toDto());
             }
             catch (Exception exception)
             {
@@ -88,7 +88,7 @@ namespace BusinessLogicLayer.Containers
         {
             try
             {
-                return result = _productDal.ArchiveProduct(id, DateTime.Now);
+                return _productDal.ArchiveProduct(id, DateTime.Now);
             }
             catch (Exception exception)
             {
@@ -129,7 +129,7 @@ namespace BusinessLogicLayer.Containers
                 Console.WriteLine(exception.Message);
                 return sampleData = null;
             }   
-            catch (Exception exception)
+            catch (SqlException exception)
             {
                 Console.WriteLine(exception.Message);
                 throw;

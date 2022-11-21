@@ -10,7 +10,7 @@ using AspNetCoreHero.ToastNotification.Extensions;
 var builder = WebApplication.CreateBuilder(args);
 
 
-// Add services to the container.
+// Add services to the container. For Toasts
 builder.Services.AddControllersWithViews();
 builder.Services.AddControllersWithViews().AddNToastNotifyToastr(new ToastrOptions
 {
@@ -24,6 +24,8 @@ builder.Services.AddNotyf(config =>
     config.IsDismissable = true;
     config.Position = NotyfPosition.TopRight;
 });
+
+//Service for Runtime Compilation, enables Razor Pages or CSHTML Views to be edited while the app is running
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 builder.Services.AddRazorPages();
 //Code below used mainly for Proof Of Concept and debugging purposes
@@ -34,6 +36,10 @@ var connectionstring = builder.Configuration.GetConnectionString("Default");
 builder.Services.AddTransient<IDataAccess>(sp => new DataAccess(builder.Configuration.GetConnectionString("Default")));
 builder.Services.AddScoped<IProductDAL, ProductDAL>();
 builder.Services.AddScoped<IProductContainer, ProductContainer>();
+
+
+builder.Services.AddScoped<IOrderDAL, OrderDAL>();
+builder.Services.AddScoped<IOrderContainer, OrderContainer>();
 
 //ShoppingCart 
 builder.Services.AddScoped<IShoppingCart, ShoppingCart>(sp=>ShoppingCart.GetCart(sp));

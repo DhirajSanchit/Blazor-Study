@@ -20,7 +20,13 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Pages" />
+      <Content Remove="Pages\Shared\_PageLayout.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Pages\CheckoutCompletePage.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\CheckoutPage.cshtml" />
+      <_ContentIncludedByDefault Remove="Pages\Shared\_PageLayout.cshtml" />
     </ItemGroup>
 
 </Project>

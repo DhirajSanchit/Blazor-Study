@@ -90,6 +90,7 @@ public class ShoppingCartController : Controller
         try
         {
             _shoppingCart.ClearCart();
+            _notyfService.Information("Cart Emptied", 5);
             return RedirectToAction("Index");
         }
         catch (Exception e)
