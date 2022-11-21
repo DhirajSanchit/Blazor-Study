@@ -23,10 +23,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Mocks" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\BusinessLogicLayer\BusinessLogicLayer.csproj" />
       <ProjectReference Include="..\Webshop\Webshop.csproj" />
     </ItemGroup>
