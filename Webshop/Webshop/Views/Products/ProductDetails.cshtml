@@ -28,7 +28,7 @@
                             <div class="gallery">
                                 <div id="product-preview" class="vanilla-zoom">
                                     <div class="zoomed-image"></div>
-                                    <div class="sidebar">
+                                    <div class="sidebar mt-5">
                                         <img class="img-fluid d-block small-preview" src="@Model.ImageLink" alt=""><img class="img-fluid d-block small-preview" src="~/img/tech/image1.jpg"><img class="img-fluid d-block small-preview" src="~/img/tech/image1.jpg">
                                     </div>
                                 </div>
@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="price">
                                     <h3>@Model.Price.ToString("C")</h3>
-                                </div><a asp-action="AddToShoppingCart" asp-controller="ShoppingCart" asp-route-productId="@Model.ProductId" class="btn btn-primary" type="button"><i class="icon-basket"></i>Add to Cart</a>
+                                </div><a asp-action="AddToShoppingCart" asp-controller="ShoppingCart" asp-route-productId="@Model.ProductId" class="btn btn-primary" type="button"><i class="icon-basket"></i> Add to Cart</a>
                                 <a asp-action="EditProduct" asp-controller="Products" asp-route-id="@Model.ProductId">
                                     <button class="btn btn-outline-primary" data_bs_toggle="EditProduct" data_bs_target="EditProduct">Edit Product</button>
                                 </a>
@@ -60,7 +60,7 @@
                 </div>
 
 
-                <div class="product-info">
+                <div class="product-info mt-5">
                     <div>
                         <ul class="nav nav-tabs" role="tablist" id="myTab">
                             <li class="nav-item" role="presentation">

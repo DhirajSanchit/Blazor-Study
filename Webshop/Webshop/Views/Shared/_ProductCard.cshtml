@@ -12,12 +12,9 @@
             <img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png"/>
             <div class="card-body ">
                 @* <p class="text-primary card-text mb-0">Article</p> *@
-                <h4 class="card-title">@Model.Name</h4>
-                <p class="card-text">@Model.Description</p>
+                <h4 class="card-title text-truncate">@Model.Name</h4>
+                <p class="card-text text-truncate">@Model.Description</p>
                 <div class="d-flex">
-                    <div class="">
-                        <p class="text-muted mb-0">@Model.Description</p>
-                    </div>
                 </div>
             </div>
 
@@ -26,7 +23,7 @@
                     <p class="fw-bold mb-0 price-text">@Model.Price.ToString("C")</p>
                 </div>
                 <div class="float-end">
-                    <a class="btn btn-secondary mt-5" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-productId="@Model.ProductId">Add To Cart</a>
+                    <a class="btn btn-success mt-5" asp-controller="ShoppingCart" asp-action="AddToShoppingCart" asp-route-productId="@Model.ProductId"><i class="bi bi-cart-plus-fill"></i> Add To Cart</a>
                 </div>
             </div>
         </div>

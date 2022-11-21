@@ -16,7 +16,7 @@
     {
         <div class="row-cols-6">
             <a class="btn btn-danger" asp-controller="ShoppingCart" asp-action="ClearCart">
-                Empty Cart
+                <i class="bi-cart-x-fill"></i> Empty Cart
             </a>
         </div>
     }
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                     <a asp-controller="ShoppingCart" asp-action="RemoveFromShoppingCart" asp-route-id="@line.Product.ProductId" class="row-cols-2 btn btn-outline-danger">
-                        <div class="row-cols-2 container-fluid">Remove from cart <i class="bi-cart-x-fill"></i></div>
+                        <div class="row-cols-2 container-fluid"><i class="bi bi-bag-dash-fill"></i> Remove from cart</div>
                     </a>
                 </div>
             }
@@ -84,7 +84,7 @@
                 {
                     if (Model.ShoppingCart.ShoppingCartItems.Any())
                     {
-                        <a asp-controller="Order" asp-action="Checkout" class="btn btn-success">Checkout</a>
+                        <a asp-controller="Order" asp-action="Checkout" class="btn btn-success"><i class="bi bi-bag-check-fill"></i> Checkout</a>
                     }
                 }
             </div>
