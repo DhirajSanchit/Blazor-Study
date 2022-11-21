@@ -40,7 +40,7 @@ namespace DataAccessLayer.DALs
                 else
                     //TODO: Add filter, Revise Query
                     list = dataAccess.Query<ProductDto, dynamic>(
-                        @"SELECT * FROM Product WHERE Name like '%' + @Filter + '%'" + "AND ArchiveDate is null",
+                        @"SELECT * FROM Product WHERE [Product].Name like '%'+@Filter+'%' AND ArchiveDate IS NULL",
                         new { Filter = filter });
 
                 return list.AsEnumerable();

@@ -1,0 +1,14 @@
+﻿<div class="card">
+<div class="col-sm-4 col-lg-4 col-md-4">
+    <div class="thumbnail">
+        <img src="@Product?.ImageLink" alt="">
+        <div class="caption">
+            <h3 class="pull-right">@Product?.Price.ToString("c")</h3>
+            <h3>
+                <a href="/Products/ProductDetails/@Product?.ProductId">@Product?.Name</a>
+            </h3>
+            <p class="text-truncate">@Product?.Description</p>
+        </div>
+    </div>
+</div>
+</div>

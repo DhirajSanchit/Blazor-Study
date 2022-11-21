@@ -40,7 +40,7 @@ namespace BusinessLogicLayer.Containers
             _products = new List<Product>();
             try
             {
-                var dataset = _productDal.GetAllProducts();
+                var dataset = _productDal.GetAllProducts(filter);
                 foreach (var row in dataset)
                 {
                     _products.Add(new Product(row));

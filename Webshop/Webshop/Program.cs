@@ -45,8 +45,10 @@ builder.Services.AddScoped<IOrderContainer, OrderContainer>();
 builder.Services.AddScoped<IShoppingCart, ShoppingCart>(sp=>ShoppingCart.GetCart(sp));
 builder.Services.AddScoped<IShoppingCartDAL, ShoppingCartDAL>();
 builder.Services.AddSession();
-builder.Services.AddHttpContextAccessor();
 
+builder.Services.AddRazorPages();
+
+builder.Services.AddServerSideBlazor();
 var app = builder.Build(); 
 
 // Configure the HTTP request pipeline.
@@ -60,17 +62,18 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseSession();
-
 app.UseRouting();
-
 app.UseAuthorization();
-
-app.UseNToastNotify();
-app.UseNotyf();
-
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.UseNToastNotify();
+app.UseNotyf();
+
+app.MapRazorPages();
+app.MapBlazorHub();
+app.MapFallbackToPage("/app/{*catchall}", "/App/Index");
 
 app.Run();

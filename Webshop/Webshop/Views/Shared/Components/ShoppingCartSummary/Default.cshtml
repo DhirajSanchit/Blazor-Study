@@ -2,14 +2,16 @@
 
 <ul class="navbar-nav mb-2 mb-lg-0">
     <li class="nav-item">
-        <a asp-action="Index" asp-controller="ShoppingCart" class="nav-link">
-            <i class="bi bi-cart"></i>
-            <span id="cart-status">
-                @if (Model.ShoppingCart.ShoppingCartItems != null && Model.ShoppingCart.ShoppingCartItems.Count > 0)
-                {
-                    @Model.ShoppingCart.ShoppingCartItems.Count
-                }
-            </span>
-        </a>
+        <h5>
+            <a asp-action="Index" asp-controller="ShoppingCart" class="nav-link badge btn-warning btn-lg">
+                <i class="bi bi-cart"></i>
+                <span id="cart-status" class="text-dark">
+                    @if (Model.ShoppingCart.ShoppingCartItems != null && Model.ShoppingCart.ShoppingCartItems.Count > 0)
+                    {
+                        @Model.ShoppingCart.ShoppingCartItems.Count
+                    }
+                </span>
+            </a>
+        </h5>
     </li>
 </ul>
