@@ -6,6 +6,7 @@ using DataAccessLayer.DataAccess;
 using InterfaceLayer.DALs;
 using NToastNotify;
 using AspNetCoreHero.ToastNotification.Extensions;
+using IProofOfConceptsDAL = InterfaceLayer.DALs.IProofOfConceptsDAL;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +18,7 @@ builder.Services.AddControllersWithViews().AddNToastNotifyToastr(new ToastrOptio
     ProgressBar = true,
     TimeOut = 5000
 });
- 
+
 builder.Services.AddNotyf(config =>
 {
     config.DurationInSeconds = 5;
@@ -37,22 +38,26 @@ builder.Services.AddTransient<IDataAccess>(sp => new DataAccess(builder.Configur
 builder.Services.AddScoped<IProductDAL, ProductDAL>();
 builder.Services.AddScoped<IProductContainer, ProductContainer>();
 
-
+//Orders
 builder.Services.AddScoped<IOrderDAL, OrderDAL>();
 builder.Services.AddScoped<IOrderContainer, OrderContainer>();
 
+//Proof of Concept flow, used for development purposes
+builder.Services.AddScoped<IProofOfConceptsDAL, ProofOfConceptsDAL>();
+builder.Services.AddScoped<IProofOfConceptsContainer, ProofOfConceptsContainer>();
+
 //ShoppingCart 
-builder.Services.AddScoped<IShoppingCart, ShoppingCart>(sp=>ShoppingCart.GetCart(sp));
+builder.Services.AddScoped<IShoppingCart, ShoppingCart>(sp => ShoppingCart.GetCart(sp));
 builder.Services.AddScoped<IShoppingCartDAL, ShoppingCartDAL>();
 builder.Services.AddSession();
 
 builder.Services.AddRazorPages();
 
 builder.Services.AddServerSideBlazor();
-var app = builder.Build(); 
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())   
+if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.

@@ -145,6 +145,7 @@ public class ShoppingCart : IShoppingCart
 
     public decimal GetShoppingCartTotal()
     {
+        
         //calculate total price of shopping cart
         decimal total = 0;
         if (ShoppingCartItems != null)

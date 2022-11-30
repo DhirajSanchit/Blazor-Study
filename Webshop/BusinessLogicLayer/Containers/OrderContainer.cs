@@ -39,7 +39,6 @@ namespace BusinessLogicLayer.Containers
                     order.OrderDetails.Add(orderDetail);
                 }
 
-                var dto = order.ToDto();
                 var result = _orderDAL.CreateOrder(order.ToDto());
                 if (result > 0)
                 {

@@ -1,4 +1,5 @@
 ﻿using BusinessLogicLayer.Classes;
+using InterfaceLayer.Dtos;
 
 namespace BusinessLogicLayer.Interfaces
 {

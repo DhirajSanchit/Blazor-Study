@@ -18,7 +18,8 @@ namespace DataAccessLayer.DALs
         {
             try
             {
-                return dataAccess.QueryFirstOrDefault<ProductDto, dynamic>("SELECT * FROM Product WHERE ProductId = @ProductId",
+                return dataAccess.QueryFirstOrDefault<ProductDto, dynamic>(
+                    "SELECT * FROM Product WHERE ProductId = @ProductId",
                     new { ProductId = id });
             }
             catch (Exception ex)
@@ -29,20 +30,13 @@ namespace DataAccessLayer.DALs
         }
 
 
-        public IEnumerable<ProductDto> GetAllProducts(string filter)
+        public IEnumerable<ProductDto> GetAllProducts()
         {
             List<ProductDto> list;
             try
             {
-                if (string.IsNullOrWhiteSpace(filter))
-                    list = dataAccess.Query<ProductDto, dynamic>(@"SELECT * FROM Product WHERE ArchiveDate is null",
-                        new { });
-                else
-                    //TODO: Add filter, Revise Query
-                    list = dataAccess.Query<ProductDto, dynamic>(
-                        @"SELECT * FROM Product WHERE [Product].Name like '%'+@Filter+'%' AND ArchiveDate IS NULL",
-                        new { Filter = filter });
-
+                list = dataAccess.Query<ProductDto, dynamic>(@"SELECT * FROM Product WHERE ArchiveDate is null",
+                    new { });
                 return list.AsEnumerable();
             }
             catch (Exception ex)
@@ -93,6 +87,7 @@ namespace DataAccessLayer.DALs
                 Console.WriteLine(ex.Message);
                 throw;
             }
+
             return result;
         }
 
@@ -114,26 +109,23 @@ namespace DataAccessLayer.DALs
             return result;
         }
 
-        public List<SampleDto> getSampleData()
+        public IEnumerable<ProductDto> SearchProducts(string filter = null)
         {
+            List<ProductDto> list;
             try
             {
-                return dataAccess.Query<SampleDto, dynamic>("SELECT * FROM Test", new { });
+                if (string.IsNullOrWhiteSpace(filter))
+                    list = dataAccess.Query<ProductDto, dynamic>(@"SELECT * FROM Product WHERE ArchiveDate is null",
+                        new { });
+                else
+                    //TODO: Add filter, Revise Query
+                    list = dataAccess.Query<ProductDto, dynamic>(
+                        @"SELECT * FROM Product WHERE [Product].Name like '%'+@Filter+'%' AND ArchiveDate IS NULL",
+                        new { Filter = filter });
+
+                return list.AsEnumerable();
             }
             catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                throw;
-            }
-        }
-
-        public SampleDto? getSampleDataById(int id)
-        {
-            try
-            {
-                return dataAccess.QueryFirstOrDefault<SampleDto, dynamic>("SELECT * FROM Test WHERE Id = @Id", new { Id = id });
-            }
-            catch (SqlException ex)
             {
                 Console.WriteLine(ex.Message);
                 throw;

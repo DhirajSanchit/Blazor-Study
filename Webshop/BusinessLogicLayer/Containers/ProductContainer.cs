@@ -1,6 +1,6 @@
 ﻿using System.Data.SqlClient;
 using BusinessLogicLayer.Classes;
-using BusinessLogicLayer.Interfaces; 
+using BusinessLogicLayer.Interfaces;
 using InterfaceLayer.DALs;
 using InterfaceLayer.Dtos;
 
@@ -9,10 +9,9 @@ namespace BusinessLogicLayer.Containers
 {
     public class ProductContainer : IProductContainer
     {
-        private bool result;
         private IProductDAL _productDal;
 
-        private IList<Product> _products; 
+        private IList<Product> _products;
 
         public ProductContainer(IProductDAL productDal)
         {
@@ -35,19 +34,18 @@ namespace BusinessLogicLayer.Containers
             return Product;
         }
 
-        public IEnumerable<Product> GetAllProducts(string? filter = null)
+        public IEnumerable<Product> GetAllProducts()
         {
             _products = new List<Product>();
             try
             {
-                var dataset = _productDal.GetAllProducts(filter);
+                var dataset = _productDal.GetAllProducts();
                 foreach (var row in dataset)
                 {
                     _products.Add(new Product(row));
                 }
 
                 return _products.AsEnumerable();
-
             }
             catch (Exception exception)
             {
@@ -83,7 +81,6 @@ namespace BusinessLogicLayer.Containers
         }
 
 
-
         public bool ArchiveProduct(int id)
         {
             try
@@ -97,45 +94,24 @@ namespace BusinessLogicLayer.Containers
             }
         }
 
-        public List<SampleModel> GetAllSampleDto()
+        public IEnumerable<Product> SearchProducts(string? filter = null)
         {
-            List<SampleModel> sampleData = new List<SampleModel>();
+            _products = new List<Product>();
             try
             {
-                var dataset = _productDal.getSampleData();
+                var dataset = _productDal.SearchProducts(filter);
                 foreach (var row in dataset)
                 {
-                    sampleData.Add(new SampleModel(row));
+                    _products.Add(new Product(row));
                 }
 
-                return sampleData;
+                return _products.AsEnumerable();
             }
             catch (Exception exception)
             {
                 Console.WriteLine(exception.Message);
                 throw;
             }
-        }
-
-        public SampleModel? GetSampleDtoById(int id)
-        {
-            SampleModel sampleData;
-            try
-            {
-                sampleData = new SampleModel(_productDal.getSampleDataById(id));
-            }
-            catch (NullReferenceException exception)
-            {
-                Console.WriteLine(exception.Message);
-                return sampleData = null;
-            }   
-            catch (SqlException exception)
-            {
-                Console.WriteLine(exception.Message);
-                throw;
-            }
-
-            return sampleData;
         }
     }
 }

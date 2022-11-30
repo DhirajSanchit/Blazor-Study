@@ -7,7 +7,7 @@ namespace Webshop.Pages.App;
 public partial class SearchBlazor
 {
     
-    public string SearchText = "";
+    public string SearchQuery = "";
     public List<Product> FilteredProducts { get; set; } = new List<Product>();
 
     [Inject]
@@ -15,11 +15,19 @@ public partial class SearchBlazor
 
     private void Search()
     {
-        FilteredProducts.Clear();
-        if (ProductContainer is not null)
+        try
         {
-            if (SearchText.Length >= 3)
-                FilteredProducts = ProductContainer.GetAllProducts(SearchText).ToList();
+            FilteredProducts.Clear();
+            if (ProductContainer is not null)
+            {
+                if (SearchQuery.Length >= 3)
+                    FilteredProducts = ProductContainer.SearchProducts(SearchQuery).ToList();
+            }
+        }
+        catch(NullReferenceException nre)
+        {
+            Console.WriteLine("No products found");
+            SearchQuery = "";
         }
     }
 

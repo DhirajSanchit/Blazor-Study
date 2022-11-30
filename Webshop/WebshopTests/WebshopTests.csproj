@@ -27,4 +27,8 @@
       <ProjectReference Include="..\Webshop\Webshop.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Controllers" />
+    </ItemGroup>
+
 </Project>

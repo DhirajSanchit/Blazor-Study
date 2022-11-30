@@ -36,7 +36,7 @@ public class SampleModel
     // [Required]
     // public string? Rating { get; set; }
 
-    public string Value { get; set; }
+    public string Value { get; set; } 
 
     public SampleModel(SampleDto dto)
     {
@@ -54,4 +54,13 @@ public class SampleModel
     {
         
     }
+
+    private double CalculateProgress()
+    {
+        
+        
+        return 0;
+    }
+    
+    
 }

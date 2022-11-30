@@ -11,42 +11,37 @@ namespace Webshop.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-    private readonly IProductContainer _container;
+    private readonly IProofOfConceptsContainer _container;
     private INotyfService _notyf;
 
-    public HomeController(ILogger<HomeController> logger, IProductContainer productContainer, INotyfService notyf)
+    public HomeController(ILogger<HomeController> logger, IProofOfConceptsContainer container, INotyfService notyf)
     {
         _logger = logger;
-        _container = productContainer;
+        _container = container;
         _notyf = notyf;
     }
 
-    //TODO: Adjust shopping cart to nullable returns
+     
     public IActionResult Index()
     {
+        ///TODO: remove code below, is for a viewcomponent for Quickscan 
+        
         try
         {
-            SampleModel model = new SampleModel();
-            SampleModel getter = null;
-            if (_container.GetSampleDtoById(1) == null)
-            {
-                // _notyf.Error("Error");
-                model.Id = 0;
-                model.Value = "No Record Found";
-            }
-            else
-            {
-                model = getter;
-            }
-
+            var model = _container.GetAllSamples();
             return View(model);
         }
-        catch (SqlException ex)
+        // catch (SqlException e)
+        // {
+        //     _notyf.Error("Database error");
+        //     _logger.LogError(e, "Database error");
+        // }
+        catch (Exception e)
         {
-            _notyf.Error("Error");
-            _logger.LogError(ex, "Error in Index");
-            return RedirectToAction("Privacy");
+            _notyf.Error("Unknown error");
+            _logger.LogError(e, "Unknown error");
         }
+        return View();
     }
 
     public IActionResult Privacy()

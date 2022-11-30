@@ -50,4 +50,9 @@ public class OrderDAL : IOrderDAL
             throw ex;
         }
     }
+
+    public List<OrderDto> GetAllOrders()
+    {
+        throw new NotImplementedException();
+    }
 }

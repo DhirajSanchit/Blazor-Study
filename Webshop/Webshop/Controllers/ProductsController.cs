@@ -2,7 +2,9 @@ using System.Diagnostics;
 using AspNetCoreHero.ToastNotification.Abstractions;
 using BusinessLogicLayer.Classes;
 using BusinessLogicLayer.Interfaces;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Webshop.Models;
 
 namespace Webshop.Controllers;
@@ -36,7 +38,10 @@ public class ProductsController : Controller
             {
                 return NotFound();
             }
-
+            
+            //Method below is used to redirect to a page with a blazor searchbar component.
+            // return Redirect("/app");
+            
             return View(pvm);
         }
 
@@ -45,6 +50,7 @@ public class ProductsController : Controller
         {
             Debug.WriteLine(e.Message);
             return RedirectToAction("Error", "Home");
+            
         }
     }
 

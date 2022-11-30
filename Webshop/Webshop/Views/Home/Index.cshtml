@@ -1,4 +1,4 @@
-﻿@model SampleModel
+﻿@model List<SampleModel>
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -8,11 +8,24 @@
     @* <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p> *@
 </div>
 
-
-<h1>@Model.Id</h1>
-<h2>@Model.Value</h2>
-@* *@
-@* @foreach (var value in Model) *@
-@* { *@
-@*     <h1>@value.Id</h1> *@
-@* } *@
+@if (Model != null)
+{
+    <div class="card" style="width: 18rem;">
+        <div class="card-header">
+            Featured
+        </div>
+        <ul class="list-group list-group-flush">
+            @foreach (var item in @Model)
+            {
+                <li class="list-group-item">@item.Id</li>
+                <div class="">
+                    <vc:FormsProgressBar id="@item.Id"></vc:FormsProgressBar>
+                </div>
+            }
+        </ul>
+    </div>
+}
+else
+{
+    <p>Welcome</p>
+}

@@ -7,7 +7,7 @@
 
 <div class="text-center bg-blue-100">
     <input class="border-4 w-1/3 rounded m-6 p-6 h-8
-               border-blue-300" @bind-value="SearchText"
+               border-blue-300" @bind-value="SearchQuery"
            @bind-value:event="oninput" placeholder="Search by Product name" @onkeyup="Search" />
 </div>
 
@@ -15,7 +15,7 @@
 @if (!FilteredProducts.Any())
 {
     <p>Nothing to show, sorry...</p>
-    @if (SearchText.Length < 3)
+    @if (SearchQuery.Length < 3)
     {
         <p>Make sure to enter at least 3 characters to search!</p>
     }
