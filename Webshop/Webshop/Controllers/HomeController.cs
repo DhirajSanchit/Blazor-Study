@@ -30,12 +30,7 @@ public class HomeController : Controller
         {
             var model = _container.GetAllSamples();
             return View(model);
-        }
-        // catch (SqlException e)
-        // {
-        //     _notyf.Error("Database error");
-        //     _logger.LogError(e, "Database error");
-        // }
+        } 
         catch (Exception e)
         {
             _notyf.Error("Unknown error");

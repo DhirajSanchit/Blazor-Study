@@ -9,25 +9,8 @@ namespace WebshopTests.Containers;
 
 public class OrderContainerTests
 {
-    #region Order object Used for Tests, cleans up test methods
-    Order order = new Order()
-    {
-        OrderId = 1,
-        OrderPlaced = DateTime.Now,
-        OrderTotal = 100,
-        FirstName = "John",
-        LastName = "Doe",
-        AddressLine1 = "123 Main St",
-        AddressLine2 = "Apt 1",
-        City = "Seattle",
-        State = "WA",
-        ZipCode = "12345",
-        Country = "USA",
-        PhoneNumber = "123-456-7890",
-        Email = "Example@gmail.com",
-    };
     
-    #endregion
+    private Order order = OrderStub.GetOrder();
 
     [Fact]
     private void Create_WithValidData_ShouldCreateOrder()
@@ -35,7 +18,7 @@ public class OrderContainerTests
         // Arrange
         var orderDalMock = OrderDALMock.GetOrderDALMock();
         var shoppingCartMock = ShoppingCartMock.GetShoppingCartMock();
-
+        
         shoppingCartMock.Setup(cart => cart.ShoppingCartItems).Returns(ShoppingItemCartStub.GetStub());
         orderDalMock.Setup(dal => dal.CreateOrder(It.IsAny<OrderDto>())).Returns(1);
 
@@ -45,24 +28,6 @@ public class OrderContainerTests
 
         var orderContainer = new OrderContainer(cartInstance, OrderDalInstance);
 
-        // Act
-        // var order = new Order()
-        // {
-        //     OrderId = 1,
-        //     OrderPlaced = DateTime.Now,
-        //     OrderTotal = 100,
-        //     FirstName = "John",
-        //     LastName = "Doe",
-        //     AddressLine1 = "123 Main St",
-        //     AddressLine2 = "Apt 1",
-        //     City = "Seattle",
-        //     State = "WA",
-        //     ZipCode = "12345",
-        //     Country = "USA",
-        //     PhoneNumber = "123-456-7890",
-        //     Email = "Example@gmail.com",
-        //     OrderDetails = new List<OrderDetail>()
-        // };
         order.OrderDetails = new List<OrderDetail>();
 
         var result = orderContainer.CreateOrder(order);
@@ -89,8 +54,6 @@ public class OrderContainerTests
         var orderContainer = new OrderContainer(cartInstance, OrderDalInstance);
 
         // Act
-        //
-
         Assert.ThrowsAny<Exception>(() => orderContainer.CreateOrder(order));
     }
 

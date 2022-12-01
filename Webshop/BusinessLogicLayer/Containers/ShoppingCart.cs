@@ -139,7 +139,6 @@ public class ShoppingCart : IShoppingCart
         {
             Console.WriteLine(ex.Message);
             return new ShoppingCartItem();
-            throw;
         }
     }
 

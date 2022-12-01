@@ -51,11 +51,14 @@ public class ShoppingCartDALMock
 
         #endregion
         
-        
+
+
         var shoppingCartDALMock = new Mock<IShoppingCartDAL>();
+        
+        
         // shoppingCartDALMock.Setup(x => x.AddProduct(It.IsAny<int>(), It.IsAny<int>())).Returns(true);
         // shoppingCartDALMock.Setup(x => x.RemoveProduct(It.IsAny<int>(), It.IsAny<int>())).Returns(true);
-        // shoppingCartDALMock.Setup(x => x.GetProducts(It.IsAny<int>())).Returns(new List<Product>());
+        shoppingCartDALMock.Setup(x => x.GetShoppingCartItems(It.IsAny<string>())).Returns(shoppingCartDTOs);
         return shoppingCartDALMock;
     } 
 }
