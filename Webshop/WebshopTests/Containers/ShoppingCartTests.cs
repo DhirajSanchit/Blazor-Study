@@ -12,8 +12,8 @@ namespace WebshopTests.Containers;
 public class ShoppingCartTests
 {
 
-    #region Test, will be reviewed and changed
-    public void AddItemToCart()
+    [Fact]
+    public void Item_To_Cart_Has_Been_Added_Or_Updated()
     {
         // Arrange
         var shoppingCartDal = ShoppingCartDALMock.GetShoppingCartDALMock();
@@ -21,8 +21,6 @@ public class ShoppingCartTests
         var orderDal = OrderDALMock.GetOrderDALMock();
 
         //setup a mock for adding an item to the cart
-        shoppingCartDal.Verify(x => x.AddToCart(It.IsAny<ShoppingCartItemDto>()));
-
         var shoppingCart = new ShoppingCart(shoppingCartDal.Object, productDal.Object, orderDal.Object);
         shoppingCart.ShoppingCartId = Guid.NewGuid().ToString();
         
@@ -36,14 +34,67 @@ public class ShoppingCartTests
             ImageLink = "Test",
         };
         
-        shoppingCart.AddToCart(product);
-
-
         // Assert
        // Assert.Thr
+       Assert.True(shoppingCart.AddToCart(product));
     }
     
-    #endregion
+    [Fact]
+    public void No_Items_Could_Be_Added_Returns_False()
+    {
+        // Arrange
+        var shoppingCartDal = ShoppingCartDALMock.GetShoppingCartDALMock();
+        var productDal = ProductDALMock.GetProductDALMock();
+        var orderDal = OrderDALMock.GetOrderDALMock();
+
+        //setup a mock for adding an item to the cart
+        shoppingCartDal.Setup(dal => dal.AddToCart(It.IsAny<ShoppingCartItemDto>())).Returns(0);
+        var shoppingCart = new ShoppingCart(shoppingCartDal.Object, productDal.Object, orderDal.Object);
+        shoppingCart.ShoppingCartId = Guid.NewGuid().ToString();
+        
+        // Act
+        var product = new Product()
+        {
+            ProductId = 1,
+            Name = "Test",
+            Price = 10,
+            Description = "Test",
+            ImageLink = "Test",
+        };
+        
+        // Assert
+        // Assert.Thr
+        Assert.False(shoppingCart.AddToCart(product));
+    }
+    
+    [Fact]
+    public void Container_Catches_Exception_And_Throws_It_To_Caller()
+    {
+        // Arrange
+        var shoppingCartDal = ShoppingCartDALMock.GetShoppingCartDALMock();
+        var productDal = ProductDALMock.GetProductDALMock();
+        var orderDal = OrderDALMock.GetOrderDALMock();
+
+        //setup a mock for adding an item to the cart
+        shoppingCartDal.Setup(dal => dal.AddToCart(It.IsAny<ShoppingCartItemDto>())).Throws(new Exception());
+        var shoppingCart = new ShoppingCart(shoppingCartDal.Object, productDal.Object, orderDal.Object);
+        shoppingCart.ShoppingCartId = Guid.NewGuid().ToString();
+        
+        // Act
+        var product = new Product()
+        {
+            ProductId = 1,
+            Name = "Test",
+            Price = 10,
+            Description = "Test",
+            ImageLink = "Test",
+        };
+        
+        // Assert
+        // Assert.Thr
+        Assert.ThrowsAny<Exception>(()=>shoppingCart.AddToCart(product));
+    }
+    
 
     [Fact]
     public void Converts_Dtos_To_ShoppingCartItems_List()
@@ -152,6 +203,91 @@ public class ShoppingCartTests
         
         //Assert
         Assert.Equal(0, total);
+    }
+
+    [Fact]
+    public void Product_Removed_From_Cart()
+    {
+            // Arrange
+        var shoppingCartDal = ShoppingCartDALMock.GetShoppingCartDALMock();
+        var productDal = ProductDALMock.GetProductDALMock();
+        var orderDal = OrderDALMock.GetOrderDALMock();
+
+        var shoppingCart = new ShoppingCart(shoppingCartDal.Object, productDal.Object, orderDal.Object);
+        shoppingCart.ShoppingCartId = Guid.NewGuid().ToString();
+
+        //Act
+        shoppingCart.ShoppingCartItems = ShoppingItemCartStub.GetStub();
+        var product = new Product()
+        {
+            ProductId = 1,
+            Name = "Test",
+            Price = 10,
+            Description = "Test",
+            ImageLink = "Test",
+        };
+        
+        
+        //Assert
+        Assert.True(shoppingCart.RemoveFromCart(product));
+    }
+    
+    
+    [Fact]
+    public void Product_Could_Not_Be_Removed_Returns_False()
+    {
+        // Arrange
+        var shoppingCartDal = ShoppingCartDALMock.GetShoppingCartDALMock();
+        var productDal = ProductDALMock.GetProductDALMock();
+        var orderDal = OrderDALMock.GetOrderDALMock();
+
+        shoppingCartDal.Setup(dal=> dal.RemoveFromCart(It.IsAny<ShoppingCartItemDto>())).Returns(false);
+        var shoppingCart = new ShoppingCart(shoppingCartDal.Object, productDal.Object, orderDal.Object);
+        shoppingCart.ShoppingCartId = Guid.NewGuid().ToString();
+
+        //Act
+        shoppingCart.ShoppingCartItems = ShoppingItemCartStub.GetStub();
+        var product = new Product()
+        {
+            ProductId = 1,
+            Name = "Test",
+            Price = 10,
+            Description = "Test",
+            ImageLink = "Test",
+        };
+        
+        
+        //Assert
+        Assert.False(shoppingCart.RemoveFromCart(product));
+    }
+    
+      
+    [Fact]
+    public void Remove_From_Cart_Catches_Exception_And_Throws_Up_Stack_Above()
+    {
+        // Arrange
+        var shoppingCartDal = ShoppingCartDALMock.GetShoppingCartDALMock();
+        var productDal = ProductDALMock.GetProductDALMock();
+        var orderDal = OrderDALMock.GetOrderDALMock();
+        
+        shoppingCartDal.Setup(dal=> dal.RemoveFromCart(It.IsAny<ShoppingCartItemDto>())).Throws<Exception>();
+        var shoppingCart = new ShoppingCart(shoppingCartDal.Object, productDal.Object, orderDal.Object);
+        shoppingCart.ShoppingCartId = Guid.NewGuid().ToString();
+
+        //Act
+        shoppingCart.ShoppingCartItems = ShoppingItemCartStub.GetStub();
+        var product = new Product()
+        {
+            ProductId = 1,
+            Name = "Test",
+            Price = 10,
+            Description = "Test",
+            ImageLink = "Test",
+        };
+        
+        
+        //Assert
+        Assert.ThrowsAny<Exception>(()=>shoppingCart.RemoveFromCart(product));
     }
 }
 

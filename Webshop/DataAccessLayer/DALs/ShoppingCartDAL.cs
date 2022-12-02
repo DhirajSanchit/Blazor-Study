@@ -16,19 +16,16 @@ public class ShoppingCartDAL : IShoppingCartDAL
 
     public int AddToCart(ShoppingCartItemDto dto)
     {
-        var affectedRows = 0; 
         try
         {
             //Not in cart, add it
             if (!InCart(dto))
             {
-                return affectedRows = PutInCart(dto);
+                return PutInCart(dto);
             }
-            else
-            {
-                //Product Exists, update the amount with 1
-                return affectedRows = UpdateItemInCart(dto);
-            }
+
+            //Product Exists, update the amount with 1
+            return UpdateItemInCart(dto);
         }
         catch (Exception e)
         {

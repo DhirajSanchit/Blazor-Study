@@ -54,11 +54,13 @@ public class ShoppingCartDALMock
 
 
         var shoppingCartDALMock = new Mock<IShoppingCartDAL>();
-        
-        
-        // shoppingCartDALMock.Setup(x => x.AddProduct(It.IsAny<int>(), It.IsAny<int>())).Returns(true);
+
+
+        shoppingCartDALMock.Setup(dal => dal.AddToCart(It.IsAny<ShoppingCartItemDto>())).Returns(1);
         // shoppingCartDALMock.Setup(x => x.RemoveProduct(It.IsAny<int>(), It.IsAny<int>())).Returns(true);
-        shoppingCartDALMock.Setup(x => x.GetShoppingCartItems(It.IsAny<string>())).Returns(shoppingCartDTOs);
+        //create a mock for the method for removing a product from the shopping cart
+        shoppingCartDALMock.Setup(x => x.RemoveFromCart(It.IsAny<ShoppingCartItemDto>())).Returns(true);
+        shoppingCartDALMock.Setup(dal => dal.GetShoppingCartItems(It.IsAny<string>())).Returns(shoppingCartDTOs);
         return shoppingCartDALMock;
     } 
 }

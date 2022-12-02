@@ -104,19 +104,8 @@ public class OrderDALMock
         
         
         var orderDALMock = new Mock<IOrderDAL>();
-        
-        //Setups for Dal Methods
-        orderDALMock.Setup(x => x.CreateOrder(It.IsAny<OrderDto>())).Returns((OrderDto order) =>
-        {
-            order.OrderId = stub.Count + 1;
-            stub.Add(order);
-            return 1;
-        });
-        
         //Setup a method that returns a list of orders
         orderDALMock.Setup(dal => dal.GetAllOrders()).Returns(stub);
-            
-
         return orderDALMock;
     }
 }
