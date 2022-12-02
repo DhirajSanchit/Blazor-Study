@@ -40,10 +40,15 @@ public class ShoppingCartController : Controller
             selectedProduct = _productContainer.GetProductById(productId);
             if (selectedProduct != null)
             {
-                _shoppingCart.AddToCart(selectedProduct);
-                _notyfService.Success($"Product {selectedProduct.Name} added to cart", 3);
-                return RedirectToAction("Index");
+                if (_shoppingCart.AddToCart(selectedProduct)) ;
+                {
+                    _notyfService.Success($"Product {selectedProduct.Name} added to cart", 3);
+                    return RedirectToAction("Index");
+                }
             }
+
+            _notyfService.Error("Product couldn't be added", 3);
+            return RedirectToAction("Index");
         }
         catch (Exception e)
         {
@@ -58,7 +63,7 @@ public class ShoppingCartController : Controller
 
     public RedirectToActionResult RemoveFromShoppingCart(int id)
     {
-        if (id != 0) 
+        if (id != 0)
         {
             var selectedProduct = _productContainer.GetProductById(id);
             try
@@ -69,11 +74,11 @@ public class ShoppingCartController : Controller
                     return RedirectToAction("Index", "ShoppingCart");
                 }
             }
-            catch(NullReferenceException e)
+            catch (NullReferenceException e)
             {
                 _notyfService.Error(e.Message);
                 return RedirectToAction("Index", "Home");
-            } 
+            }
             catch (Exception e)
             {
                 _notyfService.Error(e.Message);
@@ -83,6 +88,7 @@ public class ShoppingCartController : Controller
 
             return RedirectToAction("Index");
         }
+
         _notyfService.Error("Product not found", 5);
         return RedirectToAction("Index");
     }
@@ -102,5 +108,4 @@ public class ShoppingCartController : Controller
             return RedirectToAction("Index", "Home");
         }
     }
-
 }

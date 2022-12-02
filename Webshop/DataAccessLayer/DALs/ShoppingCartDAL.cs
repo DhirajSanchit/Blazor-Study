@@ -12,62 +12,22 @@ public class ShoppingCartDAL : IShoppingCartDAL
     {
         _dataAccess = dataAccess;
     }
+    
 
-    private bool InCart(ShoppingCartItemDto dto)
+    public int AddToCart(ShoppingCartItemDto dto)
     {
+        var affectedRows = 0; 
         try
         {
-            var result = _dataAccess.QueryFirstOrDefault<ShoppingCartItemDto, dynamic>(
-                "SELECT * FROM [ShoppingCartItems] WHERE ShoppingCartId = @ShoppingCartId AND ProductId = @ProductId",
-                new { ShoppingCartId = dto.ShoppingCartId, ProductId = dto.ProductId });
-            if (result != null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        catch (NullReferenceException nre)
-        {
-            Console.WriteLine("NullReferenceException:" + nre.Message);
-            return false;
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
-    }
-
-    public void AddToCart(ShoppingCartItemDto dto)
-    {
-        try
-        {
+            //Not in cart, add it
             if (!InCart(dto))
             {
-                var affectedRows = _dataAccess.ExecuteCommand(
-                    "INSERT INTO [ShoppingCartItems] (ShoppingCartId, ProductId, Amount) VALUES (@ShoppingCartId, @ProductId, @Quantity)",
-                    new
-                    {
-                        @ShoppingCartId = dto.@ShoppingCartId, @ProductId = dto.ProductId,
-                        @Quantity = dto.Amount
-                    });
-                Console.WriteLine($"{affectedRows} Product ADDED to Cart"); 
+                return affectedRows = PutInCart(dto);
             }
             else
             {
-                var affectedRows= _dataAccess.ExecuteCommand(
-                    "UPDATE [ShoppingCartItems] SET Amount = Amount + @Quantity WHERE ShoppingCartId = @ShoppingCartId AND ProductId = @ProductId",
-                    new
-                    {
-                        ShoppingCartId = dto.ShoppingCartId, 
-                        ProductId = dto.ProductId,
-                        Quantity = dto.Amount
-                    });
-                 
-                Console.WriteLine($"{affectedRows} Product UPDATED in Cart");
+                //Product Exists, update the amount with 1
+                return affectedRows = UpdateItemInCart(dto);
             }
         }
         catch (Exception e)
@@ -134,6 +94,78 @@ public class ShoppingCartDAL : IShoppingCartDAL
         catch (Exception exception)
         {
             Console.WriteLine(exception.Message);
+            throw;
+        }
+    }
+
+    private int PutInCart(ShoppingCartItemDto dto)
+    {
+        try
+        {
+            var affectedRows = _dataAccess.ExecuteCommand(
+                "INSERT INTO [ShoppingCartItems] (ShoppingCartId, ProductId, Amount) VALUES (@ShoppingCartId, @ProductId, @Quantity)",
+                new
+                {
+                    @ShoppingCartId = dto.@ShoppingCartId, @ProductId = dto.ProductId,
+                    @Quantity = dto.Amount
+                });
+            Console.WriteLine($"{affectedRows} Product ADDED to Cart");
+            return affectedRows;
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            throw;
+        }
+    }
+
+    private int UpdateItemInCart(ShoppingCartItemDto dto)
+    {
+        try
+        {
+            var affectedRows = _dataAccess.ExecuteCommand(
+                "UPDATE [ShoppingCartItems] SET Amount = Amount + @Quantity WHERE ShoppingCartId = @ShoppingCartId AND ProductId = @ProductId",
+                new
+                {
+                    ShoppingCartId = dto.ShoppingCartId,
+                    ProductId = dto.ProductId,
+                    Quantity = dto.Amount
+                });
+
+            Console.WriteLine($"{affectedRows} Product UPDATED in Cart");
+            return affectedRows;
+        }
+        catch(Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+            throw;
+        }
+    }
+    
+    private bool InCart(ShoppingCartItemDto dto)
+    {
+        try
+        {
+            var result = _dataAccess.QueryFirstOrDefault<ShoppingCartItemDto, dynamic>(
+                "SELECT * FROM [ShoppingCartItems] WHERE ShoppingCartId = @ShoppingCartId AND ProductId = @ProductId",
+                new { ShoppingCartId = dto.ShoppingCartId, ProductId = dto.ProductId });
+            if (result != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        catch (NullReferenceException nre)
+        {
+            Console.WriteLine("NullReferenceException:" + nre.Message);
+            return false;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
             throw;
         }
     }

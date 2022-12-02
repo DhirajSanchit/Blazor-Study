@@ -4,7 +4,7 @@ namespace InterfaceLayer.DALs;
 
 public interface IShoppingCartDAL
 {
-    void AddToCart(ShoppingCartItemDto dto);
+    int AddToCart(ShoppingCartItemDto dto);
 
     bool RemoveFromCart(ShoppingCartItemDto dto);
 

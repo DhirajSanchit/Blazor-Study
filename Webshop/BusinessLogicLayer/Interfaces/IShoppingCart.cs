@@ -3,7 +3,7 @@ namespace BusinessLogicLayer.Interfaces;
 
 public interface IShoppingCart
 {
-    void AddToCart(Product product);
+    bool AddToCart(Product product);
 
     bool RemoveFromCart(Product product);
 

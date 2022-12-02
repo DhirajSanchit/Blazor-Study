@@ -25,17 +25,26 @@ public class ShoppingCart : IShoppingCart
         _orderDAL = orderDal;
     }
 
-    public void AddToCart(Product product)
+    public bool AddToCart(Product product)
     {
+        var result = false;
+        
         try
         {
+            
             var shoppingCartItem = new ShoppingCartItem
             {
                 ShoppingCartId = ShoppingCartId,
                 Product = product,
                 Amount = 1,
             };
-            _shoppingCartDAL.AddToCart(shoppingCartItem.toDto());
+
+            if (_shoppingCartDAL.AddToCart(shoppingCartItem.toDto()) >= 1)
+            {
+                return result = true;
+            }
+
+            return result;
         }
         catch (Exception exception)
         {
