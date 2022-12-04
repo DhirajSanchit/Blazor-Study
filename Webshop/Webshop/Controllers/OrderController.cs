@@ -1,4 +1,5 @@
-﻿using AspNetCoreHero.ToastNotification.Abstractions;
+﻿using System.Security.Claims;
+using AspNetCoreHero.ToastNotification.Abstractions;
 using BusinessLogicLayer.Classes;
 using BusinessLogicLayer.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -47,6 +48,8 @@ namespace Webshop.Controllers
                 
                 if (ModelState.IsValid)
                 {
+                    assignId(order);
+                    
                     if (_orderContainer.CreateOrder(order))
                     {
                         _shoppingCart.ClearCart();
@@ -74,6 +77,28 @@ namespace Webshop.Controllers
         {
             ViewBag.CheckoutCompleteMessage = "Thanks for your order!";
             return View();
+        }
+
+
+        private void assignId(Order order)
+        {
+            if (GetUserId() != null || GetUserId() > 0)
+            {
+                order.UserId = GetUserId();
+            }
+        } 
+        
+        private dynamic GetUserId()
+        {
+            try
+            {
+                var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+                return int.Parse(userId);
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }

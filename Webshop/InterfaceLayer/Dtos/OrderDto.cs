@@ -16,6 +16,7 @@ namespace InterfaceLayer.Dtos
         public string Email { get; init; }
         public decimal OrderTotal { get; init; }
         public DateTime OrderPlaced { get; init; }
+        public int? UserId { get; init; }
         
     }
 }

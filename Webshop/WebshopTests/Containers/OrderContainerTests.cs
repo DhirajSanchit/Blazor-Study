@@ -19,7 +19,7 @@ public class OrderContainerTests
         var orderDalMock = OrderDALMock.GetOrderDALMock();
         var shoppingCartMock = ShoppingCartMock.GetShoppingCartMock();
         
-        shoppingCartMock.Setup(cart => cart.ShoppingCartItems).Returns(ShoppingItemCartStub.GetStub());
+        shoppingCartMock.Setup(cart => cart.ShoppingCartItems).Returns(ShoppingCartItemDtoStub.GetStub());
         orderDalMock.Setup(dal => dal.CreateOrder(It.IsAny<OrderDto>())).Returns(1);
 
         //Set up the shopping cart mock to a list of shopping cart items
@@ -64,7 +64,7 @@ public class OrderContainerTests
         var orderDalMock = OrderDALMock.GetOrderDALMock();
         var shoppingCartMock = ShoppingCartMock.GetShoppingCartMock();
 
-        shoppingCartMock.Setup(cart => cart.ShoppingCartItems).Returns(ShoppingItemCartStub.GetStub());
+        shoppingCartMock.Setup(cart => cart.ShoppingCartItems).Returns(ShoppingCartItemDtoStub.GetStub());
         orderDalMock.Setup(dal => dal.CreateOrder(It.IsAny<OrderDto>())).Returns(0);
 
         //Set up the shopping cart mock to a list of shopping cart items

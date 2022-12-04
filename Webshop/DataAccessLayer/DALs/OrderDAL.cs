@@ -19,8 +19,8 @@ public class OrderDAL : IOrderDAL
         {
             //Create an sql query to insert the order into the database
             string orderSql =
-                @"Insert into [Orders] (FirstName, LastName, AddressLine1, AddressLine2, ZipCode, City, Country, PhoneNumber, Email, OrderTotal, OrderPlaced) 
-                                values (@FirstName, @LastName, @AddressLine1, @AddressLine2, @ZipCode, @City, @Country, @PhoneNumber, @Email, @OrderTotal, @OrderPlaced);
+                @"Insert into [Orders] (FirstName, LastName, AddressLine1, AddressLine2, ZipCode, City, Country, PhoneNumber, Email, OrderTotal, OrderPlaced, UserId) 
+                                values (@FirstName, @LastName, @AddressLine1, @AddressLine2, @ZipCode, @City, @Country, @PhoneNumber, @Email, @OrderTotal, @OrderPlaced, @UserId);
                                 SELECT CAST(SCOPE_IDENTITY() as int)";
 
 

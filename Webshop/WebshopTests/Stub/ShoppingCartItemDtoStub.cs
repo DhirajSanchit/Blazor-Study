@@ -3,7 +3,7 @@ using BusinessLogicLayer.Containers;
 
 namespace WebshopTests.Stub;
 
-public class ShoppingItemCartStub
+public class ShoppingCartItemDtoStub
 {
     public static List<ShoppingCartItem> GetStub()
     {

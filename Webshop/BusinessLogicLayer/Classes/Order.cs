@@ -61,6 +61,7 @@ namespace BusinessLogicLayer.Classes
 
         // [BindNever]
         public DateTime OrderPlaced { get; set; }
+        public int? UserId { get; set; }
 
 
         public Order(List<OrderDetail>? orderDetails, string? addressLine2, string? state,
@@ -93,6 +94,7 @@ namespace BusinessLogicLayer.Classes
             Email = orderDto.Email;
             OrderTotal = orderDto.OrderTotal;
             OrderPlaced = orderDto.OrderPlaced;
+            UserId = orderDto.UserId;
         }
 
         protected internal OrderDto ToDto()
@@ -111,7 +113,8 @@ namespace BusinessLogicLayer.Classes
                 PhoneNumber = PhoneNumber,
                 Email = Email,
                 OrderTotal = OrderTotal,
-                OrderPlaced = OrderPlaced
+                OrderPlaced = OrderPlaced,
+                UserId = UserId
             };
         }
 

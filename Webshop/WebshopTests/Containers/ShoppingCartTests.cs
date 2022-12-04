@@ -179,7 +179,7 @@ public class ShoppingCartTests
         shoppingCart.ShoppingCartId = Guid.NewGuid().ToString();
 
         //Act
-        shoppingCart.ShoppingCartItems = ShoppingItemCartStub.GetStub();
+        shoppingCart.ShoppingCartItems = ShoppingCartItemDtoStub.GetStub();
         var total = shoppingCart.GetShoppingCartTotal();
         
         //Assert
@@ -217,7 +217,7 @@ public class ShoppingCartTests
         shoppingCart.ShoppingCartId = Guid.NewGuid().ToString();
 
         //Act
-        shoppingCart.ShoppingCartItems = ShoppingItemCartStub.GetStub();
+        shoppingCart.ShoppingCartItems = ShoppingCartItemDtoStub.GetStub();
         var product = new Product()
         {
             ProductId = 1,
@@ -246,7 +246,7 @@ public class ShoppingCartTests
         shoppingCart.ShoppingCartId = Guid.NewGuid().ToString();
 
         //Act
-        shoppingCart.ShoppingCartItems = ShoppingItemCartStub.GetStub();
+        shoppingCart.ShoppingCartItems = ShoppingCartItemDtoStub.GetStub();
         var product = new Product()
         {
             ProductId = 1,
@@ -275,7 +275,7 @@ public class ShoppingCartTests
         shoppingCart.ShoppingCartId = Guid.NewGuid().ToString();
 
         //Act
-        shoppingCart.ShoppingCartItems = ShoppingItemCartStub.GetStub();
+        shoppingCart.ShoppingCartItems = ShoppingCartItemDtoStub.GetStub();
         var product = new Product()
         {
             ProductId = 1,

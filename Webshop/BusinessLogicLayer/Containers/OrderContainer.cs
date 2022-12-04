@@ -1,4 +1,5 @@
-﻿using BusinessLogicLayer.Classes;
+﻿using System.Security.Claims;
+using BusinessLogicLayer.Classes;
 using BusinessLogicLayer.Interfaces;
 using InterfaceLayer.DALs;
 
@@ -55,5 +56,6 @@ namespace BusinessLogicLayer.Containers
                 throw;
             }
         }
+        
     }
 }

@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using AspNetCoreHero.ToastNotification;
 using BusinessLogicLayer.Containers;
 using BusinessLogicLayer.Interfaces;
@@ -6,10 +7,10 @@ using DataAccessLayer.DataAccess;
 using InterfaceLayer.DALs;
 using NToastNotify;
 using AspNetCoreHero.ToastNotification.Extensions;
-using IProofOfConceptsDAL = InterfaceLayer.DALs.IProofOfConceptsDAL;
+using Microsoft.AspNetCore.Authentication.Cookies;
+
 
 var builder = WebApplication.CreateBuilder(args);
-
 
 // Add services to the container. For Toasts
 builder.Services.AddControllersWithViews();
@@ -24,11 +25,14 @@ builder.Services.AddNotyf(config =>
     config.DurationInSeconds = 5;
     config.IsDismissable = true;
     config.Position = NotyfPosition.TopRight;
+    // config.HasRippleEffect = true;
 });
 
 //Service for Runtime Compilation, enables Razor Pages or CSHTML Views to be edited while the app is running
-builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation().AddJsonOptions(
+    options => { options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles; });
 builder.Services.AddRazorPages();
+
 //Code below used mainly for Proof Of Concept and debugging purposes
 var connectionstring = builder.Configuration.GetConnectionString("Default");
 
@@ -42,14 +46,42 @@ builder.Services.AddScoped<IProductContainer, ProductContainer>();
 builder.Services.AddScoped<IOrderDAL, OrderDAL>();
 builder.Services.AddScoped<IOrderContainer, OrderContainer>();
 
-//Proof of Concept flow, used for development purposes
-builder.Services.AddScoped<IProofOfConceptsDAL, ProofOfConceptsDAL>();
-builder.Services.AddScoped<IProofOfConceptsContainer, ProofOfConceptsContainer>();
+//Authentication & Authorization
+builder.Services.AddScoped<IUserContainer, UserContainer>();
+builder.Services.AddScoped<IUserDAL, UserDAL>();
 
 //ShoppingCart 
 builder.Services.AddScoped<IShoppingCart, ShoppingCart>(sp => ShoppingCart.GetCart(sp));
 builder.Services.AddScoped<IShoppingCartDAL, ShoppingCartDAL>();
-builder.Services.AddSession();
+
+//Proof of Concept flow, used for development purposes
+builder.Services.AddScoped<IProofOfConceptsDAL, ProofOfConceptsDAL>();
+builder.Services.AddScoped<IProofOfConceptsContainer, ProofOfConceptsContainer>();
+
+builder.Services.AddSession(options =>
+{
+    // options.IdleTimeout = TimeSpan.FromDays(10);
+    //options.Cookie.IsEssential = true;
+    options.Cookie.Name = "ShoppingCart";
+});
+
+
+//Authentication
+builder.Services.AddAuthentication(options =>
+    {
+        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        //o.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
+    })
+    .AddCookie();
+
+
+//Authorization
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Admin", policy => policy.RequireClaim("Admin"));
+    options.AddPolicy("User", policy => policy.RequireClaim("User"));
+    options.AddPolicy("Guest", policy => policy.RequireClaim("Guest"));
+});
 
 builder.Services.AddRazorPages();
 
@@ -68,8 +100,11 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseSession();
 app.UseRouting();
+
+app.UseAuthentication();
 app.UseAuthorization();
 
+app.MapControllers();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

@@ -2,6 +2,7 @@ using System.Diagnostics;
 using AspNetCoreHero.ToastNotification.Abstractions;
 using BusinessLogicLayer.Classes;
 using BusinessLogicLayer.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -81,13 +82,14 @@ public class ProductsController : Controller
         }
     }
 
-
+    [Authorize(Policy = "Guest")]
     [HttpGet]
     public IActionResult AddProduct()
     {
         return View();
     }
 
+    [Authorize(Policy = "Guest")]
     [HttpPost]
     [ValidateAntiForgeryToken]
     public IActionResult AddProduct(Product product)
@@ -121,6 +123,7 @@ public class ProductsController : Controller
     }
 
 
+    [Authorize(Policy = "Guest")]
     //TODO implement the rest of the CRUD operations
     [HttpGet]
     public IActionResult EditProduct(int id)
@@ -148,6 +151,7 @@ public class ProductsController : Controller
     }
 
 
+    [Authorize(Policy = "Guest")]
     //TODO: Finish route
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -181,7 +185,8 @@ public class ProductsController : Controller
         }
         return View();
     }
-
+    
+    [Authorize]
     [HttpPost]
     [ValidateAntiForgeryToken]
     public IActionResult ArchiveProduct(int id)
