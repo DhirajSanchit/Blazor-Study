@@ -1,8 +1,6 @@
-﻿using System.Data.SqlClient;
-using BusinessLogicLayer.Classes;
+﻿using BusinessLogicLayer.Classes;
 using BusinessLogicLayer.Interfaces;
 using InterfaceLayer.DALs;
-using InterfaceLayer.Dtos;
 
 
 namespace BusinessLogicLayer.Containers

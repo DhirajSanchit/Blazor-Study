@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using InterfaceLayer.Dtos;
+﻿using InterfaceLayer.Dtos;
 
 namespace InterfaceLayer.DALs
 {

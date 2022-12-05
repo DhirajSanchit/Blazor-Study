@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace InterfaceLayer.DALs
+﻿namespace InterfaceLayer.DALs
 {
     public interface IDataAccess
     {

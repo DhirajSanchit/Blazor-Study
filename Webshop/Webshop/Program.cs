@@ -8,20 +8,26 @@ using InterfaceLayer.DALs;
 using NToastNotify;
 using AspNetCoreHero.ToastNotification.Extensions;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Webshop.Helpers;
+using Webshop.Interfaces;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container. For Toasts
+
 builder.Services.AddControllersWithViews();
+
+// Add servicesFor Toasts
 builder.Services.AddControllersWithViews().AddNToastNotifyToastr(new ToastrOptions
 {
     ProgressBar = true,
     TimeOut = 5000
 });
 
+//Service for Toasts Notifications
 builder.Services.AddNotyf(config =>
 {
+    
     config.DurationInSeconds = 5;
     config.IsDismissable = true;
     config.Position = NotyfPosition.TopRight;
@@ -79,9 +85,13 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("Admin", policy => policy.RequireClaim("Admin"));
-    options.AddPolicy("User", policy => policy.RequireClaim("User"));
+    options.AddPolicy("User", policy => policy.RequireClaim("ShowpOwner"));
+    options.AddPolicy("Guest", policy => policy.RequireClaim("Customer"));
     options.AddPolicy("Guest", policy => policy.RequireClaim("Guest"));
 });
+
+//Helper services
+builder.Services.AddScoped<IUserHelper, UserHelper>();
 
 builder.Services.AddRazorPages();
 

@@ -1,8 +1,6 @@
 using AspNetCoreHero.ToastNotification.Abstractions;
 using BusinessLogicLayer.Classes;
 using BusinessLogicLayer.Interfaces;
-using DataAccessLayer.DALs;
-using DataAccessLayer.DataAccess;
 using Microsoft.AspNetCore.Mvc;
 using Webshop.Models;
 

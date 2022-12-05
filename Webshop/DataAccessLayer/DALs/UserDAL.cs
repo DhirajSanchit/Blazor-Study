@@ -34,10 +34,10 @@ public class UserDAL : IUserDAL
             var user = _dataAccess.QueryFirstOrDefault<UserDto, dynamic>(sql, parameters);
             return user;
         }
-        catch (NullReferenceException ex)
+        catch (NullReferenceException nre)
         {
             Console.WriteLine("Error, no user found");
-            throw ex;
+            throw nre;
         }
         catch (Exception ex)
         {

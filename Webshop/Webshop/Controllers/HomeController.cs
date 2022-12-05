@@ -1,7 +1,5 @@
-﻿using System.Data.SqlClient;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using AspNetCoreHero.ToastNotification.Abstractions;
-using BusinessLogicLayer.Classes;
 using BusinessLogicLayer.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Webshop.Models;

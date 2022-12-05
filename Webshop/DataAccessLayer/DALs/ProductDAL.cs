@@ -1,5 +1,4 @@
-﻿using System.Data.SqlClient;
-using InterfaceLayer.DALs;
+﻿using InterfaceLayer.DALs;
 using InterfaceLayer.Dtos;
 
 namespace DataAccessLayer.DALs

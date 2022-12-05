@@ -1,11 +1,8 @@
 using BusinessLogicLayer.Classes;
 using BusinessLogicLayer.Containers;
-using BusinessLogicLayer.Interfaces;
 using InterfaceLayer.Dtos;
-using WebshopTests.Mocks.Containers;
 using WebshopTests.Mocks.DALs;
 using WebshopTests.Stub;
-using Xunit.Sdk;
 
 namespace WebshopTests.Containers;
 

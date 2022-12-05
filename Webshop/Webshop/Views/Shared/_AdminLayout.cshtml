@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
@@ -36,26 +36,13 @@
                         <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">Products</a>
                     </li>
 
-
                     @*TODO: TO be encapsulated in Role *@
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="AddProduct">Add Product</a>
-                    </li>
+                    </li> 
+                    
                 </ul>
             </div>
-            <div>
-                @* Logout Button *@
-                @if (User.Identity.IsAuthenticated)
-                {
-                    <a class=" btn btn-outline-warning text-dark mx-5" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
-                }
-                else
-                {
-                    <a class="btn btn-outline-primary mx-5" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
-                }
-
-            </div>
-
             <div>
                 <vc:shopping-cart-summary></vc:shopping-cart-summary>
             </div>

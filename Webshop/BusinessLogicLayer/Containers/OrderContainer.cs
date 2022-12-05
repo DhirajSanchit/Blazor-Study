@@ -1,5 +1,4 @@
-﻿using System.Security.Claims;
-using BusinessLogicLayer.Classes;
+﻿using BusinessLogicLayer.Classes;
 using BusinessLogicLayer.Interfaces;
 using InterfaceLayer.DALs;
 

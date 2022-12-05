@@ -1,14 +1,11 @@
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using AspNetCoreHero.ToastNotification.Abstractions;
-using BusinessLogicLayer.Classes;
 using BusinessLogicLayer.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Webshop.Interfaces;
 using Webshop.Models;
 
 namespace Webshop.Controllers;
@@ -17,17 +14,21 @@ public class AccountController : Controller
 {
     private readonly IUserContainer _userContainer;
     private INotyfService _notyf;
-    public AccountController(IUserContainer userContainer, INotyfService notyf)
+    private IUserHelper _userHelper;
+    
+    public AccountController(IUserContainer userContainer, INotyfService notyf, IUserHelper userHelper)
     {
         this._userContainer = userContainer;
         _notyf = notyf;
+        _userHelper = userHelper;
     }
-
+    
+    //Different signatures, redirects back to previous URL
     [AllowAnonymous]
     public IActionResult Login(string returnUrl = "/")
     {
-        
-        return View(new LoginModel { ReturnUrl = returnUrl, userId = GetUserId()});
+        var id = _userHelper.GetUserId(User);
+        return View(new LoginModel { ReturnUrl = returnUrl});
     }
 
     [HttpPost]
@@ -59,6 +60,7 @@ public class AccountController : Controller
                 principal,
                 new AuthenticationProperties { IsPersistent = model.RememberMe });
 
+            _notyf.Success("Welcome back " + user.Name);
             return LocalRedirect(model.ReturnUrl);
         }
         catch (Exception e)
@@ -68,6 +70,18 @@ public class AccountController : Controller
         }
     }
 
+    public async Task<IActionResult> Logout()
+    {
+        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        _notyf.Success("You have been logged out");
+        return Redirect("/");
+    }
+    public Task<IActionResult> AccessDenied()
+    {
+        _notyf.Warning("You are not allowed to access this page");
+        return Task.FromResult<IActionResult>(RedirectToAction("Login"));
+    }
+    
     #region Google Login Demo, not working yet
     // [AllowAnonymous]
     // public IActionResult LoginWithGoogle(string returnUrl = "/")
@@ -119,35 +133,30 @@ public class AccountController : Controller
     //     return LocalRedirect(result.Properties.Items["returnUrl"]);
     // }
     #endregion
-    public async Task<IActionResult> Logout()
-    {
-        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-        return Redirect("/");
-    }
+
     
+    #region GetUserID()
     //Create method that returns the current userid of the logged in user
-    public dynamic GetUserId()
-    {
-        try
-        {
-            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
-            return int.Parse(userId);
-        }
-        catch (ArgumentNullException)
-        {   
-            return null;
-        }
-        catch(Exception)
-        {
-            //Something went wrong
-            _notyf.Error("Something went wrong");
-            RedirectToAction("Login");
-            return null;
-        }
-    }
-    
-    public Task<IActionResult> AccessDenied()
-    {
-        return Task.FromResult<IActionResult>(RedirectToAction("Login"));
-    }
+    // public dynamic GetUserId()
+    // {
+    //     try
+    //     {
+    //         var userId = User.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.NameIdentifier)?.Value;
+    //         return int.Parse(userId);
+    //     }
+    //     catch (ArgumentNullException)
+    //     {   
+    //         return null;
+    //     }
+    //     catch(Exception)
+    //     {
+    //         //Something went wrong
+    //         _notyf.Error("Something went wrong");
+    //         RedirectToAction("Login");
+    //         return null;
+    //     }
+    // }
+    #endregion
+
+
 }

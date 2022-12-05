@@ -1,10 +1,7 @@
 using BusinessLogicLayer.Classes;
 using BusinessLogicLayer.Containers;
 using BusinessLogicLayer.Interfaces;
-using DataAccessLayer.DALs;
-using InterfaceLayer.DALs;
 using InterfaceLayer.Dtos;
-using Moq;
 using WebshopTests.Mocks.DALs;
 
 namespace WebshopTests.Containers;

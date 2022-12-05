@@ -3,9 +3,7 @@ using AspNetCoreHero.ToastNotification.Abstractions;
 using BusinessLogicLayer.Classes;
 using BusinessLogicLayer.Interfaces;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Webshop.Models;
 
 namespace Webshop.Controllers;

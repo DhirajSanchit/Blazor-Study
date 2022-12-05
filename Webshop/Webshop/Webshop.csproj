@@ -27,8 +27,4 @@
       <_ContentIncludedByDefault Remove="Pages\Shared\_PageLayout.cshtml" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Helpers" />
-    </ItemGroup>
-
 </Project>
