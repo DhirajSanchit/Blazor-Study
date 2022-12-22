@@ -104,7 +104,7 @@ public class ProductDALMock
 
 
         // Setup the GetAllProducts method to return the list of productDtos
-        productDalMock.Setup(x => x.GetAllProducts()).Returns(productDtos);
+        productDalMock.Setup(x => x.GetAllAvailableProducts()).Returns(productDtos);
 
         //set up a mock for the method that gets a dto by id
         productDalMock.Setup(dal => dal.GetProductById(It.IsAny<int>()))

@@ -25,6 +25,27 @@
       <_ContentIncludedByDefault Remove="Pages\CheckoutCompletePage.cshtml" />
       <_ContentIncludedByDefault Remove="Pages\CheckoutPage.cshtml" />
       <_ContentIncludedByDefault Remove="Pages\Shared\_PageLayout.cshtml" />
+      <_ContentIncludedByDefault Remove="Snippets\view snippet.cshtml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Snippets\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Snippets\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Snippets\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="Snippets\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Views\Shared\Components\CurrentUser" />
     </ItemGroup>
 
 </Project>

@@ -1,10 +1,10 @@
-﻿@model Webshop.Models.LoginModel
+﻿@model LoginModel
 
 <div class="login-page">
     <div class="page-header">
         <h1>Login</h1>
     </div>
-    <h1>@Model.userId</h1>
+    <h1></h1>
     <div class="row">
         <div class="col-sm-6">
             <div class="panel panel-default">
@@ -14,16 +14,20 @@
                 <div class="panel-body">
 
                     <form asp-route="Login">
-                        <input type="hidden" asp-for="ReturnUrl" />
+                        <input type="hidden" asp-for="ReturnUrl"/>
 
                         <fieldset>
                             <div class="form-group">
                                 <label asp-for="Username"></label>
                                 <input class="form-control" placeholder="Username" asp-for="Username" autofocus>
+                                <span asp-validation-for="Username" class="text-danger"></span>
+
                             </div>
                             <div class="form-group">
                                 <label asp-for="Password"></label>
                                 <input type="password" class="form-control" placeholder="Password" asp-for="Password" autocomplete="off">
+                                <span asp-validation-for="Password" class="text-danger"></span>
+
                             </div>
                             <div class="form-group login-remember">
                                 <label asp-for="RememberMe">
@@ -44,6 +48,11 @@
             @* <a class="btn btn-primary" asp-action=""  *@
             @*    asp-route-returnUrl="@Model.ReturnUrl">Login with Google</a> *@
         </div>
-        
+
     </div>
 </div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

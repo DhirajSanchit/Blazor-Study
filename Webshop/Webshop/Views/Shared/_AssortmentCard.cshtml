@@ -1,0 +1,59 @@
+@model AssortmentViewModel
+
+
+@** TODO: Adjust Bootstrap classes to optimize views with: 
+-Buttons
+-Card footers  
+**@
+
+<div class="col-md-3 mb-4">
+    <a asp-action="ProductDetails" asp-controller="Products" asp-route-id="@Model.Id">
+
+        <div class="card  mb-md-3 mb-sm-3 card-product @Model.BorderLayout">
+            <img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png"/>
+            <div class="card-body @Model.TextLayout">
+                @* <p class="text-primary card-text mb-0">Article</p> *@
+                <h4 class="card-title text-truncate">@Model.Name</h4>
+                <p class="card-text text-truncate @Model.TextLayout">@Model.Description</p>
+                <div class="d-flex">
+                </div>
+            </div>
+
+            <div class="card-footer h-100 pt-1 float-start">
+                <div>
+                    <p class="fw-bold mb-0 price-text">@Model.Price.ToString("C")</p>
+                </div>
+
+                <div class="mt-4 fw-bold fw-bolder">
+                    @if (@Model.ArchiveDate != null)
+                    {
+                        <div>
+                            <p class="fw-bold mb-0 price-text text-danger ">Status: Archived on @Model.ArchiveDate </p>
+                        </div>
+                    }
+                    else
+                    {
+                        <div>
+                            <p class="fw-bold mb-0 price-text text-success">Status: Available for Purchase </p>
+                        </div>
+                    }
+                </div>
+                <div class="align-content-md-center">
+                    <div class="float-end px-0">
+                        @if (Model.ArchiveDate != null)
+                        {
+                            <a class="btn btn-danger mt-5 mx-2" asp-controller="Products" asp-action="ArchiveProduct" asp-route-id="@Model.Id"><i class="bi bi-arrow-counterclockwise mx-2 bold"></i>Unarchive</a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-danger mt-5 mx-2" asp-controller="Products" asp-action="ArchiveProduct" asp-route-id="@Model.Id"><i class="bi bi-archive-fill mx-2"></i>Archive</a>
+                        }
+                    </div>
+                    <div class="float-md-start">
+                        <a class="btn btn-primary mt-5 px-4" asp-controller="Products" asp-action="EditProduct" asp-route-id="@Model.Id"><i class="bi bi-pencil-square mx-2"></i>Edit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+</div>

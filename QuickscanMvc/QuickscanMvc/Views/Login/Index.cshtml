@@ -1,0 +1,38 @@
+﻿@model GebruikerModel
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<form asp-action="Login">
+    <div class="container">
+        <div class="input-group mb-3">
+            <div class="col-3">
+                <label for="basic-url" class="form-label">Username</label>
+                <input type="text" class="form-control" asp-for="GebruikersNaam" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
+                <span asp-validation-for="GebruikersNaam" class="text-danger"></span>
+                            <p class ="text-danger">@ViewBag.Error</p>
+            </div>
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group mt-3">
+                <div class="col-3">
+                    <label for="basic-url" class="form-label">Wachtwoord</label>
+                    <input type="password" class="form-control" asp-for="Wachtwoord" placeholder="Wachtwoord" aria-label="Wachtwoord" aria-describedby="basic-addon1" />
+                    <span asp-validation-for="Wachtwoord" class="text-danger"></span>
+                </div>
+                <div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <input type="submit" value="Login" class="btn btn-primary"></input>
+    </div>
+</form>
+

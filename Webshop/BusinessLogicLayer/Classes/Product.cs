@@ -26,6 +26,8 @@ public class Product
     // [StringLength(255)]
     // [Required]
     public string ImageLink { get; set; }
+    
+    public DateTime? ArchiveDate { get; set; }
 
     public Product()
     {
@@ -35,11 +37,11 @@ public class Product
     protected internal Product(ProductDto dto)
     {
         ProductId = dto.ProductId;
-        // Brand = dto.Brand;
         Name = dto.Name;
         Price = dto.Price;
         ImageLink = dto.ImageLink;
         Description = dto.Description;
+        ArchiveDate = dto.ArchiveDate;
     }
     
     //Converts a Product to a ProductDto
@@ -48,14 +50,12 @@ public class Product
     {
         return new ProductDto
         {
-            ProductId = this.ProductId,
-            // Brand = Brand,
-            Name = this.Name,
-            Price = this.Price,
-            ImageLink = this.ImageLink,
-            Description = this.Description
+            ProductId = ProductId,
+            Name = Name,
+            Price = Price,
+            ImageLink = ImageLink,
+            Description = Description,
+            ArchiveDate = ArchiveDate
         };
     }
-    
-    
 }

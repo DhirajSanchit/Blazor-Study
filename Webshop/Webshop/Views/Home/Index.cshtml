@@ -7,26 +7,25 @@
     <h1 class="display-4">Welcome</h1>
     @* <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p> *@
 </div>
-
-@if (Model != null)
-{
-    <div class="card" style="width: 18rem;">
-        <div class="card-header">
-            Featured
-        </div>
-        <ul class="list-group list-group-flush">
-            @foreach (var item in @Model)
-            {
-                <li class="list-group-item">@item.Id</li>
-                <div class="">
-                    <vc:forms-progress-bar id="@item.Id"></vc:forms-progress-bar>
-                    <p>a</p>
-                </div>
-            }
-        </ul>
-    </div>
-}
-else
-{
-    <p>Welcome</p>
-}
+@* *@
+@* @if (Model != null) *@
+@* { *@
+@*     <div class="card" style="width: 18rem;"> *@
+@*         <div class="card-header"> *@
+@*             Featured *@
+@*         </div> *@
+@*         <ul class="list-group list-group-flush"> *@
+@*             @foreach (var item in @Model) *@
+@*             { *@
+@*                 <li class="list-group-item">@item.Id</li> *@
+@*                 <div class=""> *@
+@*                     <vc:forms-progress-bar id="@item.Id"></vc:forms-progress-bar> *@
+@*                 </div> *@
+@*             } *@
+@*         </ul> *@
+@*     </div> *@
+@* } *@
+@* else *@
+@* { *@
+@*     <p>Welcome</p> *@
+@* } *@

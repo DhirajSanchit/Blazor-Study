@@ -2,7 +2,7 @@
 using System.Text;
 
 /// <summary>
-/// Public class for encrypting and decrypting strings
+/// Public class for encrypting strings
 /// Primarily used for code reuse
 /// </summary>
 

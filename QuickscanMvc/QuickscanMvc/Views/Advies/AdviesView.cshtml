@@ -1,0 +1,52 @@
+﻿@model AdviesViewModel
+
+@{
+    ViewData["Title"] = "AdviesView";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <h1>Advies Score: @Model.AdviesScore</h1>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-3">
+            <label>Uitstraling Score:</label>
+        </div>
+        <div class="col-1"><label>@Model.UitstralingScore</label></div>
+    </div>
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-3">
+            <label>Uitstraling Score:</label>
+        </div>
+        <div class="col-1"><label>@Model.BouwkundigestaatScore</label></div>
+    </div>
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-3">
+            <label>Veiligheid Score:</label>
+        </div>
+        <div class="col-1"><label>@Model.VeiligheidScore</label></div>
+    </div>
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-3">
+            <label>Uitstraling Score:</label>
+        </div>
+        <div class="col-1"><label>@Model.EnergieVerbruikScore</label></div>
+    </div>
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-3">
+            <label>Onderwijskundige staat Score:</label>
+        </div>
+        <div class="col-1"><label>@Model.OnderwijskundigeStaatScore</label></div>
+    </div>
+</div>
+

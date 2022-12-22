@@ -1,0 +1,100 @@
+﻿@model HoofdpaginaViewModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="container-fluid col-12 center table-responsive-xl">
+    <div class="row">
+        <div class="col-3">
+            <form asp-action="FilterButton">
+                <input asp-for="FilterText" type="search" class="form-control" id="FilterInvoer" placeholder="Filter op"/>
+                <div class="mt-2">
+                    <select asp-for="DropdownValue">
+                        <option value="Stad">Stad</option>
+                        <option value="GebouwNaam">GebouwNaam</option>
+                    </select> <br/>
+                    <button type="submit" class="btn btn-primary mt-2">Filteren</button>
+                </div>
+            </form>
+        </div>
+        @* Buttons and searchbar components *@
+        <div class="col-7">
+            <form asp-action="RegisterButton">
+                <!-- Buttons-->
+                @if (Model.GebruikerType == "Admin")
+                {
+                    <div class="form-outline mb-4">
+                        <input type="submit" id="" value="Registreer" class="btn btn-primary m-5"/>
+                    </div>
+                }
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="container container-fluid">
+    <div class="row">
+        <div class="col-5">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">
+                        <a class="btn btn-primary mt-2" asp-action="SorteerButton" asp-route-Naam="GebouwNaam">GebouwNaam</a>
+                    </th>
+                    <th scope="col">
+                        <a class="btn btn-primary mt-2" asp-action="SorteerButton" asp-route-Naam="Straatnaam">Straatnaam</a>
+                    </th>
+                    <th scope="col">
+                        <a class="btn btn-primary mt-2" asp-action="SorteerButton" asp-route-Naam="Postcode">Postcode</a>
+                    </th>
+                    <th scope="col">
+                        <a class="btn btn-primary mt-2" asp-action="SorteerButton" asp-route-Naam="Huisnummer">Huisnummer</a>
+                    </th>
+                    <th scope="col">
+                        <a class="btn btn-primary mt-2" asp-action="SorteerButton" asp-route-Naam="Stad">Stad</a>
+                    </th>
+                    <th scope="col">
+                        <a class="btn btn-primary mt-2" asp-action="SorteerButton" asp-route-Naam="Stad">Advies</a>
+                    </th>
+                    @* <th scope="col"></th> *@
+                    @* <th scope="col"></th> *@
+                    @* <th scope="col"></th> *@
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (SchoolgebouwViewModel schoolgebouwViewModel in Model.schoolgebouwViewModels)
+                {
+                    <tr class="container-fluid">
+                        <td>@schoolgebouwViewModel.GebouwNaam</td>
+                        <td>@schoolgebouwViewModel.Straatnaam</td>
+                        <td>@schoolgebouwViewModel.Postcode</td>
+                        <td>@schoolgebouwViewModel.Huisnummer</td>
+                        <td>@schoolgebouwViewModel.Stad</td>
+                        <td>12345</td>
+
+                        <td>
+                            <a class="btn btn-primary" asp-action="NaarBeoordelingsFormulier" asp-route-id="@schoolgebouwViewModel.SchoolGebouwID">Info</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-secondary" asp-action="NaarBeoordelingsFormulierInzien" asp-route-id="@schoolgebouwViewModel.SchoolGebouwID">Inzien</a>
+                        </td>
+
+                        <tr class="m-5">
+                            <td colspan="100" class="col-12">
+                                @* <div class="progress progress-bar mt-3 mb-3" style="width: 100%"> *@
+                                @* *@
+                                @* </div> *@
+                                <vc:forms-progress-bar school-id="schoolgebouwViewModel.SchoolGebouwID"></vc:forms-progress-bar>
+                            </td>
+                        </tr>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

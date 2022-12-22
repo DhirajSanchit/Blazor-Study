@@ -32,12 +32,12 @@ namespace BusinessLogicLayer.Containers
             return Product;
         }
 
-        public IEnumerable<Product> GetAllProducts()
+        public IEnumerable<Product> GetAllAvailableProducts()
         {
             _products = new List<Product>();
             try
             {
-                var dataset = _productDal.GetAllProducts();
+                var dataset = _productDal.GetAllAvailableProducts();
                 foreach (var row in dataset)
                 {
                     _products.Add(new Product(row));
@@ -83,7 +83,7 @@ namespace BusinessLogicLayer.Containers
         {
             try
             {
-                return _productDal.ArchiveProduct(id, DateTime.Now);
+                return _productDal.HandleArchivation(id);
             }
             catch (Exception exception)
             {
@@ -104,6 +104,26 @@ namespace BusinessLogicLayer.Containers
                 }
 
                 return _products.AsEnumerable();
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+                throw;
+            }
+        }
+
+        public List<Product> GetAssortment()
+        {
+            _products = new List<Product>();
+            try
+            {
+                var dataset = _productDal.GetAssortment();
+                foreach (var row in dataset)
+                {
+                    _products.Add(new Product(row));
+                }
+
+                return _products.ToList();
             }
             catch (Exception exception)
             {

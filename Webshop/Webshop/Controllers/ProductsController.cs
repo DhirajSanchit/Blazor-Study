@@ -4,6 +4,7 @@ using BusinessLogicLayer.Classes;
 using BusinessLogicLayer.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Webshop.Helpers.ViewModelHelpers;
 using Webshop.Models;
 
 namespace Webshop.Controllers;
@@ -13,26 +14,27 @@ public class ProductsController : Controller
 {
     private ILogger _logger;
     private readonly IProductContainer _productContainer;
-    private INotyfService _notyf;
+    private INotyfService _notyfService;
 
     private bool result = false;
     private Product product;
 
 
     public ProductsController(ILogger<ProductsController> logger, IProductContainer productContainer,
-        INotyfService notyf)
+        INotyfService notyfService)
     {
         _logger = logger;
         _productContainer = productContainer;
-        _notyf = notyf;
+        _notyfService = notyfService;
     }
-
+    
+    [HttpGet]
     public IActionResult Index()
     {
         try
         {
             ProductViewModel pvm = new();
-            pvm._Products = _productContainer.GetAllProducts();
+            pvm._Products = _productContainer.GetAllAvailableProducts();
             if (pvm == null)
             {
                 return NotFound();
@@ -53,7 +55,7 @@ public class ProductsController : Controller
         }
     }
 
-
+    
     [HttpGet]
     [IgnoreAntiforgeryToken]
     public IActionResult ProductDetails(int id)
@@ -80,14 +82,14 @@ public class ProductsController : Controller
         }
     }
 
-    [Authorize(Policy = "Guest")]
+    [Authorize(Policy = "AdminOrShopOwner")]
     [HttpGet]
     public IActionResult AddProduct()
     {
         return View();
     }
 
-    [Authorize(Policy = "Guest")]
+    [Authorize(Policy = "AdminOrShopOwner")]
     [HttpPost]
     [ValidateAntiForgeryToken]
     public IActionResult AddProduct(Product product)
@@ -100,12 +102,12 @@ public class ProductsController : Controller
                 result = _productContainer.AddProduct(product);
                 if (result)
                 {
-                    _notyf.Success("Product Added!", 10);
+                    _notyfService.Success("Product Added!", 10);
                     RedirectToAction(nameof(Index));
                 }
                 else
                 {
-                    _notyf.Warning("Something went wrong", 10);
+                    _notyfService.Warning("Something went wrong", 10);
                     RedirectToAction(nameof(AddProduct));
                 }
             }
@@ -121,7 +123,7 @@ public class ProductsController : Controller
     }
 
 
-    [Authorize(Policy = "Guest")]
+    [Authorize(Policy = "AdminOrShopOwner")]
     //TODO implement the rest of the CRUD operations
     [HttpGet]
     public IActionResult EditProduct(int id)
@@ -149,7 +151,7 @@ public class ProductsController : Controller
     }
 
 
-    [Authorize(Policy = "Guest")]
+    [Authorize(Policy = "AdminOrShopOwner")]
     //TODO: Finish route
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -164,12 +166,12 @@ public class ProductsController : Controller
                 result = _productContainer.UpdateProduct(product);
                 if (!result)
                 {
-                    _notyf.Warning("Something went wrong", 10);
+                    _notyfService.Warning("Something went wrong", 10);
                     return RedirectToAction("EditProduct", "Products", new { @id = id });
                 }
                 else
                 {
-                    _notyf.Success("Product Editted!", 10);
+                    _notyfService.Success("Product Editted!", 10);
                     return RedirectToAction("EditProduct", "Products", new { @id = id });
                 }
             }
@@ -184,9 +186,7 @@ public class ProductsController : Controller
         return View();
     }
     
-    [Authorize]
-    [HttpPost]
-    [ValidateAntiForgeryToken]
+    [Authorize(Policy = "AdminOrShopOwner")]
     public IActionResult ArchiveProduct(int id)
     {
         try
@@ -194,13 +194,13 @@ public class ProductsController : Controller
             var result = _productContainer.ArchiveProduct(id);
             if (result)
             {
-                _notyf.Success("Product archived!", 10);
-                return RedirectToAction(nameof(Index));
+                _notyfService.Success("Archive status processed!", 10);
+                return RedirectToAction("Assortment");
             }
             else
             {
-                _notyf.Warning("Something went wrong", 10);
-                RedirectToAction(nameof(Index));
+                _notyfService.Warning("Something went wrong", 10);
+                RedirectToAction("Assortment");
             }
         }
         catch (Exception e)
@@ -209,13 +209,56 @@ public class ProductsController : Controller
             return NotFound();
         }
 
-        return RedirectToAction("ProductDetails", new { id = id });
+        return RedirectToAction("Assortment", "Products");
+    }
+    
+    [Authorize(Policy = "AdminOrShopOwner")]
+    [HttpGet]
+    public IActionResult Assortment()
+    {
+        try
+        {
+            //var assortment = List<AssortmentViewModel> = _productContainer.GetAllProducts();
+            var assortment = _productContainer.GetAssortment();
+            var viewModels = AssortmentViewModelHelper.ToAssortmentViewModelList(assortment);
+            
+            if (viewModels == null)
+            {
+                return NotFound();
+            }
+
+            return View(viewModels);
+        }
+        catch (Exception e)
+        {
+            Debug.WriteLine(e.Message);
+            return RedirectToAction("Error", "Home");
+            
+        }
     }
 
+    public IActionResult Search()
+    {
+        return View();
+    }
+    
+    public Task<IActionResult> AccessDenied()
+    {
+        _notyfService.Warning("You are not allowed to access this page");
+
+        if (User.IsInRole("Admin") || User.IsInRole("ShopOwner"))
+        {
+            return Task.FromResult<IActionResult>(RedirectToAction("Index", "Admin"));
+        }
+
+        return Task.FromResult<IActionResult>(RedirectToAction("Index", "Home"));
+    }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
+    
+    
 }

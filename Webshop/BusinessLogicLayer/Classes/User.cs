@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using InterfaceLayer.Dtos;
 
 namespace BusinessLogicLayer.Classes;
@@ -6,10 +7,12 @@ public class User
 {
     public int Id { get; set; }
     public string Name { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+
     public string Password { get; set; }
-    public string email { get; set; }
+    public string EmailAddress { get; set; }
     public string Role { get; set; }
-    public string GoogleId { get; set; }
     
     
     public User()
@@ -20,11 +23,12 @@ public class User
     public User(UserDto dto)
     {
         Id = dto.UserId;
-        Name = dto.FirstName;
+        Name = dto.FirstName + " " + dto.LastName;
+        FirstName = dto.FirstName;
+        LastName = dto.LastName;
         Password = dto.Password;
-        email = dto.EmailAdress;
+        EmailAddress = dto.EmailAdress;
         Role = dto.Role;
-        GoogleId = dto.GoogleId;
     }
     
     //Method to convert user to userDTO
@@ -34,9 +38,11 @@ public class User
         {
             UserId = Id,
             Name = Name,
+            FirstName = FirstName,
+            LastName = LastName,
             Password = Password,
+            EmailAdress = EmailAddress,
             Role = Role,
-            GoogleId = GoogleId
         };
     }
 }

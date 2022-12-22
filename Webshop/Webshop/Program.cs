@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using System.Text.Json.Serialization;
 using AspNetCoreHero.ToastNotification;
 using BusinessLogicLayer.Containers;
@@ -7,8 +8,10 @@ using DataAccessLayer.DataAccess;
 using InterfaceLayer.DALs;
 using NToastNotify;
 using AspNetCoreHero.ToastNotification.Extensions;
+using BusinessLogicLayer.Classes;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Webshop.Helpers;
+using Webshop.Helpers.AuthenticationHelpers;
 using Webshop.Interfaces;
 
 
@@ -27,7 +30,6 @@ builder.Services.AddControllersWithViews().AddNToastNotifyToastr(new ToastrOptio
 //Service for Toasts Notifications
 builder.Services.AddNotyf(config =>
 {
-    
     config.DurationInSeconds = 5;
     config.IsDismissable = true;
     config.Position = NotyfPosition.TopRight;
@@ -84,10 +86,13 @@ builder.Services.AddAuthentication(options =>
 //Authorization
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("Admin", policy => policy.RequireClaim("Admin"));
-    options.AddPolicy("User", policy => policy.RequireClaim("ShowpOwner"));
-    options.AddPolicy("Guest", policy => policy.RequireClaim("Customer"));
-    options.AddPolicy("Guest", policy => policy.RequireClaim("Guest"));
+    options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
+    options.AddPolicy("ShopOwner", policy => policy.RequireRole("ShowpOwner"));
+    options.AddPolicy("Customer", policy => policy.RequireRole("Customer"));
+    
+    //Multiple roles policy for everything except admin
+    options.AddPolicy("UserOrGuest", policy => policy.RequireRole("ShowpOwner", "Customer"));
+    options.AddPolicy("AdminOrShopOwner", policy => policy.RequireRole("ShowpOwner", "Admin"));
 });
 
 //Helper services

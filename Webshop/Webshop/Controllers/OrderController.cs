@@ -2,10 +2,15 @@
 using AspNetCoreHero.ToastNotification.Abstractions;
 using BusinessLogicLayer.Classes;
 using BusinessLogicLayer.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
+
 
 namespace Webshop.Controllers
 {
+    
+    [Authorize(Policy = "Customer")]
     public class OrderController : Controller
     {
         private readonly IOrderContainer _orderContainer;
@@ -48,7 +53,7 @@ namespace Webshop.Controllers
                 
                 if (ModelState.IsValid)
                 {
-                    assignId(order);
+                    AssignId(order);
                     
                     if (_orderContainer.CreateOrder(order))
                     {
@@ -80,7 +85,7 @@ namespace Webshop.Controllers
         }
 
 
-        private void assignId(Order order)
+        private void AssignId(Order order)
         {
             if (GetUserId() != null || GetUserId() > 0)
             {
@@ -99,6 +104,18 @@ namespace Webshop.Controllers
             {
                 return null;
             }
+        }
+        
+        public Task<IActionResult> AccessDenied()
+        {
+            _notyfService.Warning("You are not allowed to access this page");
+
+            if (User.IsInRole("Admin") || User.IsInRole("ShopOwner"))
+            {
+                return Task.FromResult<IActionResult>(RedirectToAction("Index", "Admin"));
+            }
+
+            return Task.FromResult<IActionResult>(RedirectToAction("Index", "Home"));
         }
     }
 }

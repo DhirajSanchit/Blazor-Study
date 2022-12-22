@@ -1,0 +1,70 @@
+﻿@model RegistrerenViewModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
+<form asp-action="Registreren" class="row g-3">
+    <script type="text/javascript">
+        function EnableDisableTextBox(ddlModels) {
+            var selectedValue = ddlModels.options[ddlModels.selectedIndex].value;
+            var txtOther = document.getElementById("sdd");
+            txtOther.disabled = selectedValue == "Gemeente" ? false : true;
+            if (!txtOther.disabled) {
+                txtOther.focus();
+            }
+        }
+    </script>
+    <div class="col-md-6">
+        <label for="inputEmail4" class="form-label">Gebruikersnaam</label>
+        <input type="text" class="form-control" asp-for="GebruikersNaam">
+            <span asp-validation-for="GebruikersNaam" class="text-danger"></span>
+            <p class="text-danger">@ViewBag.Error</p>
+
+
+    </div>
+    <div class="col-md-6">
+        <label for="inputPassword4" class="form-label">Wachtwoord</label>
+        <input type="password" class="form-control" asp-for="Wachtwoord">
+            <span asp-validation-for="Wachtwoord" class="text-danger"></span>
+
+    </div>
+    <div class="col-md-6">
+        <label for="inputAddress" class="form-label">Voornaam</label>
+        <input type="text" class="form-control" asp-for="Voornaam">
+            <span asp-validation-for="Voornaam" class="text-danger"></span>
+
+    </div>
+    <div class="col-md-6">
+        <label for="inputAddress2" class="form-label">Achternaam</label>
+        <input type="text" class="form-control" asp-for="Achternaam">
+            <span asp-validation-for="Achternaam" class="text-danger"></span>
+
+    </div>
+    <div class="col-md-4">
+        <label for="inputState" class="form-label">Type</label>
+        <select asp-for="Type" id="ddlModels" onchange="EnableDisableTextBox(this)" class="form-select">
+            <option>Gemeente</option>
+            <option>Monteur</option>
+        </select>
+    </div>
+        <div class="col-md-6">
+        <label for="inputCity" class="form-label">Gemeente nummer</label>
+        <input type="text" id="sdd" class="form-control" asp-for="GemeenteNummer">
+        <span asp-validation-for="GemeenteNummer" disabled = "disabled "class="text-danger"></span>   
+            <p class ="text-danger">@ViewBag.Errormessage</p>
+
+    </div>
+    <div class="col-12">
+    </div>
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary">Registreren</button>
+            <p style="font-size:20px;" class="text-success">@ViewBag.Message</p>
+    </div>
+
+
+    
+</form>

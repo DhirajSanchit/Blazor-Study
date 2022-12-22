@@ -16,7 +16,7 @@ public class ProductContainerTests
         IProductContainer productContainer = new ProductContainer(mockDal.Object);
 
         // Act
-        var dtos = productContainer.GetAllProducts();
+        var dtos = productContainer.GetAllAvailableProducts();
 
         //Assert
         Assert.All(dtos, product => Assert.IsType<Product>(product));
@@ -27,13 +27,13 @@ public class ProductContainerTests
     {
         // Arrange
         var mockDal = ProductDALMock.GetProductDALMock();
-        mockDal.Setup(x => x.GetAllProducts()).Throws(new Exception());
+        mockDal.Setup(x => x.GetAllAvailableProducts()).Throws(new Exception());
         IProductContainer productContainer = new ProductContainer(mockDal.Object);
 
         // Act
         
         //Assert
-        Assert.Throws<Exception>(() => productContainer.GetAllProducts());
+        Assert.Throws<Exception>(() => productContainer.GetAllAvailableProducts());
     }
 
     [Fact]
@@ -44,7 +44,7 @@ public class ProductContainerTests
         IProductContainer productContainer = new ProductContainer(mockDal.Object);
 
         // Act
-        var dtos = productContainer.GetAllProducts();
+        var dtos = productContainer.GetAllAvailableProducts();
 
         //Assert
         Assert.All(dtos, product => Assert.IsType<Product>(product));
@@ -93,7 +93,7 @@ public class ProductContainerTests
         var id = 1;
         var product = productContainer.GetProductById(id);
 
-        var outOfIndex = mockDal.Object.GetAllProducts().Count() + 1;
+        var outOfIndex = mockDal.Object.GetAllAvailableProducts().Count() + 1;
 
         //Assert
         Assert.Equal(id, product.ProductId);
@@ -108,7 +108,7 @@ public class ProductContainerTests
         IProductContainer productContainer = new ProductContainer(mockDal.Object);
 
         // Act
-        var outOfIndex = mockDal.Object.GetAllProducts().Count() + 1;
+        var outOfIndex = mockDal.Object.GetAllAvailableProducts().Count() + 1;
 
         //Assert
         Assert.Throws<NullReferenceException>(() =>productContainer.GetProductById(outOfIndex));
@@ -123,7 +123,7 @@ public class ProductContainerTests
 
 
         // Act
-        var listLength = mockDal.GetAllProducts().Count();
+        var listLength = mockDal.GetAllAvailableProducts().Count();
 
         var product = new Product()
         {
@@ -136,8 +136,8 @@ public class ProductContainerTests
 
         productContainer.AddProduct(product);
 
-        var lastProduct = mockDal.GetAllProducts().Last();
-        var newListLength = mockDal.GetAllProducts().Count();
+        var lastProduct = mockDal.GetAllAvailableProducts().Last();
+        var newListLength = mockDal.GetAllAvailableProducts().Count();
 
         //Assert
         Assert.Equal(listLength + 1, newListLength);
@@ -235,6 +235,6 @@ public class ProductContainerTests
         var product = new Product();
         
         //Assert
-        Assert.Throws<Exception>(() => productContainer.ArchiveProduct(product.ProductId));
+        Assert.False(productContainer.ArchiveProduct(product.ProductId));
     }
 }

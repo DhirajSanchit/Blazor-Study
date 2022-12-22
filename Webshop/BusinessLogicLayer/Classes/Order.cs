@@ -1,11 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using InterfaceLayer.Dtos;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace BusinessLogicLayer.Classes
 {
     public class Order
     {
-        // [BindNever]
+        [BindNever]
         public int OrderId { get; set; }
 
         public List<OrderDetail>? OrderDetails { get; set; }

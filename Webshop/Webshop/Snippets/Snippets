@@ -9,3 +9,87 @@
                 @*         <p class="card-text">@product.Description</p> *@
                 @*     </div> *@
                 @* </div>  *@
+                
+                
+                
+                
+                
+                
+                
+                
+    #region Google Login Demo, not working yet
+    // [AllowAnonymous]
+    // public IActionResult LoginWithGoogle(string returnUrl = "/")
+    // {
+    //     var props = new AuthenticationProperties
+    //     {
+    //         RedirectUri = Url.Action("GoogleLoginCallback"),
+    //         Items =
+    //         {
+    //             { "returnUrl", returnUrl }
+    //         }
+    //     };
+    //     return Challenge(props, GoogleDefaults.AuthenticationScheme);
+    // }
+
+    // [AllowAnonymous]
+    // public async Task<IActionResult> GoogleLoginCallback()
+    // {
+    //     // read google identity from the temporary cookie
+    //     var result = await HttpContext.AuthenticateAsync(
+    //         ExternalAuthenticationDefaults.AuthenticationScheme);
+    //
+    //     var externalClaims = result.Principal.Claims.ToList();
+    //
+    //     var subjectIdClaim = externalClaims.FirstOrDefault(
+    //         x => x.Type == ClaimTypes.NameIdentifier);
+    //     var subjectValue = subjectIdClaim.Value;
+    //
+    //     var user = _userContainer.GetByGoogleId(subjectValue);
+    //
+    //     var claims = new List<Claim>
+    //     {
+    //         new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+    //         new Claim(ClaimTypes.Name, user.Name),
+    //         new Claim(ClaimTypes.Role, user.Role),
+    //     };
+    //
+    //     var identity = new ClaimsIdentity(claims,
+    //         CookieAuthenticationDefaults.AuthenticationScheme);
+    //     var principal = new ClaimsPrincipal(identity);
+    //
+    //     // delete temporary cookie used during google authentication
+    //     await HttpContext.SignOutAsync(
+    //         ExternalAuthenticationDefaults.AuthenticationScheme);
+    //
+    //     await HttpContext.SignInAsync(
+    //         CookieAuthenticationDefaults.AuthenticationScheme, principal);
+    //
+    //     return LocalRedirect(result.Properties.Items["returnUrl"]);
+    // }
+    #endregion
+
+    
+    #region GetUserID()
+    //Create method that returns the current userid of the logged in user
+    // public dynamic GetUserId()
+    // {
+    //     try
+    //     {
+    //         var userId = User.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.NameIdentifier)?.Value;
+    //         return int.Parse(userId);
+    //     }
+    //     catch (ArgumentNullException)
+    //     {   
+    //         return null;
+    //     }
+    //     catch(Exception)
+    //     {
+    //         //Something went wrong
+    //         _notyf.Error("Something went wrong");
+    //         RedirectToAction("Login");
+    //         return null;
+    //     }
+    // }
+    #endregion
+

@@ -1,0 +1,36 @@
+﻿@model SchoolgebouwViewModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<form asp-action="SchoolgebouwAanmaken">
+    <div class="container">
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-5">
+                <h4>Schoolgebouw aanmaken </h4>
+                Schoolnaam:<br /><input class="form-control inputwidth" asp-for="GebouwNaam" />
+                GemeenteNr:<br /><input class="form-control inputwidth" asp-for="GemeenteNr" />
+                Stad:<br /><input class="form-control inputwidth" asp-for="Stad" />
+                Straatnaam:<br /><input class="form-control inputwidth" asp-for="Straatnaam" />
+                Postcode:<br /><input class="form-control inputwidth" asp-for="Postcode" />
+                Huisnummer:<br /><input class="form-control inputwidth" asp-for="Huisnummer" />
+                Onderwijssoort:<br /><input class="form-control inputwidth" asp-for="Onderwijssoort" />
+            </div>
+            <div class="col-5">
+                <br /> <br />
+                Bouwjaar:<br /><input class="form-control inputwidth" asp-for="Bouwjaar" />
+                Oppervlakte:<br /><input class="form-control inputwidth" asp-for="Oppervlakte" />
+                Aantal leerlingen: <br /><input class="form-control inputwidth" asp-for="AantalLeerlingen" />
+                Contactpersoon naam: <br /><input class="form-control inputwidth" asp-for="ContactpersoonNaam" />
+                Contactpersoon functie: <br /><input class="form-control inputwidth" asp-for="ContactpersoonFunctie" />
+                Contactpersoon telefoonnummer: <br /><input class="form-control inputwidth" asp-for="ContactpersoonTelefoonNr" />
+                Contactpersoon email: <br /><input class="form-control inputwidth" asp-for="ContactpersoonEmail" />
+                <br />
+                <button class="btn btn-primary" type="submit">Aanmaken</button>
+            </div>
+
+        </div>
+    </div>
+</form>

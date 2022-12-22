@@ -4,6 +4,8 @@ namespace BusinessLogicLayer.Interfaces;
 
 public interface IUserContainer
 {
-    User GetByUsernameAndPassword(string username, string password);
+    User GetByEmailAndPassword(string username, string password);
+    bool RegisterCustomer(User user);
     User GetByGoogleId(string googleId);
+    bool CheckForUniqueEmail(string email);
 }

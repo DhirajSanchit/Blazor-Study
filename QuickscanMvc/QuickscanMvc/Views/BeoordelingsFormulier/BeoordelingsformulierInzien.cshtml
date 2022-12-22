@@ -1,0 +1,532 @@
+﻿@model BeoordelingsFormulierViewModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+
+    <!--Radiobutton uitraling vullen-->
+    @if (@Model.radioUitstraling == "8")
+    {
+        <script>
+            $(document).ready(function () {
+                $("#radioUitstraling1").prop("checked", true);
+            });
+        </script>
+    }
+    @if (@Model.radioUitstraling == "7")
+    {
+        <script>
+            $(document).ready(function () {
+                $("#radioUitstraling2").prop("checked", true);
+            });
+        </script>
+    }
+    @if (@Model.radioUitstraling == "6")
+    {
+        <script>
+            $(document).ready(function () {
+                $("#radioUitstraling3").prop("checked", true);
+            });
+        </script>
+    }
+    @if (@Model.radioUitstraling == "5.5")
+    {
+        <script>
+            $(document).ready(function () {
+                $("#radioUitstraling4").prop("checked", true);
+            });
+        </script>
+    }
+    @if (@Model.radioUitstraling == "5")
+    {
+        <script>
+            $(document).ready(function () {
+                $("#radioUitstraling5").prop("checked", true);
+            });
+        </script>
+    }
+    <!--Radiobutton veiligheid vullen-->
+    @if (@Model.radioVeiligheid == "7")
+    {
+        <script>
+            $(document).ready(function () {
+                $("#radioVeiligheid1").prop("checked", true);
+            });
+        </script>
+    }
+    @if (@Model.radioVeiligheid == "6")
+    {
+        <script>
+            $(document).ready(function () {
+                $("#radioVeiligheid2").prop("checked", true);
+            });
+        </script>
+    }
+    @if (@Model.radioVeiligheid == "5.5")
+    {
+        <script>
+            $(document).ready(function () {
+                $("#radioVeiligheid3").prop("checked", true);
+            });
+        </script>
+    }
+    @if (@Model.radioVeiligheid == "5")
+    {
+        <script>
+            $(document).ready(function () {
+                $("#radioVeiligheid4").prop("checked", true);
+            });
+        </script>
+    }
+
+</head>
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <div id="beoordelingsFormulier" class="list-group">
+                <a class="list-group-item list-group-item-action" href="#schoolgebouw">Schoolgebouw</a>
+                <a class="list-group-item list-group-item-action" href="#ruimtebehoefte">Ruimtebehoefte</a>
+                <a class="list-group-item list-group-item-action" href="#uitstraling">Uitstraling</a>
+                <a class="list-group-item list-group-item-action" href="#bouwkundigeStaat">Bouwkundige staat</a>
+                <a class="list-group-item list-group-item-action" href="#veiligheid">Veiligheid</a>
+                <a class="list-group-item list-group-item-action" href="#energieverbruik">Energieverbruik</a>
+                <a class="list-group-item list-group-item-action" href="#onderwijskundigeStaat">Onderwijskundige staat</a>
+            </div>
+
+        </div>
+        <div class="col-8">
+
+            <div data-bs-spy="scroll" data-bs-target="#beoordelingsFormulier" data-bs-smooth-scroll="true" class="scrollspy" tabindex="0">
+                <!--Schoolgebouw-->
+                <form asp-action="SchoolgebouwOpslaan">
+                    <h4 id="schoolgebouw">
+                        Schoolgebouw
+                        <button class="btn btn-sm btn-info rounded-pill" type="button" data-bs-toggle="modal" data-bs-target="#SchoolgebouwModal">?</button>
+                    </h4>
+
+                    Schoolnaam:<br /><input class="form-control inputwidth" asp-for="SchoolgebouwNaam" disabled />
+                    GemeenteNr:<br /><input class="form-control inputwidth" asp-for="GemeenteNr" disabled />
+                    Straatnaam:<br /><input class="form-control inputwidth" asp-for="Straatnaam" disabled />
+                    Postcode:<br /><input class="form-control inputwidth" asp-for="Postcode" disabled />
+                    Huisnummer:<br /><input class="form-control inputwidth" asp-for="Huisnummer" disabled />
+                    Onderwijssoort:<br /><input class="form-control inputwidth" asp-for="Onderwijssoort" disabled />
+                    Bouwjaar:<br /><input class="form-control inputwidth" asp-for="Bouwjaar" disabled />
+                    Oppervlakte:<br /><input class="form-control inputwidth" asp-for="Oppervlakte" disabled />
+                    Aantal leerlingen: <br /><input class="form-control inputwidth" asp-for="AantalLeerlingen" disabled />
+                    Contactpersoon naam: <br /><input class="form-control inputwidth" asp-for="ContactpersoonNaam" disabled />
+                    Contactpersoon functie: <br /><input class="form-control inputwidth" asp-for="ContactpersoonFunctie" disabled />
+                    Contactpersoon telefoonnummer: <br /><input class="form-control inputwidth" asp-for="ContactpersoonTelefoonNr" disabled />
+                    Contactpersoon email: <br /><input class="form-control inputwidth" asp-for="ContactpersoonEmail" disabled />
+                    <input type="hidden" asp-for="Id" />
+                    <input type="hidden" asp-for="SchoolGebouwId" />
+                    <br />
+                </form>
+
+                <!--Ruimtebehoefte-->
+                <br />
+                <h4 id="ruimtebehoefte">
+                    Ruimtebehoefte
+                    <button class="btn btn-sm btn-info rounded-pill" type="button" data-bs-toggle="modal" data-bs-target="#ruimtebehoefteModal">?</button>
+                </h4>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Jaar</th>
+                            <th scope="col">Leerlingen</th>
+                            <th scope="col">BVO</th>
+                            <th scope="col">+-</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < Model.Jaar.Count; i++)
+                        {
+                            <tr>
+                                <td>@Model.Jaar[i]</td>
+                                <td>@Model.Leerlingen[i]</td>
+                                <td>@Model.BVOs[i]</td>
+                                <td>@(Model.Oppervlakte - Model.BVOs[i])</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <!--Uitstraling-->
+                <br />
+                <h4 id="uitstraling">
+                    Uitstraling
+                    <button class="btn btn-info rounded-pill btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#uitstralingModal">?</button>
+
+                </h4>
+
+                <form asp-action="AntwoordenOpslaan" id="AntwoordenOpslaan">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioUitstraling" id="radioUitstraling1" value="8" disabled>
+                        <label class="form-check-label" for="radioUitstraling1">
+                            Een gebouw met unieke en beeldbepalende architectuur, een herkenningspunt in de omgeving.
+                        </label>
+                    </div> <br />
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioUitstraling" id="radioUitstraling2" value="7" disabled>
+                        <label class="form-check-label" for="radioUitstraling2">
+                            Een oud gebouw met een mooie monumentale uitstraling of een jong en opvallend vormgegeven schoolgebouw.
+                        </label>
+                    </div> <br />
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioUitstraling" id="radioUitstraling3" value="6" disabled>
+                        <label class="form-check-label" for="radioUitstraling3">
+                            Een gebouw met een degelijke en functionele uitstraling.
+                        </label>
+                    </div> <br />
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioUitstraling" id="radioUitstraling4" value="5.5" disabled>
+                        <label class="form-check-label" for="radioUitstraling4">
+                            Een verouderend gebouw waarbij zichtbaar is dat renovatie of levensduurverlenging op termijn noodzakelijk is.
+                        </label>
+                    </div> <br />
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioUitstraling" id="radioUitstraling5" value="5" disabled>
+                        <label class="form-check-label" for="radioUitstraling5">
+                            Een zichtbaar verouderend gebouw waarbij zichtbaar is dat renovatie of levensduurverlenging binnen afzienbare tijd noodzakelijk is.
+                        </label>
+                    </div>
+                    Opmerking: <br /> <input class="form-control opmerkingwidth" asp-for="UitstralingOpmerking" disabled />
+
+
+
+
+                    <!--Bouwkundige staat-->
+                    <br />
+                    <h4 id="bouwkundigeStaat">
+                        Bouwkundige staat
+                        <button class="btn btn-info btn-sm rounded-pill" type="button" data-bs-toggle="modal" data-bs-target="#bouwkundigestaatModal">?</button>
+                    </h4>
+
+
+                    Dak: <br /><input type="range" asp-for="Dak" class="form-range inputwidth" min="4" max="8" step="1" disabled> <br />
+                    Gevel: <br /><input type="range" asp-for="Gevel" class="form-range inputwidth" min="4" max="8" step="1" disabled> <br />
+                    Kozijnen en deuren: <br /><input type="range" asp-for="Kozijnen" class="form-range inputwidth" min="4" max="8" step="1" disabled> <br />
+                    Verwarming: <br /><input type="range" asp-for="Verwarming" class="form-range inputwidth" min="4" max="8" step="1" disabled> <br />
+                    Sanitair: <br /><input type="range" asp-for="Sanitair" class="form-range inputwidth" min="4" max="8" step="1" disabled> <br />
+                    Riolering: <br /><input type="range" asp-for="Riolering" class="form-range inputwidth" min="4" max="8" step="1" disabled> <br />
+                    Wanden en plafonds: <br /><input type="range" asp-for="Wanden" class="form-range inputwidth" min="4" max="8" step="1" disabled> <br />
+                    Extra punt:
+                    <select asp-for="BouwkundigeStaatExtraPuntSliders" disabled>
+                        <option value="0,5">0,5</option>
+                        <option value="0">0</option>
+                        <option value="-0,5">-0,5</option>
+                    </select> <br />
+
+                    <br />
+                    Kosten per jaar: <br /><input class="form-control inputwidth" asp-for="KostenPerJaar" disabled />
+                    Subsidie per jaar:<br /><input class="form-control inputwidth" asp-for="SubsidiePerJaar" disabled />
+                    Extra punt:
+                    <select asp-for="BouwkundigeStaatExtraPuntKosten" disabled>
+                        <option value="0,5">0,5</option>
+                        <option value="0">0</option>
+                        <option value="-0,5">-0,5</option>
+                    </select> <br />
+
+                    <br />
+                    Bouwjaar:<br /><input class="form-control inputwidth" asp-for="Bouwjaar" disabled />
+                    Renovatie jaar:<br /><input class="form-control inputwidth" asp-for="RenovatieJaar" disabled />
+                    Opmerking: <br /> <input class="form-control opmerkingwidth" asp-for="BouwkundigeStaatOpmerking" disabled />
+
+
+
+
+
+                    <!--Veiligheid-->
+                    <br />
+                    <h4 id="veiligheid">
+                        Veiligheid
+                        <button class="btn btn-info btn-sm rounded-pill" type="button" data-bs-toggle="modal" data-bs-target="#veiligheidModal">?</button>
+                    </h4>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioVeiligheid" id="radioVeiligheid1" value="7" disabled>
+                        <label class="form-check-label" for="radioVeiligheid1">
+                            Het gebouw is gerealiseerde nieuwbouw volgens het bouwbesluit uit 2012. Het heeft een geldige vergunning en geen veiligheidsproblemen
+                        </label>
+                    </div> <br />
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioVeiligheid" id="radioVeiligheid2" value="6" disabled>
+                        <label class="form-check-label" for="radioVeiligheid2">
+                            Het gebouw heeft een geldige vergunning en er zijn geen veiligheidsproblemen
+                        </label>
+                    </div> <br />
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioVeiligheid" id="radioVeiligheid3" value="5.5" disabled>
+                        <label class="form-check-label" for="radioVeiligheid3">
+                            Het gebouw heeft een geldige vergunning maar er zijn een of meerdere veiligheidsproblemen
+                        </label>
+                    </div> <br />
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioVeiligheid" id="radioVeiligheid4" value="5" disabled>
+                        <label class="form-check-label" for="radioVeiligheid4">
+                            Het gebouw heeft geen geldige vergunning door een of meerdere veiligheidsproblemen
+                        </label>
+                    </div>
+                    Extra punt:
+                    <select asp-for="VeiligheidExtraScore" disabled>
+                        <option value="0,5">0,5</option>
+                        <option value="0">0</option>
+                        <option value="-0,5">-0,5</option>
+                    </select> <br />
+                    Opmerking: <br /> <input class="form-control opmerkingwidth" asp-for="VeiligheidOpmerking" disabled />
+
+
+
+                    <!--Energieverbruik-->
+                    <br />
+                    <h4 id="energieverbruik">
+                        Energieverbruik
+                        <button class="btn btn-sm btn-info rounded-pill" type="button" data-bs-toggle="modal" data-bs-target="#energieverbruikModal">?</button>
+                    </h4>
+                    Elektriciteit: <br /><input class="form-control inputwidth" asp-for="VerbruikElektriciteit" disabled />
+                    Gas: <br /><input class="form-control inputwidth" asp-for="VerbruikGas" disabled />
+                    Stadsverwarming: <br /><input class="form-control inputwidth" asp-for="VerbruikStadsverwarming" disabled />
+                    Eigen opwekking: <br /><input class="form-control inputwidth" asp-for="EigenOpwekking" disabled />
+                    Opmerking: <br /><input class="form-control opmerkingwidth" asp-for="EnergieVerbruikOpmerking" disabled /><br />
+
+
+                    <!--Onderwijskundige staat-->
+                    <br />
+                    <h4 id="onderwijskundigeStaat">
+                        Onderwijskundige staat
+                        <button class="btn btn-sm btn-info rounded-pill" type="button" data-bs-toggle="modal" data-bs-target="#onderwijkundigeStaatModal">?</button>
+                    </h4>
+
+                    Aula: <br /><input type="range" asp-for="Aula" class="form-range inputwidth" min="4" max="8" step="1" id="Aula" disabled> <br />
+                    Stafruimte: <br /><input type="range" asp-for="Stafruimte" class="form-range inputwidth" min="4" max="8" step="1" id="Stafruimte" disabled> <br />
+                    Bergruimte: <br /><input type="range" asp-for="Bergruimte" class="form-range inputwidth" min="4" max="8" step="1" id="Bergruimte" disabled> <br />
+                    Rolstoeltoegankelijkheid: <br /><input type="range" asp-for="Rolstoel" class="form-range inputwidth" min="4" max="8" step="1" id="Rolstoel" disabled> <br />
+                    <b>Score: <span id="GemiddeldeOnderwijskundigeStaat"></span></b><br />
+                    Opmerking: <br /> <input class="form-control opmerkingwidth" asp-for="OnderwijskundigeStaatOpmerking" disabled />
+                    <input type="hidden" asp-for="Id" />
+                    <input type="hidden" asp-for="SchoolGebouwId" />
+                    <br /> <br />
+
+                    <script>
+                        var Aula = document.getElementById("Aula");
+                        var Stafruimte = document.getElementById("Stafruimte");
+                        var Bergruimte = document.getElementById("Bergruimte");
+                        var Rolstoel = document.getElementById("Rolstoel");
+                        var Output = document.getElementById("GemiddeldeOnderwijskundigeStaat");
+
+                        Output.innerHTML = (parseInt(Aula.value) + parseInt(Stafruimte.value) + parseInt(Bergruimte.value) + parseInt(Rolstoel.value)) / 4;
+
+                    </script>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Schoolgebouw Modal -->
+<div class="modal fade" id="SchoolgebouwModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Schoolgebouw info</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Gemeente: 		[Naam van gemeente] <br />
+
+                Adres			[Straat, nummer, postcode, dorp/stad]  <br />
+
+                Onderwijssoort		[basis/middelbaar/hogeschool]  <br />
+
+                Bouwjaar		[jaartal]  <br />
+
+                Oppervlak		[ ___ m2]  <br />
+
+                Contact			[naam, functie, telefoonnummer, e-mail]  <br />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Ruimtebehoefte Modal -->
+<div class="modal fade" id="ruimtebehoefteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Ruimtebehoefte info</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                BVO (bruto vloeroppervlakte) voor een school wordt berekent door het aantal leerlingen te vermenigvuldigen met een variabel gebaseerd op het geselecteerde onderwijstype. <br />
+
+                Met een schatting van de toekomstige groei van het aantal leerlingen kan worden geschat wanneer het BVO overschreden wordt. <br />
+
+                wetten.nl - Regeling - Uitvoeringsbesluit voorzieningen in de huisvesting PO/VO - BWBR0008562 (overheid.nl) <br />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--Uitstraling Modal -->
+<div class="modal fade" id="uitstralingModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Uitstraling info</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Score 5-8 <br />
+
+                8: Een gebouw met unieke en beeldbepalende architectuur, een herkenningspunt in de omgeving. <br />
+
+                7: Een oud gebouw met een mooie monumentale uitstraling of een jong en opvallend vormgegeven schoolgebouw. <br />
+
+                6: Een gebouw met een degelijke en functionele uitstraling. <br />
+
+                5.5: Een verouderend gebouw waarbij zichtbaar is dat renovatie of levensduurverlenging op termijn noodzakelijk is. <br />
+
+                5: Een zichtbaar verouderend gebouw waarbij zichtbaar is dat renovatie of levensduurverlenging binnen afzienbare tijd noodzakelijk is. <br />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--BouwkundigeStaat Modal -->
+<div class="modal fade" id="bouwkundigestaatModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Bouwkundige staat info</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Bouwkundige onderdelen<br />
+
+                Staat van diverse onderdelen worden beoordeeld door middel van een + & - systeem. Digitaliseren is mogelijk door middel van een slider. <br />
+
+                Diverse onderdelen: dak, dichte gevel, kozijnen/deuren, verwarming, sanitair, riolering, wanden / plafonds <br />
+
+                Bij wens kan de monteur hier een extra halve punt toewijzen of afnemen <br />
+
+                Bouwkundige leeftijd <br />
+
+                Score 4 – 8 <br />
+
+                Gebaseerd op de leeftijd van het gebouw, of sinds de laatste grote renovatie <br />
+
+                8 - Minder dan 10 jaar oud <br />
+
+                7 - Max 20 jaar oud <br />
+
+                6 - Max 25 jaar oud <br />
+
+                5.5 - Max 30 jaar oud <br />
+
+                5 - Max 35 jaar oud <br />
+
+                4 - 40 jaar of ouder <br />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Veiligheid Modal -->
+<div class="modal fade" id="veiligheidModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Veiligheid info</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Vergunning
+
+                Score 5-7
+
+                7: Het gebouw is gerealiseerde nieuwbouw volgens het bouwbesluit uit 2012. Het heeft een geldige vergunning en geen veiligheidsproblemen <br />
+
+                6: Het gebouw heeft een geldige vergunning en er zijn geen veiligheidsproblemen <br />
+
+                5.5: Het gebouw heeft een geldige vergunning maar er zijn een of meerdere veiligheidsproblemen <br />
+
+                5: Het gebouw heeft geen geldige vergunning door een of meerdere veiligheidsproblemen <br />
+
+
+
+                Als er andere veiligheidsproblemen zijn kan de monteur er voor kiezen om een half punt van de score afhalen <br />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Energie verbruik Modal -->
+<div class="modal fade" id="energieverbruikModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Energieverbruik info</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                De score wordt berekent door het verbruik per vierkante meter, dit gaat aan de hand van een formule. <br />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Onderwijskundigestaat Modal -->
+<div class="modal fade" id="onderwijkundigeStaatModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Onderwijskundige staat info</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Score 4-8  <br />
+
+                8: Het onderwijs kan optimaal worden gefaciliteerd. <br />
+
+                7: Het onderwijs kan voldoende worden gefaciliteerd, ook al is het gebouw niet geoptimaliseerd kan het wel goed onderwijs faciliteren. <br />
+
+                6: Het onderwijs kan voldoende worden gefaciliteerd, maar er ontbreken specifieke ruimtes.  <br />
+
+                5.5: Het onderwijs kan redelijk worden gefaciliteerd, maar er is een tekort aan specifieke ruimtes.  <br />
+
+                5: Het onderwijs kan matig worden gefaciliteerd, er is een tekort aan lesruimtes en/of specifieke ruimtes.  <br />
+
+                4: Het onderwijs kan slecht worden gefaciliteerd, er is een groot te kort aan lesruimtes en/of specifieke lesruimtes.   <br />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
