@@ -16,7 +16,7 @@ public class ProductsController : Controller
     private readonly IProductContainer _productContainer;
     private INotyfService _notyfService;
 
-    private bool result = false;
+    private bool result;
     private Product product;
 
 
@@ -27,7 +27,7 @@ public class ProductsController : Controller
         _productContainer = productContainer;
         _notyfService = notyfService;
     }
-    
+
     [HttpGet]
     public IActionResult Index()
     {
@@ -39,10 +39,7 @@ public class ProductsController : Controller
             {
                 return NotFound();
             }
-            
-            //Method below is used to redirect to a page with a blazor searchbar component.
-            // return Redirect("/app");
-            
+
             return View(pvm);
         }
 
@@ -51,10 +48,9 @@ public class ProductsController : Controller
         {
             Debug.WriteLine(e.Message);
             return RedirectToAction("Error", "Home");
-            
         }
     }
-
+    
     
     [HttpGet]
     [IgnoreAntiforgeryToken]
@@ -74,11 +70,7 @@ public class ProductsController : Controller
         catch (Exception e)
         {
             _logger.LogError(e.Message);
-            return NotFound();
-            //TODO: Uncomment and use code below to redirect to error page
-            // ErrorViewModel evm = new ErrorViewModel();
-            // evm.ErrorMessage = e.Message;
-            // return RedirectToAction("Error", "Home");
+            return NotFound(); 
         }
     }
 
@@ -92,11 +84,12 @@ public class ProductsController : Controller
     [Authorize(Policy = "AdminOrShopOwner")]
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult AddProduct(Product product)
+    public IActionResult AddProduct(ProductViewModel model)
     {
         //TODO: Add product to database 
         if (ModelState.IsValid)
         {
+            var product = ProductViewModelHelper.ToProduct(model);
             try
             {
                 result = _productContainer.AddProduct(product);
@@ -119,48 +112,43 @@ public class ProductsController : Controller
                 return RedirectToAction("Error", "Products");
             }
         }
+
         return View();
     }
 
 
     [Authorize(Policy = "AdminOrShopOwner")]
-    //TODO implement the rest of the CRUD operations
     [HttpGet]
     public IActionResult EditProduct(int id)
     {
-        product = new();
         try
         {
-            product = _productContainer.GetProductById(id);
-            if (product == null)
+            var viewmodel = ProductViewModelHelper.ToProductViewModel(_productContainer.GetProductById(id));
+            if (viewmodel == null)
             {
                 return NotFound();
             }
 
-            return View(product);
+            return View(viewmodel);
         }
         catch (Exception e)
         {
             _logger.LogError(e.Message);
             return NotFound();
-            //TODO: Uncomment and use code below to redirect to error page
-            // ErrorViewModel evm = new ErrorViewModel();
-            // evm.ErrorMessage = e.Message;
-            // return RedirectToAction("Error", "Home");
         }
     }
 
 
     [Authorize(Policy = "AdminOrShopOwner")]
-    //TODO: Finish route
     [HttpPost]
     [ValidateAntiForgeryToken]
     // [ValidateAntiForgeryToken]
-    public IActionResult EditProduct(Product product, int id)
+    public IActionResult EditProduct(ProductViewModel model, int id)
     {
         if (ModelState.IsValid)
         {
-            product.ProductId = id;
+            var product = ProductViewModelHelper.ToProduct(model);
+            
             try
             {
                 result = _productContainer.UpdateProduct(product);
@@ -169,11 +157,9 @@ public class ProductsController : Controller
                     _notyfService.Warning("Something went wrong", 10);
                     return RedirectToAction("EditProduct", "Products", new { @id = id });
                 }
-                else
-                {
-                    _notyfService.Success("Product Editted!", 10);
-                    return RedirectToAction("EditProduct", "Products", new { @id = id });
-                }
+
+                _notyfService.Success("Product Updated!", 10);
+                return RedirectToAction("EditProduct", "Products", new { @id = id });
             }
             catch (Exception e)
             {
@@ -183,9 +169,10 @@ public class ProductsController : Controller
                 return RedirectToAction("Error", "Products");
             }
         }
+
         return View();
     }
-    
+
     [Authorize(Policy = "AdminOrShopOwner")]
     public IActionResult ArchiveProduct(int id)
     {
@@ -197,11 +184,9 @@ public class ProductsController : Controller
                 _notyfService.Success("Archive status processed!", 10);
                 return RedirectToAction("Assortment");
             }
-            else
-            {
-                _notyfService.Warning("Something went wrong", 10);
-                RedirectToAction("Assortment");
-            }
+
+            _notyfService.Warning("Something went wrong", 10);
+            RedirectToAction("Assortment");
         }
         catch (Exception e)
         {
@@ -211,7 +196,7 @@ public class ProductsController : Controller
 
         return RedirectToAction("Assortment", "Products");
     }
-    
+
     [Authorize(Policy = "AdminOrShopOwner")]
     [HttpGet]
     public IActionResult Assortment()
@@ -221,7 +206,7 @@ public class ProductsController : Controller
             //var assortment = List<AssortmentViewModel> = _productContainer.GetAllProducts();
             var assortment = _productContainer.GetAssortment();
             var viewModels = AssortmentViewModelHelper.ToAssortmentViewModelList(assortment);
-            
+
             if (viewModels == null)
             {
                 return NotFound();
@@ -233,7 +218,6 @@ public class ProductsController : Controller
         {
             Debug.WriteLine(e.Message);
             return RedirectToAction("Error", "Home");
-            
         }
     }
 
@@ -241,7 +225,7 @@ public class ProductsController : Controller
     {
         return View();
     }
-    
+
     public Task<IActionResult> AccessDenied()
     {
         _notyfService.Warning("You are not allowed to access this page");
@@ -259,6 +243,4 @@ public class ProductsController : Controller
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
-    
-    
 }

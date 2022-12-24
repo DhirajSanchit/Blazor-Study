@@ -1,3 +1,4 @@
+@using System.Security.Claims
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,6 +40,9 @@
             </div>
 
             <div>
+                <div class="float-start">
+                    <vc:current-user user="@User">@User</vc:current-user>
+                </div>
                 @* Logout Button *@
                 @if (User.Identity.IsAuthenticated)
                 {

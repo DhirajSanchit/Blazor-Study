@@ -1,6 +1,7 @@
 using BusinessLogicLayer.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Webshop.Models;
+using Webshop.Models.Components;
 
 namespace Webshop.Components;
 

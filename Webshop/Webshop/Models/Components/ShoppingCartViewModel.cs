@@ -1,6 +1,6 @@
 using BusinessLogicLayer.Interfaces;
 
-namespace Webshop.Models;
+namespace Webshop.Models.Components;
 
 public class ShoppingCartViewModel
 {

@@ -13,9 +13,6 @@ public class Product
     
     // public string Brand { get; set; }
     
-    [Range(1, 100)]
-    [DataType(DataType.Currency)]
-    [Required]
     public decimal Price { get; set; }
     
     

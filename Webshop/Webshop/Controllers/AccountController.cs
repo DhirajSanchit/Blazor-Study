@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Webshop.Helpers.AuthenticationHelpers;
-using Webshop.Helpers.ViewModelHelpers;
 using Webshop.Interfaces;
 using Webshop.Models;
 

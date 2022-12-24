@@ -4,7 +4,8 @@ using BusinessLogicLayer.Classes;
 using BusinessLogicLayer.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
+using Webshop.Helpers.ViewModelHelpers;
+using Webshop.Models;
 
 
 namespace Webshop.Controllers
@@ -39,8 +40,9 @@ namespace Webshop.Controllers
         }
 
         [HttpPost]
-        public IActionResult Checkout(Order order)
+        public IActionResult Checkout(OrderViewModel ovm)
         {
+            var order = OrderViewModelHelper.ToOrder(ovm);
             try
             {
                 var items = _shoppingCart.GetShoppingCartItems();
@@ -68,13 +70,13 @@ namespace Webshop.Controllers
                     }
                 }
 
-                return View(order);
+                return View(ovm);
             }
             catch (Exception e)
             {
                 Console.WriteLine("Error: " + e.Message);
                 _notyfService.Error(e.Message);
-                return View(order);
+                return View(ovm);
             }
         }
 

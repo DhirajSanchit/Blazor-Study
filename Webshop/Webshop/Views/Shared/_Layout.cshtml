@@ -49,6 +49,9 @@
             </div>
             <div>
                 @* Logout Button *@
+                <div class="float-start">
+                    <vc:current-user user="User"></vc:current-user>
+                </div>
                 @if (User.Identity.IsAuthenticated)
                 {
                     <a class=" btn btn-outline-warning text-dark mx-5" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>

@@ -54,7 +54,7 @@ namespace DataAccessLayer.DALs
                 {
 
                     string sql =
-                        @"INSERT INTO [dbo].[Product]([Name],[Price],[Description],[ImageLink]) VALUES (@Name, @Price, @Description, @ImageLink)";
+                        @"INSERT INTO [Product]([Name],[Price],[Description],[ImageLink]) VALUES (@Name, @Price, @Description, @ImageLink)";
                     var affectedRows = dataAccess.ExecuteCommand(sql, dto);
                     if (affectedRows > 0)
                         result = true;
@@ -74,7 +74,7 @@ namespace DataAccessLayer.DALs
             try
             {
                 string sql =
-                    @"UPDATE [dbo].[Product] SET 
+                    @"UPDATE [Product] SET 
                            [Name] = @Name, 
                            [Price] = @Price, 
                            [Description] = @Description, 
@@ -122,7 +122,7 @@ namespace DataAccessLayer.DALs
         {
             try
             {
-                string sql = @"UPDATE [dbo].[Product] SET [ArchiveDate] = @ArchiveDate WHERE ProductId = @ProductId";
+                string sql = @"UPDATE [Product] SET [ArchiveDate] = @ArchiveDate WHERE ProductId = @ProductId";
                 var affectedRows = dataAccess.ExecuteCommand(sql, new { ArchiveDate = archiveDate, ProductId = id });
                 if (affectedRows > 0)
                     result = true;

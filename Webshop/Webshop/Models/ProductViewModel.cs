@@ -11,8 +11,9 @@ public class ProductViewModel
     [Required]
     public string Name { get; set; }
     
-    [Range(1, 100)]
+    [Range(0.01, 100.00, ErrorMessage = "Price must be between 0.01 and 100.00")]
     [DataType(DataType.Currency)]
+    [DisplayFormat(DataFormatString = "{0:C}", ApplyFormatInEditMode = true)]
     [Required]
     public decimal Price { get; set; }
 
@@ -25,10 +26,7 @@ public class ProductViewModel
     public string ImageLink { get; set; }
     
     public DateTime? ArchiveDate { get; set; }
-    
-    
-    
-    public Product? Product;
+ 
     public IEnumerable<Product>? _Products { get; set; }
     
     //TODO:

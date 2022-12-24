@@ -41,7 +41,7 @@ public class ProductViewModelHelper
             ProductId = productViewModel.Id,
             Name = productViewModel.Name,
             Description = productViewModel.Description,
-            Price = productViewModel.Price,
+            Price = Convert.ToDecimal(productViewModel.Price),
             ImageLink = productViewModel.ImageLink,
         };
     }

@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Security.Claims;
 using System.Text.Json.Serialization;
 using AspNetCoreHero.ToastNotification;
@@ -8,9 +9,7 @@ using DataAccessLayer.DataAccess;
 using InterfaceLayer.DALs;
 using NToastNotify;
 using AspNetCoreHero.ToastNotification.Extensions;
-using BusinessLogicLayer.Classes;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Webshop.Helpers;
 using Webshop.Helpers.AuthenticationHelpers;
 using Webshop.Interfaces;
 
@@ -19,7 +18,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddLocalization();
 // Add servicesFor Toasts
 builder.Services.AddControllersWithViews().AddNToastNotifyToastr(new ToastrOptions
 {
@@ -111,6 +110,8 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseSession();
@@ -118,6 +119,26 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseRequestLocalization(new RequestLocalizationOptions()
+    .SetDefaultCulture("nl-NL")
+    .AddSupportedCultures(new[] { "en-US", "nl-NL", "en-GB"})
+    .AddSupportedUICultures(new[] { "en-US", "nl-NL", "en-GB" })
+    .AddSupportedUICultures(
+
+        //get local cultures from the browser
+        CultureInfo.GetCultures(CultureTypes.AllCultures)
+            .Where(c => !string.IsNullOrEmpty(c.Name))
+            .Select(c => c.Name)
+            .ToArray()));
+//         
+//         CultureInfo.GetCultures(CultureTypes.AllCultures)
+//             .Where(c => !c.IsNeutralCulture)
+//             .Select(c => c.Name)
+//             .ToArray()
+//     )
+// );
+    
 
 app.MapControllers();
 app.MapControllerRoute(
